@@ -1,29 +1,83 @@
 {
-  "user": [
-      {
-          "id": 1,
-          "postId": 1,
-          "username": "Jane"
-      },
-      {
-          "id": 2,
-          "postId": 2,
-          "username": "Michael"
-      },
-      {
-          "id": 3,
-          "postId": 3,
-          "username": "Louis"
-      },
-      {
-          "id": 4,
-          "postId": 4,
-          "username": "Natasha"
-      },
-      {
-          "id": 5,
-          "postId": 5,
-          "username": "William"
-      }
+  "users": [
+    {
+      "id": 1,
+      "username": "Jane",
+      "password": "122daigs",
+      "email": "Jane@gmail.com",
+      "isAdmin": false,
+      "ban": 1223
+    },
+    {
+      "id": 2,
+      "username": "Michael",
+      "password": "12aadaigs",
+      "email": "Michael@gmail.com",
+      "isAdmin": false,
+      "ban": 1223
+    },
+    {
+      "id": 3,
+      "username": "Louis",
+      "password": "12aadssaigs",
+      "email": "Louis@gmail.com",
+      "isAdmin": false,
+      "ban": 1223
+    },
+    {
+      "id": 4,
+      "username": "Admin",
+      "password": "admin123",
+      "email": "Admin@gmail.com",
+      "isAdmin": true,
+      "ban": 0
+    }
+  ],
+  "posts": [
+    {
+      "id": 1,
+      "title": "",
+      "foto": "",
+      "description": "",
+      "userId": 1,
+      "topicId": 1,
+      "isActive": true
+    },
+    {
+      "id": 2,
+      "title": "",
+      "foto": "",
+      "description": "",
+      "userId": 2,
+      "topicId": 1,
+      "isActive": true
+    },
+    {
+      "id": 3,
+      "title": "",
+      "foto": "",
+      "description": "",
+      "userId": 3,
+      "topicId": 1,
+      "isActive": true
+    },
+    {
+      "id": 4,
+      "title": "",
+      "foto": "",
+      "description": "",
+      "userId": 4,
+      "topicId": 1,
+      "isActive": true
+    },
+    {
+      "id": 5,
+      "title": "",
+      "foto": "",
+      "description": "",
+      "userId": 5,
+      "topicId": 1,
+      "isActive": true
+    }
   ]
 }
