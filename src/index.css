@@ -16,7 +16,3 @@
 *{
   font-family: 'Poppins', sans-serif;
 }
-
-.sidebar-list{
-  @apply flex gap-2 pb-5 text-[16px] text-primary
-}
