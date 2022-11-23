@@ -1,33 +1,28 @@
 import React, { useEffect, useState } from "react";
 import UserAPI from "../apis/users.api";
+import TableUsers from "../components/TableUsers";
 
 const User = () => {
   const [user, setUser] = useState([]);
+  console.log(user)
+  const getUser = async () => {
+    try {
+      const response = await UserAPI.getAllUser();
+      setUser(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   useEffect(() => {
-    const getUser = async () => {
-      try {
-        const response = await UserAPI.getAllUser();
-        setUser(response.data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
     getUser();
   }, []);
 
   return (
     <div className="container">
-      <h1>Users</h1>
+      <h1 className="pb-5">Manage User</h1>
       <div className="users">
-        {user.map((data) => {
-          return (
-            <div className="user-card">
-              <p>{data.username}</p>
-            </div>
-          );
-        })}
+        <TableUsers data={user}/>
       </div>
     </div>
   );
