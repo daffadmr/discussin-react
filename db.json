@@ -2,28 +2,35 @@
   "users": [
     {
       "id": 1,
-      "postId": 1,
-      "username": "Jane"
+      "username": "Jane",
+      "password": "122daigs",
+      "email": "Jane@gmail.com",
+      "isAdmin": false,
+      "ban": 1223
     },
     {
       "id": 2,
-      "postId": 2,
-      "username": "Michael"
+      "username": "Michael",
+      "password": "12aadaigs",
+      "email": "Michael@gmail.com",
+      "isAdmin": false,
+      "ban": 1223
     },
     {
       "id": 3,
-      "postId": 3,
-      "username": "Louis"
+      "username": "Louis",
+      "password": "12aadssaigs",
+      "email": "Louis@gmail.com",
+      "isAdmin": false,
+      "ban": 1223
     },
     {
       "id": 4,
-      "postId": 4,
-      "username": "Natasha"
-    },
-    {
-      "id": 5,
-      "postId": 5,
-      "username": "William"
+      "username": "Admin",
+      "password": "admin123",
+      "email": "Admin@gmail.com",
+      "isAdmin": true,
+      "ban": 0
     }
   ],
   "posts": [
