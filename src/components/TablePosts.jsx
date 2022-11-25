@@ -27,11 +27,11 @@ const TablePosts = ({ datas }) => {
       renderCell: (params) => {
         if (params.row.isActive === true) {
           return (
-            <div className="flex justify-between">
+            <div className="flex w-[160px] justify-between">
               <span className="bg-secondary py-1 px-3 rounded font-bold">
                 Suspend
               </span>
-              <div className="bg-secondary p-1 rounded ml-2 place-content-center">
+              <div className="bg-secondary p-1 rounded place-content-center">
                 <img
                   className="w-5 h-5 "
                   src={require("../assets/png/do_not_disturb_on.png")}
@@ -42,11 +42,11 @@ const TablePosts = ({ datas }) => {
           );
         } else {
           return (
-            <div className="flex justify-between">
+            <div className="flex w-[160px] justify-between">
               <div className="bg-secondary py-1 px-3 rounded font-bold">
                 Suspended
               </div>
-              <div className="bg-secondary p-1 place-content-center rounded ml-2">
+              <div className="bg-secondary p-1 place-content-center rounded ">
                 <img
                   className="w-5"
                   src={require("../assets/png/do_not_disturb_off.png")}
