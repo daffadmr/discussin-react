@@ -36,45 +36,45 @@
   "posts": [
     {
       "id": 1,
-      "title": "",
-      "foto": "",
-      "description": "",
+      "title": "Make Cake in Rome",
+      "foto": "https://fakeimg.pl/250x100/",
+      "description": "Make our cake",
       "userId": 1,
       "topicId": 1,
       "isActive": true
     },
     {
       "id": 2,
-      "title": "",
-      "foto": "",
-      "description": "",
+      "title": "New Hero in Mobile Legend",
+      "foto": "https://fakeimg.pl/250x100/",
+      "description": "Is New Hero",
       "userId": 2,
       "topicId": 1,
       "isActive": true
     },
     {
       "id": 3,
-      "title": "",
-      "foto": "",
-      "description": "",
+      "title": "New OP Hero in Fire Fire",
+      "foto": "https://fakeimg.pl/250x100/",
+      "description": "New",
       "userId": 3,
       "topicId": 1,
-      "isActive": true
+      "isActive": false
     },
     {
       "id": 4,
-      "title": "",
-      "foto": "",
-      "description": "",
+      "title": "Realesed FPS Game",
+      "foto": "https://fakeimg.pl/250x100/",
+      "description": "napad",
       "userId": 4,
       "topicId": 1,
       "isActive": true
     },
     {
       "id": 5,
-      "title": "",
-      "foto": "",
-      "description": "",
+      "title": "New update football",
+      "foto": "https://fakeimg.pl/250x100/",
+      "description": "ada",
       "userId": 5,
       "topicId": 1,
       "isActive": true

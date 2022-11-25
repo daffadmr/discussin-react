@@ -1,12 +1,16 @@
+import axios from "axios";
 import axiosInstance from "../configs/axiosInstance";
 
 const ThreadAPI = {
-  async getAllThread() {
+  async getAllThread(cb) {
     try {
-      const response = await axiosInstance.get("/");
-      return response;
+      const response = await axios({
+        method: "get",
+        url: "http://localhost:3001/posts",
+      });
+      return cb(response.data);
     } catch (error) {
-      console.log(error.message)
+      console.log(error.message);
     }
   },
 
@@ -21,13 +25,12 @@ const ThreadAPI = {
 
   async deleteThread(id) {
     try {
-      const response = await axiosInstance.delete(`${id}`)
-      return response
+      const response = await axiosInstance.delete(`${id}`);
+      return response;
     } catch (error) {
-      console.log(error.message)
+      console.log(error.message);
     }
   },
-	
 };
 
 export default ThreadAPI;
