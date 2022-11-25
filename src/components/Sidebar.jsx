@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Link, useParams } from "react-router-dom";
-import Logo from "../assets/svg/logo";
+import { Link } from "react-router-dom";
+import LogoWithName from "../assets/svg/LogoWithName";
 import GridViewOutlinedIcon from "@mui/icons-material/GridViewOutlined";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import TopicOutlinedIcon from "@mui/icons-material/TopicOutlined";
@@ -35,7 +35,7 @@ const Sidebar = () => {
   return (
     <div className="h-screen w-[224px] shadow-2xl">
       <div className="flex items-center justify-center p-[10px]">
-        <Logo />
+        <LogoWithName />
       </div>
       <div className="flex flex-col justify-between items-center h-[85vh]">
         <ul>

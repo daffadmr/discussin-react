@@ -10,7 +10,11 @@ module.exports = {
         center: true,
       },
       colors: {
-        primary: '#707070'
+        primary: '#707070',
+        secondary: 'C3CBCD'
+      },
+      borderRadius: {
+        default: '5px'
       }
     },
   },
