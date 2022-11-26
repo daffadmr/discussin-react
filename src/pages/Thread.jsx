@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 import ThreadAPI from "../apis/threads.api";
 // import TablePosts from "../components/TablePosts";
 import { DataGrid } from "@mui/x-data-grid";
+import { randomCreatedDate } from "@mui/x-data-grid-generator";
 
 const Thread = () => {
+  // console.log(new Date(1668790800000));
   const [posts, setPosts] = useState([]);
   useEffect(() => {
     ThreadAPI.getAllThread((result) => setPosts(result));
@@ -33,9 +35,20 @@ const Thread = () => {
       flex: 1,
     },
     {
-      field: "date",
+      field: "createdAt",
       headerName: "Date Created",
       flex: 1,
+      type: "date",
+      renderCell: (params) => {
+        let a = new Date(params.row.createdAt);
+        let bulans = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+        let tahun = a.getFullYear();
+        let bulan = bulans[a.getMonth()];
+        let tanggal = a.getDate();
+        const pickDate = `${tanggal}/${bulan}/${tahun}`;
+
+        return <span>{pickDate}</span>;
+      },
     },
     {
       field: "isActive",
@@ -89,7 +102,12 @@ const Thread = () => {
       <h1 className="pb-5">Manage Thread</h1>
       <div className="users">
         <div className="w-[80vw] h-[80vh] border rounded-lg">
-          <DataGrid checkboxSelection rows={posts} columns={columns} />
+          <DataGrid
+            checkboxSelection
+            disableSelectionOnClick
+            rows={posts}
+            columns={columns}
+          />
         </div>
         {/* <TablePosts datas={posts} /> */}
       </div>
