@@ -1,29 +1,42 @@
 import React, { useState } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import { width } from "@mui/system";
+import ThreadAPI from "../apis/threads.api";
 
 const TablePosts = ({ datas }) => {
-  // const [rows, setRows] = useState([]);
-  const rows = [...datas];
-  // const rows = [...datas];
+  // console.log(...datas);
+  const [rows, setRows] = useState([]);
+  // datas ? setRows([...datas]) : null;
+  // rows = [...datas];
+  console.log(rows);
+  const clickHandler = (id, active) => {
+    ThreadAPI.upadateThread(id);
+  };
   const columns = [
-    { field: "id", headerName: "Post ID", width: 100 },
-    { field: "title", headerName: "Title", width: 200 },
+    { field: "id", headerName: "Post ID", flex: 0.4 },
+    {
+      field: "title",
+      headerName: "Title",
+      flex: 2,
+      // maxWidth: 200,
+      // minWidth: 250,
+    },
     {
       field: "description",
       headerName: "Topics",
+      flex: 1,
     },
     {
       field: "date",
       headerName: "Date Created",
-      width: 200,
+      flex: 1,
     },
     {
       field: "isActive",
       headerName: "Action",
       type: "boolean",
       editable: true,
-      width: 160,
+      flex: 1,
       renderCell: (params) => {
         if (params.row.isActive === true) {
           return (
@@ -31,7 +44,10 @@ const TablePosts = ({ datas }) => {
               <span className="bg-secondary py-1 px-3 rounded font-bold">
                 Suspend
               </span>
-              <div className="bg-secondary p-1 rounded place-content-center">
+              <div
+                onClick={() => clickHandler(params.row.id)}
+                className="bg-secondary p-1 rounded place-content-center cursor-pointer"
+              >
                 <img
                   className="w-5 h-5 "
                   src={require("../assets/png/do_not_disturb_on.png")}

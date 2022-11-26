@@ -39,11 +39,18 @@ const Sidebar = () => {
       </div>
       <div className="flex flex-col justify-between items-center h-[85vh]">
         <ul>
-          {list.map((item) => {
+          {list.map((item, index) => {
             return (
               <li
+                key={index}
                 onClick={() => setActiveList(item.name)}
-                className={`flex gap-2 pb-5 text-[16px] text-primary ${activeList === item.name && 'text-black'} ${activeList === null && window.location.pathname === item.route ? "text-black" : ""}`}
+                className={`flex gap-2 pb-5 text-[16px] text-primary ${
+                  activeList === item.name && "text-black"
+                } ${
+                  activeList === null && window.location.pathname === item.route
+                    ? "text-black"
+                    : ""
+                }`}
               >
                 <Link to={`${item.route}`} className={`flex gap-2`}>
                   <item.icon />
