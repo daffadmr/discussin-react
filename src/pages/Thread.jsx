@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
 import ThreadAPI from "../apis/threads.api";
-import TablePosts from "../components/TablePosts";
+// import TablePosts from "../components/TablePosts";
 import { DataGrid } from "@mui/x-data-grid";
 
 const Thread = () => {
   const [posts, setPosts] = useState([]);
   useEffect(() => {
     ThreadAPI.getAllThread((result) => setPosts(result));
-    console.log(posts);
   }, []);
 
   const clickHandler = (id) => {

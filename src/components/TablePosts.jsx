@@ -1,15 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import { DataGrid } from "@mui/x-data-grid";
-import { width } from "@mui/system";
 import ThreadAPI from "../apis/threads.api";
 
 const TablePosts = ({ datas }) => {
   // console.log(...datas);
-  const [rows, setRows] = useState([]);
+  // const [rows, setRows] = useState([]);
   // datas ? setRows([...datas]) : null;
   // rows = [...datas];
   console.log(rows);
-  const clickHandler = (id, active) => {
+  const clickHandler = (id) => {
     ThreadAPI.upadateThread(id);
   };
   const columns = [
