@@ -10,8 +10,8 @@ module.exports = {
         center: true,
       },
       colors: {
-        primary: '#707070',
-        secondary: 'C3CBCD'
+        primary: '#FBEB23',
+        secondary: '#285FE7'
       },
       borderRadius: {
         default: '5px'

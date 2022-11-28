@@ -3,17 +3,18 @@ import { Link, useNavigate } from "react-router-dom";
 import AuthAPI from "../apis/auth.api";
 import LoginImage from "../assets/png/loginImage.png";
 import logo from "../assets/png/logo.svg";
-import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import LoginSvg from "../assets/svg/LoginSvg";
 
 const Login = () => {
   const navigate = useNavigate();
 
-  const [showPassword, setShowPassword] = useState(false)
+  const [showPassword, setShowPassword] = useState(false);
 
   const visiblePassword = (e) => {
-    e.preventDefault()
-    setShowPassword(!showPassword)
-  }
+    e.preventDefault();
+    setShowPassword(!showPassword);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -30,34 +31,58 @@ const Login = () => {
   };
 
   return (
-    <div className="container">
-      <div className="flex justify-between">
-        <div className="flex flex-col justify-center gap-5">
+    <div className="container h-screen flex items-center justify-center">
+      <div className="my-auto flex justify-center py-4 items-center">
+        <div className="flex flex-col justify-center gap-5 border-r-2 pr-16">
           <img src={logo} alt="" width={52} />
-          <h1>Sign in as Admins</h1>
-          <p>Not admins? open apps in here</p>
-          <form onSubmit={handleSubmit} className="form-container w-[20vw] flex flex-col gap-5">
+          <h1>Sign in as Admin</h1>
+          <p>Not admins? open apps in <span className="text-secondary cursor-pointer">here</span></p>
+          <form
+            onSubmit={handleSubmit}
+            className="form-container w-[20vw] flex flex-col gap-5"
+          >
             <div className="form-group flex flex-col w-[20vw]">
               <label htmlFor="email">Email</label>
-              <input className="border rounded-default p-2" type="email" name="email" id="email" placeholder="Enter Email" />
+              <input
+                className="border rounded-default p-2"
+                type="email"
+                name="email"
+                id="email"
+                placeholder="Enter Email"
+              />
             </div>
             <div className="form-group flex flex-col w-[20vw] relative">
               <label htmlFor="password">Password</label>
-              <input className="border rounded-default p-2" type={showPassword ? "text" : "password"} name="password" id="password" placeholder="Enter Password" />
-              <button onClick={visiblePassword} className="z-20 absolute top-[32px] right-[10px]"><VisibilityOffIcon/></button>
+              <input
+                className="border rounded-default p-2"
+                type={showPassword ? "text" : "password"}
+                name="password"
+                id="password"
+                placeholder="Enter Password"
+              />
+              <span className="pt-2 text-end text-sm text-secondary cursor-pointer">Forget password?</span>
+              <span
+                onClick={visiblePassword}
+                className="z-20 absolute top-[32px] right-[10px] cursor-pointer"
+              >
+                <VisibilityOffIcon />
+              </span>
             </div>
-            <button className="bg-primary rounded-default text-white w-full py-2" type="submit" data-testid="button-submit">
+            <button
+              className="bg-primary rounded-default text-white w-full py-2"
+              type="submit"
+              data-testid="button-submit"
+            >
               Sign In
             </button>
           </form>
-          <p className="text-sm text-secondary">DiscussIn. All right reserved.</p>
+          <p className="text-sm text-secondary pt-16">
+            DiscussIn. All right reserved.
+          </p>
         </div>
-        <img
-          src={LoginImage}
-          alt=""
-          className="h-screen w-[50vw]"
-          width={"100%"}
-        />
+        <div className="mt-10 w-1/2 flex">
+          <LoginSvg />
+        </div>
       </div>
     </div>
   );

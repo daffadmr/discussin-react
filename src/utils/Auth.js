@@ -3,7 +3,7 @@
 const Auth = {
   isAuthorization() {
     // if (Cookies.get("auth") === "true" && Cookies.get("userId").length === 1) return true;
-    return true;
+    return false;
   },
   getUserId() {
     // return Cookies.get("userId");
