@@ -11,7 +11,8 @@ module.exports = {
       },
       colors: {
         primary: '#FBEB23',
-        secondary: '#285FE7'
+        secondary: '#285FE7',
+        "danger": '#FF151C'
       },
       borderRadius: {
         default: '5px'
