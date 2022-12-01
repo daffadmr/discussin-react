@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import AuthAPI from "../apis/auth.api";
-import LoginImage from "../assets/png/loginImage.png";
 import logo from "../assets/png/logo.svg";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import LoginSvg from "../assets/svg/LoginSvg";
+import Cookies from "js-cookie";
+import Auth from "../utils/Auth";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -23,12 +24,19 @@ const Login = () => {
     const password = formData.get("password");
     await AuthAPI.signin({ email, password })
       .then((result) => {
-        console.log(result.data);
+        alert("Berhasil Login")
+        Cookies.set("auth", true)
+        Cookies.set("token", result.data.data.token)
+        navigate("/dashboard")
       })
       .catch(() => {
         alert("password or email is wrong");
       });
   };
+
+  useEffect(()=>{ 
+
+  }, [])
 
   return (
     <div className="container h-screen flex items-center justify-center">
@@ -69,7 +77,7 @@ const Login = () => {
               </span>
             </div>
             <button
-              className="bg-primary rounded-default text-white w-full py-2"
+              className="bg-secondary rounded-default text-white w-full py-2"
               type="submit"
               data-testid="button-submit"
             >
