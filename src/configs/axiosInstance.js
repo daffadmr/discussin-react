@@ -6,7 +6,7 @@ const config = {
   // headers:{
   //   'api-key': CONST.KEY
   // }
-}
+};
 
-const axiosInstance = axios.create(config)
-export default axiosInstance
+const axiosInstance = axios.create(config);
+export default axiosInstance;

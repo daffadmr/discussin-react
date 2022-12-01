@@ -3,6 +3,8 @@ import ThreadAPI from "../apis/threads.api";
 // import TablePosts from "../components/TablePosts";
 import { DataGrid } from "@mui/x-data-grid";
 import { randomCreatedDate } from "@mui/x-data-grid-generator";
+import { Modal } from "@mui/material";
+import { Link } from "react-router-dom";
 
 const Thread = () => {
   // console.log(new Date(1668790800000));
@@ -26,13 +28,23 @@ const Thread = () => {
       field: "title",
       headerName: "Title",
       flex: 2,
+      renderCell: (params) => {
+        return (
+          <Link to={`/threads/${params.row.id}`} style={{ fontWeight: "bold" }}>
+            {params.row.title}
+          </Link>
+        );
+      },
       // maxWidth: 200,
       // minWidth: 250,
     },
     {
-      field: "description",
+      field: "Topic",
       headerName: "Topics",
       flex: 1,
+      renderCell: (params) => {
+        return <div>{params.row.Topic.name}</div>;
+      },
     },
     {
       field: "createdAt",
@@ -101,13 +113,18 @@ const Thread = () => {
     <div className="container">
       <h1 className="pb-5">Manage Thread</h1>
       <div className="users">
-        <div className="w-[80vw] h-[80vh] border rounded-lg">
+        <div className="w-[80vw] h-[80vh] border rounded-lg relative">
           <DataGrid
             checkboxSelection
             disableSelectionOnClick
             rows={posts}
             columns={columns}
           />
+          {/* <Modal open={true}>
+            <div className="w-[400px] bg-primary absolute top-[50%] left-[40%] outline-none ">
+              Hai
+            </div>
+          </Modal> */}
         </div>
         {/* <TablePosts datas={posts} /> */}
       </div>

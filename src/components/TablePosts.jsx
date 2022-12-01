@@ -6,8 +6,8 @@ const TablePosts = ({ datas }) => {
   // console.log(...datas);
   // const [rows, setRows] = useState([]);
   // datas ? setRows([...datas]) : null;
-  // rows = [...datas];
-  console.log(rows);
+  const rows = [...datas];
+  console.log(datas);
   const clickHandler = (id) => {
     ThreadAPI.upadateThread(id);
   };
@@ -21,12 +21,15 @@ const TablePosts = ({ datas }) => {
       // minWidth: 250,
     },
     {
-      field: "description",
+      field: "Topic",
       headerName: "Topics",
       flex: 1,
+      renderCell: (params) => {
+        return <div>{params.row.Topic.name}</div>;
+      },
     },
     {
-      field: "date",
+      field: "createdAt",
       headerName: "Date Created",
       flex: 1,
     },

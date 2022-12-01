@@ -4,13 +4,27 @@ import axiosInstance from "../configs/axiosInstance";
 const ThreadAPI = {
   async getAllThread(cb) {
     try {
-      const response = await axios({
-        method: "get",
-        url: "http://localhost:3001/posts",
-      });
-      return cb(response.data);
+      const respone = await axiosInstance.get("data");
+      cb(respone.data);
     } catch (error) {
-      console.log(error.message);
+      console.log(error);
+    }
+    // try {
+    //   const response = await axios({
+    //     method: "get",
+    //     url: "http://localhost:3001/posts",
+    //   });
+    //   return cb(response.data);
+    // } catch (error) {
+    //   console.log(error.message);
+    // }
+  },
+  async getOneThread(id, cb) {
+    try {
+      const respone = await axiosInstance.get(`data/${id}`);
+      cb(respone.data);
+    } catch (error) {
+      console.log(error);
     }
   },
 
