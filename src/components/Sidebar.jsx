@@ -1,33 +1,35 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import LogoWithName from "../assets/svg/LogoWithName";
 import GridViewOutlinedIcon from "@mui/icons-material/GridViewOutlined";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import TopicOutlinedIcon from "@mui/icons-material/TopicOutlined";
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
+import Auth from "../utils/Auth";
 
 const Sidebar = () => {
   const [activeList, setActiveList] = useState(null);
+  const navigate = useNavigate();
 
   const list = [
     {
       icon: GridViewOutlinedIcon,
-      route: "/",
+      route: "/dashboard",
       name: "Dashboard",
     },
     {
       icon: AccountCircleOutlinedIcon,
-      route: "/users",
+      route: "/dashboard/users",
       name: "Users",
     },
     {
       icon: TopicOutlinedIcon,
-      route: "/threads",
+      route: "/dashboard/threads",
       name: "Threads",
     },
     {
       icon: TopicOutlinedIcon,
-      route: "/topics",
+      route: "/dashboard/topics",
       name: "Topic",
     },
   ];
@@ -43,7 +45,14 @@ const Sidebar = () => {
             return (
               <li
                 onClick={() => setActiveList(item.name)}
-                className={`flex gap-2 pb-5 text-[16px] text-primary ${activeList === item.name && 'text-black'} ${activeList === null && window.location.pathname === item.route ? "text-black" : ""}`}
+                className={`flex gap-2 my-5 px-[40px] mr-5 text-[16px] text-discussin-gray border-8 border-white border-y-0 border-r-0 ${
+                  activeList === item.name &&
+                  "text-secondary border-8 border-l-secondary border-y-0 border-r-0"
+                } ${
+                  activeList === null && window.location.pathname === item.route
+                    ? "text-secondary border-8 border-l-secondary border-y-0 border-r-0"
+                    : ""
+                }`}
               >
                 <Link to={`${item.route}`} className={`flex gap-2`}>
                   <item.icon />
@@ -54,7 +63,10 @@ const Sidebar = () => {
           })}
         </ul>
         <div>
-          <button className="flex gap-2 text-[16px] text-primary">
+          <button
+            className="flex gap-2 text-[16px] text-danger mr-12"
+            onClick={() => Auth.signOut(navigate)}
+          >
             <LogoutOutlinedIcon />
             Log out
           </button>
