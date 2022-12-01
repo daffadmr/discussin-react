@@ -8,7 +8,7 @@ const User = () => {
   const getTopic = async () => {
     try {
       const response = await TopicAPI.getAllTopic();
-      setTopic(response.data.data);
+      setTopic(response.data.data_topic);
     } catch (error) {
       console.log(error);
     }
