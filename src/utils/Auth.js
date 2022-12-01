@@ -1,16 +1,16 @@
-// import Cookies from "js-cookie";
+import Cookies from "js-cookie";
 
 const Auth = {
   isAuthorization() {
-    // if (Cookies.get("auth") === "true" && Cookies.get("userId").length === 1) return true;
-    return false;
+    if (Cookies.get("auth") === "true") return true;
   },
   getUserId() {
     // return Cookies.get("userId");
   },
   signOut(navigate) {
-    // Cookies.remove("auth");
-    // Cookies.remove("userId");
+    Cookies.remove("auth");
+    Cookies.remove("token");
+    alert("Berhasil log out")
     navigate("/login");
   },
 };
