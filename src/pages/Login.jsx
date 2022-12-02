@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import AuthAPI from "../apis/auth.api";
 import logo from "../assets/png/logo.svg";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import LoginSvg from "../assets/svg/LoginSvg";
 import Cookies from "js-cookie";
-import Auth from "../utils/Auth";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -27,7 +26,7 @@ const Login = () => {
         alert("Berhasil Login")
         Cookies.set("auth", true)
         Cookies.set("token", result.data.data.token)
-        navigate("/dashboard")
+        result.data.data.isAdmin && navigate("/dashboard")
       })
       .catch(() => {
         alert("password or email is wrong");
