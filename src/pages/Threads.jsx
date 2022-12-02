@@ -10,11 +10,14 @@ const Thread = () => {
   // console.log(new Date(1668790800000));
   const [posts, setPosts] = useState([]);
   const [modal, setModal] = useState({ visible: false, id: null });
+  const [del, setDel] = useState({ visible: false, id: null });
   useEffect(() => {
     ThreadAPI.getAllThread((result) => setPosts(result));
     console.log(posts);
   }, []);
-
+  const deleteModalHandler = (id) => {
+    setDel({ visible: true, id: id });
+  };
   const modalHandler = (id) => {
     setModal({ visible: true, id: id });
   };
@@ -31,6 +34,7 @@ const Thread = () => {
   const deleteHandler = (id) => {
     let result = [...posts].filter((post) => post.id !== id);
     setPosts(result);
+    setDel(!del.visible);
   };
   const columns = [
     { field: "id", headerName: "Post ID", flex: 0.4 },
@@ -97,7 +101,7 @@ const Thread = () => {
               </div>
               <div
                 className="bg-danger p-1 rounded place-content-center cursor-pointer ml-1"
-                onClick={() => deleteHandler(params.row.id)}
+                onClick={() => deleteModalHandler(params.row.id)}
               >
                 <DeleteOutlinedIcon sx={{ color: "#fff" }} />
               </div>
@@ -158,6 +162,33 @@ const Thread = () => {
                 <div
                   className="text-white bg-danger w-[103px] h-[30px] flex justify-center items-center font-bold rounded-[4px] cursor-pointer"
                   onClick={() => clickHandler(modal.id)}
+                >
+                  Yes
+                </div>
+              </div>
+            </div>
+          </Modal>
+          <Modal open={del.visible}>
+            <div className="w-[400px] bg-white absolute top-[30%] left-[40%] outline-none flex items-center flex-col p-[38px] rounded-[20px]">
+              <img
+                src={require("../assets/png/warning.png")}
+                alt=""
+                className="w-[50px]"
+              />
+              <h1 className="font-bold mt-[10px]">Remove All Activity</h1>
+              <p className="w-[300px] text-center mt-[10px] font-[16px]">
+                Are you sure want to stop all activity this thread?
+              </p>
+              <div className="flex-row flex w-[230px] justify-between mt-[10px]">
+                <div
+                  className="text-danger w-[103px] h-[30px] flex justify-center items-center outline-danger outline-1 outline font-bold rounded-[4px] cursor-pointer"
+                  onClick={() => setDel({ visible: false })}
+                >
+                  No
+                </div>
+                <div
+                  className="text-white bg-danger w-[103px] h-[30px] flex justify-center items-center font-bold rounded-[4px] cursor-pointer"
+                  onClick={() => deleteHandler(del.id)}
                 >
                   Yes
                 </div>
