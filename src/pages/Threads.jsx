@@ -28,6 +28,10 @@ const Thread = () => {
     setPosts(suspendPost);
     setModal({ visible: false });
   };
+  const deleteHandler = (id) => {
+    let result = [...posts].filter((post) => post.id !== id);
+    setPosts(result);
+  };
   const columns = [
     { field: "id", headerName: "Post ID", flex: 0.4 },
     {
@@ -91,8 +95,11 @@ const Thread = () => {
                   alt=""
                 />
               </div>
-              <div className="bg-danger p-1 rounded place-content-center cursor-pointer ml-1">
-                <DeleteOutlinedIcon />
+              <div
+                className="bg-danger p-1 rounded place-content-center cursor-pointer ml-1"
+                onClick={() => deleteHandler(params.row.id)}
+              >
+                <DeleteOutlinedIcon sx={{ color: "#fff" }} />
               </div>
             </div>
           );
