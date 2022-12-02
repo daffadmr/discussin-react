@@ -19,6 +19,7 @@ const ThreadAPI = {
       console.log(error.message);
     }
   },
+
   async getOneThread(id, cb) {
     try {
       const respone = await axiosInstance.get(`data/${id}`);
