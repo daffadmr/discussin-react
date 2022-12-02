@@ -1,8 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { Link } from "@mui/material";
+import { useParams, Link } from "react-router-dom";
+// import { Link } from "@mui/material";
 
 // image
 import Author from "../assets/png/author.png";
@@ -37,7 +37,7 @@ const DetailThreads = () => {
     <div className="container pb-14">
       <h1 className="pb-5">Manage Thread</h1>
       <div className="w-full bg-[#B1B1B1] rounded-t-xl px-4 py-1.5 flex items-center justify-between">
-        <Link href="/threads">
+        <Link to={"/threads"}>
           <button className="p-1.5 bg-[#CFCFCF] rounded-full">
             <RightArrow />
           </button>
