@@ -4,11 +4,11 @@ import TableTopic from "../components/TableTopic";
 
 const User = () => {
   const [topic, setTopic] = useState([]);
-  console.log(topic)
+  console.log(topic);
   const getTopic = async () => {
     try {
       const response = await TopicAPI.getAllTopic();
-      setTopic(response.data.data_topic);
+      setTopic(response.data.data);
     } catch (error) {
       console.log(error);
     }
@@ -16,13 +16,14 @@ const User = () => {
 
   useEffect(() => {
     getTopic();
+    console.log(topic);
   }, []);
 
   return (
     <div className="container">
       <h1 className="pb-5">Manage Topic</h1>
       <div className="users">
-        <TableTopic data={topic}/>
+        <TableTopic data={topic} />
       </div>
     </div>
   );
