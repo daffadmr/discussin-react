@@ -1,133 +1,95 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+import axios from "axios";
 import React, { useEffect, useState } from "react";
-import ThreadAPI from "../apis/threads.api";
-import { DataGrid } from "@mui/x-data-grid";
-import { Modal } from "@mui/material";
-import { Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { Link } from "@mui/material";
 
-const Thread = () => {
-  // console.log(new Date(1668790800000));
-  const [posts, setPosts] = useState([]);
+// image
+import Author from "../assets/png/author.png";
+import Threads from "../assets/png/threads.png";
+
+// Icon
+import RightArrow from "../assets/svg/RightArrow";
+import Eclipse from "../assets/svg/Eclipse";
+
+const DetailThreads = () => {
+  let userId = useParams();
+  const [thread, setThread] = useState([]);
+
   useEffect(() => {
-    ThreadAPI.getAllThread((result) => setPosts(result));
+    getThread();
   }, []);
 
-  const clickHandler = (id) => {
-    let suspendPost = posts.map((post) => {
-      if (post.id === id) {
-        post.isActive = !post.isActive;
-      }
-      return post;
-    });
-    setPosts(suspendPost);
+  const getThread = async () => {
+    try {
+      const response = await axios({
+        method: "get",
+        url: `http://localhost:3001/posts/${userId.id}`,
+      });
+      // console.log(response.data);
+      setThread(response.data);
+    } catch (error) {
+      console.error(error);
+    }
   };
-  const columns = [
-    { field: "id", headerName: "Post ID", flex: 0.4 },
-    {
-      field: "title",
-      headerName: "Title",
-      flex: 2,
-      renderCell: (params) => {
-        return (
-          <Link to={`/threads/${params.row.id}`} style={{ fontWeight: "bold" }}>
-            {params.row.title}
-          </Link>
-        );
-      },
-      // maxWidth: 200,
-      // minWidth: 250,
-    },
-    {
-      field: "Topic",
-      headerName: "Topics",
-      flex: 1,
-      renderCell: (params) => {
-        return <div>{params.row.Topic.name}</div>;
-      },
-    },
-    {
-      field: "createdAt",
-      headerName: "Date Created",
-      flex: 1,
-      type: "date",
-      renderCell: (params) => {
-        let a = new Date(params.row.createdAt);
-        let bulans = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-        let tahun = a.getFullYear();
-        let bulan = bulans[a.getMonth()];
-        let tanggal = a.getDate();
-        const pickDate = `${tanggal}/${bulan}/${tahun}`;
 
-        return <span>{pickDate}</span>;
-      },
-    },
-    {
-      field: "isActive",
-      headerName: "Action",
-      type: "boolean",
-      editable: true,
-      flex: 1,
-      renderCell: (params) => {
-        if (params.row.isActive === true) {
-          return (
-            <div className="flex w-[160px] justify-between">
-              <span className="bg-secondary py-1 px-3 rounded font-bold">
-                Suspend
-              </span>
-              <div
-                onClick={() => clickHandler(params.row.id)}
-                className="bg-secondary p-1 rounded place-content-center cursor-pointer"
-              >
-                <img
-                  className="w-5 h-5 "
-                  src={require("../assets/png/do_not_disturb_on.png")}
-                  alt=""
-                />
-              </div>
-            </div>
-          );
-        } else {
-          return (
-            <div className="flex w-[160px] justify-between">
-              <div className="bg-secondary py-1 px-3 rounded font-bold">
-                Suspended
-              </div>
-              <div
-                onClick={() => clickHandler(params.row.id)}
-                className="bg-secondary p-1 place-content-center rounded cursor-pointer"
-              >
-                <img
-                  className="w-5"
-                  src={require("../assets/png/do_not_disturb_off.png")}
-                  alt=""
-                />
-              </div>
-            </div>
-          );
-        }
-      },
-    },
-  ];
   return (
-    <div className="container">
+    <div className="container pb-14">
       <h1 className="pb-5">Manage Thread</h1>
-      <div className="users">
-        <div className="w-[80vw] h-[80vh] border rounded-lg relative">
-          <DataGrid
-            checkboxSelection
-            disableSelectionOnClick
-            rows={posts}
-            columns={columns}
-          />
-          {/* <Modal open={true}>
-            <div className="w-[400px] bg-primary absolute top-[50%] left-[40%] outline-none ">
-              Hai
+      <div className="w-full bg-[#B1B1B1] rounded-t-xl px-4 py-1.5 flex items-center justify-between">
+        <Link href="/threads">
+          <button className="p-1.5 bg-[#CFCFCF] rounded-full">
+            <RightArrow />
+          </button>
+        </Link>
+        <p className="text-xs font-semibold tracking-wide">
+          You are now in the admin-only view
+        </p>
+        <div></div>
+      </div>
+      <div className="w-full border shadow-xl shadow-gray-400 px-14 py-6 space-y-5 rounded-b-xl">
+        <div className="header-content flex justify-between">
+          <div className="flex items-center space-x-2">
+            <img className="w-14 h-14" src={Author} alt="author" />
+            <div className="author-name">
+              <h2 className="font-bold text-sm">John Legend</h2>
+              <p className="text-xs">Student College</p>
             </div>
-          </Modal> */}
+          </div>
+          <button className="flex items-center space-x-2">
+            <Eclipse />
+          </button>
         </div>
-        {/* <TablePosts datas={posts} /> */}
+        <div className="body-content space-y-3">
+          <p className="text-xs">
+            It all started back in 2008. I was in my second year of university,
+            and one night my friend Megan decided that she wanted to go to a
+            lecture about mountains as a ploy to meet hot guys, and she dragged
+            me alone
+          </p>
+          <img className="w-full h-[400px]" src={Threads} alt="Threads" />
+          <p className="text-xs">
+            It all started back in 2008. I was in my second year of university,
+            and one night my friend Megan decided that she wanted to go to a
+            lecture about mountains as a ploy to meet hot guys, and she dragged
+            me alonoe. To see Everest, one must go to a lookout called Tiger
+            Hill, thirteen miles to the southeast.
+          </p>
+        </div>
+        <div className="footer-content flex space-x-5 text-xs text-[#556282]">
+          <p>
+            163 <b>Likes</b>
+          </p>
+          <p>
+            14 <b>Dislikes</b>
+          </p>
+          <p>
+            20 <b>Comment</b>
+          </p>
+        </div>
       </div>
     </div>
   );
 };
 
-export default Thread;
+export default DetailThreads;
