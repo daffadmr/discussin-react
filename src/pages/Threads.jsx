@@ -73,57 +73,45 @@ const Thread = () => {
       headerName: "Action",
       type: "boolean",
       editable: true,
-      flex: 0.9,
+      flex: 0.8,
       renderCell: (params) => {
         if (params.row.isActive === true) {
           return (
-            <div className="flex w-[100%] justify-between">
-              <span
-                className="bg-secondary py-1 px-3 rounded font-bold  "
-                // onClick={() => clickHandler(params.row.id)}
+            <div className="flex justify-between w-[100%]">
+              <div
+                onClick={() => modalHandler(params.row.id)}
+                className="bg-danger p-1 rounded flex justify-center items-center cursor-pointer"
               >
-                Suspend
-              </span>
-              <div className="justify-between flex">
-                <div
-                  onClick={() => modalHandler(params.row.id)}
-                  className="bg-danger p-1 rounded flex justify-center items-center cursor-pointer"
-                >
-                  <img
-                    className="w-5 h-5 "
-                    src={require("../assets/png/do_not_disturb_on.png")}
-                    alt=""
-                  />
-                </div>
-                <div className="bg-danger p-1 rounded place-content-center cursor-pointer ml-1">
-                  <DeleteOutlinedIcon />
-                </div>
+                <span className="text-[white] font-bold mr-2">
+                  Stop Activity
+                </span>
+                <img
+                  className="w-5 h-5 "
+                  src={require("../assets/png/do_not_disturb_on.png")}
+                  alt=""
+                />
+              </div>
+              <div className="bg-danger p-1 rounded place-content-center cursor-pointer ml-1">
+                <DeleteOutlinedIcon />
               </div>
             </div>
           );
         } else {
           return (
-            <div className="flex w-[100%] justify-between">
+            <div className="flex justify-between w-[100%]">
               <div
-                className="bg-secondary py-1 px-3 rounded font-bold"
-                // onClick={() => clickHandler(params.row.id)}
+                onClick={() => clickHandler(params.row.id)}
+                className="bg-red-300 p-1 rounded flex justify-center items-center place-content-center cursor-pointer"
               >
-                Suspend
+                <span className="text-[white] font-bold mr-2">Stoped</span>
+                <img
+                  className="w-5 h-5 "
+                  src={require("../assets/png/do_not_disturb_off.png")}
+                  alt=""
+                />
               </div>
-              <div className="justify-between flex">
-                <div
-                  onClick={() => clickHandler(params.row.id)}
-                  className="bg-red-300 p-1 rounded flex justify-center items-center place-content-center cursor-pointer"
-                >
-                  <img
-                    className="w-5 h-5 "
-                    src={require("../assets/png/do_not_disturb_off.png")}
-                    alt=""
-                  />
-                </div>
-                <div className="bg-danger p-1 rounded place-content-center cursor-pointer ml-1">
-                  <DeleteOutlinedIcon />
-                </div>
+              <div className="bg-danger p-1 rounded place-content-center cursor-pointer ml-1">
+                <DeleteOutlinedIcon />
               </div>
             </div>
           );
