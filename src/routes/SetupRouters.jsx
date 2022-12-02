@@ -5,7 +5,6 @@ import Thread from "../pages/Thread";
 import User from "../pages/User";
 import Layout from "../components/Layout";
 import Topic from "../pages/Topic";
-import Test from "../pages/Test";
 
 const SetupRouters = () => {
   return (
@@ -15,7 +14,7 @@ const SetupRouters = () => {
           <Route path="/" element={<Dashboard />} />
           <Route path="/users" element={<User />} />
           <Route path="/threads" element={<Thread />}></Route>
-          <Route path="/threads/:id" element={<Test />} />
+          {/* <Route path="/threads/:id" element={<Test />} /> */}
           <Route path="/topics" element={<Topic />} />
         </Route>
       </Routes>

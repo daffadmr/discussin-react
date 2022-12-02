@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ThreadAPI from "../apis/threads.api";
-// import TablePosts from "../components/TablePosts";
 import { DataGrid } from "@mui/x-data-grid";
-import { randomCreatedDate } from "@mui/x-data-grid-generator";
 import { Modal } from "@mui/material";
 import { Link } from "react-router-dom";
 

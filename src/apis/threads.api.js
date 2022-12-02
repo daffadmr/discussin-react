@@ -4,7 +4,7 @@ import axiosInstance from "../configs/axiosInstance";
 const ThreadAPI = {
   async getAllThread(cb) {
     try {
-      const respone = await axiosInstance.get("data");
+      const respone = await axiosInstance.get("posts");
       cb(respone.data);
     } catch (error) {
       console.log(error);
