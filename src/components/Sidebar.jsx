@@ -41,9 +41,10 @@ const Sidebar = () => {
       </div>
       <div className="flex flex-col justify-between items-center h-[85vh]">
         <ul>
-          {list.map((item) => {
+          {list.map((item, index) => {
             return (
               <li
+                key={index}
                 onClick={() => setActiveList(item.name)}
                 className={`flex gap-2 my-5 px-[40px] mr-5 text-[16px] text-discussin-gray border-8 border-white border-y-0 border-r-0 ${
                   activeList === item.name &&
