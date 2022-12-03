@@ -5,7 +5,7 @@ import GridViewOutlinedIcon from "@mui/icons-material/GridViewOutlined";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import TopicOutlinedIcon from "@mui/icons-material/TopicOutlined";
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
-import Auth from "../utils/Auth";
+import auth from "../utils/auth";
 
 const Sidebar = () => {
   const [activeList, setActiveList] = useState(null);
@@ -65,7 +65,7 @@ const Sidebar = () => {
         <div>
           <button
             className="flex gap-2 text-[16px] text-danger mr-12"
-            onClick={() => Auth.signOut(navigate)}
+            onClick={() => auth.signOut(navigate)}
           >
             <LogoutOutlinedIcon />
             Log out
