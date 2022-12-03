@@ -11,8 +11,10 @@ import Threads from "../assets/png/threads.png";
 // Icon
 import RightArrow from "../assets/svg/RightArrow";
 import Eclipse from "../assets/svg/Eclipse";
+import { TabTitle } from "../components/title";
 
 const DetailThreads = () => {
+  TabTitle("Detail Thread");
   let userId = useParams();
   const [thread, setThread] = useState([]);
 

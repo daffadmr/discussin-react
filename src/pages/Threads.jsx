@@ -4,9 +4,12 @@ import { DataGrid } from "@mui/x-data-grid";
 import { Modal } from "@mui/material";
 import { Link, useLinkClickHandler } from "react-router-dom";
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
-import ReportProblemOutlinedIcon from "@mui/icons-material/ReportProblemOutlined";
+import DeleteOutlineForeverIcon from "@mui/icons-material/DeleteForeverOutlined";
+import DoNotDisturbOnIcon from "@mui/icons-material/DoNotDisturbOn";
+import { TabTitle } from "../components/title";
 
 const Thread = () => {
+  TabTitle("All Thread");
   // console.log(new Date(1668790800000));
   const [posts, setPosts] = useState([]);
   const [modal, setModal] = useState({ visible: false, id: null });
@@ -57,13 +60,13 @@ const Thread = () => {
       headerName: "Topics",
       flex: 1,
       renderCell: (params) => {
-        return <div>{params.row.Topic.name}</div>;
+        return <div className="font-bold">{params.row.Topic.name}</div>;
       },
     },
     {
       field: "createdAt",
       headerName: "Date Created",
-      flex: 1,
+      flex: 0.5,
       type: "date",
       renderCell: (params) => {
         let a = new Date(params.row.createdAt);
@@ -73,7 +76,7 @@ const Thread = () => {
         let tanggal = a.getDate();
         const pickDate = `${tanggal}/${bulan}/${tahun}`;
 
-        return <span>{pickDate}</span>;
+        return <span className="font-bold w-[100%]">{pickDate}</span>;
       },
     },
     {
@@ -88,7 +91,7 @@ const Thread = () => {
             <div className="flex justify-between w-[100%]">
               <div
                 onClick={() => modalHandler(params.row.id)}
-                className="bg-danger p-1 rounded flex justify-center items-center cursor-pointer"
+                className="bg-danger py-1 px-3 rounded flex justify-center items-center cursor-pointer"
               >
                 <span className="text-[white] font-bold mr-2">
                   Stop Activity
@@ -143,11 +146,7 @@ const Thread = () => {
           />
           <Modal open={modal.visible}>
             <div className="w-[400px] bg-white absolute top-[30%] left-[40%] outline-none flex items-center flex-col p-[38px] rounded-[20px]">
-              <img
-                src={require("../assets/png/warning.png")}
-                alt=""
-                className="w-[50px]"
-              />
+              <DoNotDisturbOnIcon sx={{ color: "red", fontSize: "50px" }} />
               <h1 className="font-bold mt-[10px]">Stop All Activity</h1>
               <p className="w-[300px] text-center mt-[10px] font-[16px]">
                 Are you sure want to stop all activity this thread?
@@ -170,14 +169,17 @@ const Thread = () => {
           </Modal>
           <Modal open={del.visible}>
             <div className="w-[400px] bg-white absolute top-[30%] left-[40%] outline-none flex items-center flex-col p-[38px] rounded-[20px]">
-              <img
+              <DeleteOutlineForeverIcon
+                sx={{ color: "red", fontSize: "50px" }}
+              />
+              {/* <img
                 src={require("../assets/png/warning.png")}
                 alt=""
                 className="w-[50px]"
-              />
-              <h1 className="font-bold mt-[10px]">Remove All Activity</h1>
+              /> */}
+              <h1 className="font-bold mt-[10px]">Delete Thread</h1>
               <p className="w-[300px] text-center mt-[10px] font-[16px]">
-                Are you sure want to stop all activity this thread?
+                Are you sure want to delete this thread?
               </p>
               <div className="flex-row flex w-[230px] justify-between mt-[10px]">
                 <div
