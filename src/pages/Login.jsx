@@ -23,10 +23,14 @@ const Login = () => {
     const password = formData.get("password");
     await AuthAPI.signin({ email, password })
       .then((result) => {
-        alert("Berhasil Login")
-        Cookies.set("auth", true)
-        Cookies.set("token", result.data.data.token)
-        result.data.data.isAdmin && navigate("/dashboard")
+        if(!result.data.data.isAdmin){
+          alert("Anda bukan admin!")
+        } else {
+          alert("Berhasil Login")
+          Cookies.set("auth", true)
+          Cookies.set("token", result.data.data.token)
+          navigate("/dashboard")
+        }
       })
       .catch(() => {
         alert("password or email is wrong");

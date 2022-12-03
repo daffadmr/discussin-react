@@ -2,7 +2,7 @@ import Cookies from "js-cookie";
 
 const Auth = {
   isAuthorization() {
-    if (Cookies.get("auth") === "true") return true;
+    if (Cookies.get("token")) return true;
   },
   getUserId() {
     // return Cookies.get("userId");
