@@ -1,13 +1,22 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from "react";
+import DownloadSection from "../components/LandingPage/DownloadSection";
+import FaqSection from "../components/LandingPage/FaqSection";
+import FeatureSection from "../components/LandingPage/FeatureSection";
+import Footer from "../components/LandingPage/Footer";
+import HeroSection from "../components/LandingPage/HeroSection";
+import Navbar from "../components/LandingPage/Navbar";
 
 const LandingPage = () => {
   return (
-    <div className='flex flex-col justify-center items-center h-screen'>
-    <h1>Ini landing page</h1>
-    <Link to={"/login"}>Login</Link>
-    </div>
-  )
-}
+    <>
+      <Navbar/>
+      <HeroSection/>
+      <FeatureSection/>
+      <DownloadSection/>
+      <FaqSection/>
+      <Footer/>
+    </>
+  );
+};
 
-export default LandingPage
+export default LandingPage;
