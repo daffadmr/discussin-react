@@ -1,8 +1,8 @@
 import Cookies from "js-cookie";
 
-const Auth = {
+const auth = {
   isAuthorization() {
-    if (Cookies.get("auth") === "true") return true;
+    if (Cookies.get("token")) return true;
   },
   getUserId() {
     // return Cookies.get("userId");
@@ -15,4 +15,4 @@ const Auth = {
   },
 };
 
-export default Auth;
+export default auth;

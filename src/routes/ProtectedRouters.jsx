@@ -1,8 +1,8 @@
 import { Navigate, Outlet } from "react-router-dom";
-import Auth from "../utils/Auth";
+import auth from "../utils/auth";
 
 export default function ProtectedRouters() {
-	if (Auth.isAuthorization()) {
+	if (auth.isAuthorization()) {
 		return <Navigate to="/dashboard" replace />;
 	}
 

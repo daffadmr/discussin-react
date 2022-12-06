@@ -1,9 +1,9 @@
 import { Navigate, Outlet } from "react-router-dom";
 import Layout from "../components/Layout";
-import Auth from "../utils/Auth";
+import auth from "../utils/auth";
 
 export default function PrivateRouters() {
-	if (!Auth.isAuthorization()) {
+	if (!auth.isAuthorization()) {
 		return <Navigate to="/login" replace />;
 	}
 	return (

@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import LogoWithName from "../assets/svg/LogoWithName";
+import logoWithName from "../assets/png/logoWithName.png";
 import GridViewOutlinedIcon from "@mui/icons-material/GridViewOutlined";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import TopicOutlinedIcon from "@mui/icons-material/TopicOutlined";
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
-import Auth from "../utils/Auth";
+import auth from "../utils/auth";
 
 const Sidebar = () => {
   const [activeList, setActiveList] = useState(null);
@@ -35,9 +35,9 @@ const Sidebar = () => {
   ];
 
   return (
-    <div className="h-screen w-[224px] shadow-2xl">
+    <div className="h-screen w-[224px] shadow-2xl bg-navy pt-4">
       <div className="flex items-center justify-center p-[10px]">
-        <LogoWithName />
+        <img src={logoWithName} alt="" />
       </div>
       <div className="flex flex-col justify-between items-center h-[85vh]">
         <ul>
@@ -46,16 +46,16 @@ const Sidebar = () => {
               <li
                 key={index}
                 onClick={() => setActiveList(item.name)}
-                className={`flex gap-2 my-5 px-[40px] mr-5 text-[16px] text-discussin-gray border-8 border-white border-y-0 border-r-0 ${
+                className={`flex gap-2 my-5 p-2 text-[16px] text-white rounded-[10px] ${
                   activeList === item.name &&
-                  "text-secondary border-8 border-l-secondary border-y-0 border-r-0"
+                  "text-navy bg-white font-extrabold"
                 } ${
                   activeList === null && window.location.pathname === item.route
-                    ? "text-secondary border-8 border-l-secondary border-y-0 border-r-0"
+                    ? "text-navy bg-white font-extrabold"
                     : ""
                 }`}
               >
-                <Link to={`${item.route}`} className={`flex gap-2`}>
+                <Link to={`${item.route}`} className={`flex gap-2 items-center`}>
                   <item.icon />
                   {item.name}
                 </Link>
@@ -65,8 +65,8 @@ const Sidebar = () => {
         </ul>
         <div>
           <button
-            className="flex gap-2 text-[16px] text-danger mr-12"
-            onClick={() => Auth.signOut(navigate)}
+            className="flex gap-2 text-[16px] text-white mr-8 bg-danger py-2 px-5 rounded-[10px]"
+            onClick={() => auth.signOut(navigate)}
           >
             <LogoutOutlinedIcon />
             Log out
