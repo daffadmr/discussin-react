@@ -1,75 +1,97 @@
 import React from "react";
 import { DataGrid } from "@mui/x-data-grid";
-import ThreadAPI from "../apis/threads.api";
+import { Link, useLinkClickHandler } from "react-router-dom";
+import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
+import DeleteOutlineForeverIcon from "@mui/icons-material/DeleteForeverOutlined";
 
 const TablePosts = ({ datas }) => {
-  // console.log(...datas);
-  // const [rows, setRows] = useState([]);
-  // datas ? setRows([...datas]) : null;
-  const rows = [...datas];
-  console.log(datas);
-  const clickHandler = (id) => {
-    ThreadAPI.upadateThread(id);
-  };
+  // row data
+  let posts = [...datas];
   const columns = [
-    { field: "id", headerName: "Post ID", flex: 0.4 },
+    { field: "ID", headerName: "Post ID", flex: 0.4 },
     {
       field: "title",
       headerName: "Title",
       flex: 2,
-      // maxWidth: 200,
-      // minWidth: 250,
+      renderCell: (params) => {
+        return (
+          <Link to={`/threads/${params.row.ID}`} style={{ fontWeight: "bold" }}>
+            {params.row.title}
+          </Link>
+        );
+      },
     },
     {
-      field: "Topic",
+      field: "topic",
       headerName: "Topics",
       flex: 1,
       renderCell: (params) => {
-        return <div>{params.row.Topic.name}</div>;
+        return <div className="font-bold">{params.row.topic.topic_name}</div>;
       },
     },
     {
       field: "createdAt",
       headerName: "Date Created",
-      flex: 1,
+      flex: 0.5,
+      type: "date",
+      renderCell: (params) => {
+        let a = new Date(params.row.createdAt);
+        let bulans = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+        let tahun = a.getFullYear();
+        let bulan = bulans[a.getMonth()];
+        let tanggal = a.getDate();
+        const pickDate = `${tanggal}/${bulan}/${tahun}`;
+
+        return <span className="font-bold w-[100%]">{pickDate}</span>;
+      },
     },
     {
       field: "isActive",
       headerName: "Action",
       type: "boolean",
       editable: true,
-      flex: 1,
+      flex: 0.8,
       renderCell: (params) => {
         if (params.row.isActive === true) {
           return (
-            <div className="flex w-[160px] justify-between">
-              <span className="bg-secondary py-1 px-3 rounded font-bold">
-                Suspend
-              </span>
+            <div className="flex justify-between w-[100%]">
               <div
-                onClick={() => clickHandler(params.row.id)}
-                className="bg-secondary p-1 rounded place-content-center cursor-pointer"
+                // onClick={() => modalHandler(params.row.ID)}
+                className="bg-danger py-1 px-3 rounded flex justify-center items-center cursor-pointer"
               >
+                <span className="text-[white] font-bold mr-2">
+                  Stop Activity
+                </span>
                 <img
                   className="w-5 h-5 "
                   src={require("../assets/png/do_not_disturb_on.png")}
                   alt=""
                 />
               </div>
+              <div
+                className="bg-danger p-1 rounded place-content-center cursor-pointer ml-1"
+                // onClick={() => deleteModalHandler(params.row.ID)}
+              >
+                <DeleteOutlinedIcon sx={{ color: "#fff" }} />
+              </div>
             </div>
           );
         } else {
           return (
-            <div className="flex w-[160px] justify-between">
-              <div className="bg-secondary py-1 px-3 rounded font-bold">
-                Suspended
-              </div>
-              <div className="bg-secondary p-1 place-content-center rounded ">
+            <div className="flex justify-between w-[100%]">
+              <div
+                // onClick={() => clickHandler(params.row.id)}
+                className="bg-red-300 p-1 rounded flex justify-center items-center place-content-center cursor-pointer"
+              >
+                <span className="text-[white] font-bold mr-2">Stoped</span>
                 <img
-                  className="w-5"
+                  className="w-5 h-5 "
                   src={require("../assets/png/do_not_disturb_off.png")}
                   alt=""
                 />
+              </div>
+              <div className="bg-danger p-1 rounded place-content-center cursor-pointer ml-1">
+                <DeleteOutlinedIcon />
               </div>
             </div>
           );
@@ -79,32 +101,14 @@ const TablePosts = ({ datas }) => {
   ];
   return (
     <>
-      <div className="w-[80vw] h-[80vh] border rounded-lg">
-        <DataGrid checkboxSelection rows={rows} columns={columns} />
-      </div>
+      <DataGrid
+        checkboxSelection
+        disableSelectionOnClick
+        rows={posts}
+        columns={columns}
+        getRowId={(data) => data.ID}
+      />
     </>
-    //   <table className="table-auto w-[80vw]">
-    //   <thead className='border'>
-    //     <tr>
-    //       <th className='py-5 text-left'>
-    //         <input type="checkbox" name="" id="" />
-    //       </th>
-    //       <th className='py-5 text-left'>Song</th>
-    //       <th className='py-5 text-left'>Artist</th>
-    //       <th className='py-5 text-left'>Year</th>
-    //     </tr>
-    //   </thead>
-    //   <tbody>
-    //     <tr className='border'>
-    //       <td className='py-5'>
-    //         <input type="checkbox" name="" id="" />
-    //       </td>
-    //       <td className='py-5'>The Sliding Mr. Bones (Next Stop, Pottersville)</td>
-    //       <td className='py-5'>Malcolm Lockyer</td>
-    //       <td className='py-5'>1961</td>
-    //     </tr>
-    //   </tbody>
-    // </table>
   );
 };
 

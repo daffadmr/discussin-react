@@ -12,28 +12,40 @@ import Threads from "../assets/png/threads.png";
 import RightArrow from "../assets/svg/RightArrow";
 import Eclipse from "../assets/svg/Eclipse";
 import { TabTitle } from "../components/title";
+import ThreadAPI from "../apis/threads.api";
 
 const DetailThreads = () => {
   TabTitle("Detail Thread");
   let userId = useParams();
-  const [thread, setThread] = useState([]);
-
+  let id = userId.id;
+  const [thread, setThread] = useState();
+  const [comment, setComment] = useState([]);
+  //detail thread and comment with id
   useEffect(() => {
-    getThread();
+    ThreadAPI.getOneThread(id, (result) => {
+      setThread(result);
+    });
+    ThreadAPI.getComment(id, (result) => {
+      setComment(result);
+      console.log(result);
+    });
   }, []);
+  if (thread !== null) {
+    console.log(thread);
+  }
 
-  const getThread = async () => {
-    try {
-      const response = await axios({
-        method: "get",
-        url: `http://localhost:3001/posts/${userId.id}`,
-      });
-      // console.log(response.data);
-      setThread(response.data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  // const getThread = async () => {
+  //   try {
+  //     const response = await axios({
+  //       method: "get",
+  //       url: `http://localhost:3001/posts/${userId.id}`,
+  //     });
+  //     // console.log(response.data);
+  //     setThread(response.data);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
 
   return (
     <div className="container pb-14">
@@ -54,7 +66,9 @@ const DetailThreads = () => {
           <div className="flex items-center space-x-2">
             <img className="w-14 h-14" src={Author} alt="author" />
             <div className="author-name">
-              <h2 className="font-bold text-sm">John Legend</h2>
+              <h2 className="font-bold text-sm">
+                {thread ? thread.user.username : null}
+              </h2>
               <p className="text-xs">Student College</p>
             </div>
           </div>
@@ -63,13 +77,12 @@ const DetailThreads = () => {
           </button>
         </div>
         <div className="body-content space-y-3">
-          <p className="text-xs">
-            It all started back in 2008. I was in my second year of university,
-            and one night my friend Megan decided that she wanted to go to a
-            lecture about mountains as a ploy to meet hot guys, and she dragged
-            me alone
-          </p>
-          <img className="w-full h-[400px]" src={Threads} alt="Threads" />
+          <p className="text-xs">{thread ? thread.title : null}</p>
+          <img
+            className="w-full h-[400px]"
+            src={thread ? thread.photo : Threads}
+            alt="Threads"
+          />
           <p className="text-xs">
             It all started back in 2008. I was in my second year of university,
             and one night my friend Megan decided that she wanted to go to a
@@ -80,15 +93,29 @@ const DetailThreads = () => {
         </div>
         <div className="footer-content flex space-x-5 text-xs text-[#556282]">
           <p>
-            163 <b>Likes</b>
+            {thread ? thread.count.like : 0} <b>Likes</b>
           </p>
           <p>
-            14 <b>Dislikes</b>
+            {thread ? thread.count.dislike : 0} <b>Dislikes</b>
           </p>
-          <p>
-            20 <b>Comment</b>
+          <p className="cursor-pointer">
+            {thread ? thread.count.comment : 0} <b>Comment</b>
           </p>
         </div>
+        {comment.map((data) => {
+          return (
+            <>
+              <div className="flex items-center">
+                <img src={Author} className="w-[35px]" alt="" />
+                <div className="pl-2 flex items-center">
+                  {data.user.username}
+                  <p className="text-[10px] pl-1">12-12</p>
+                </div>
+              </div>
+              <div className="">{data.body}</div>
+            </>
+          );
+        })}
       </div>
     </div>
   );

@@ -1,150 +1,26 @@
 import React, { useEffect, useState } from "react";
 import ThreadAPI from "../apis/threads.api";
-import { DataGrid } from "@mui/x-data-grid";
-import { Modal } from "@mui/material";
-import { Link, useLinkClickHandler } from "react-router-dom";
-import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
-import DeleteOutlineForeverIcon from "@mui/icons-material/DeleteForeverOutlined";
-import DoNotDisturbOnIcon from "@mui/icons-material/DoNotDisturbOn";
 import { TabTitle } from "../components/title";
+import ModalAlert from "../components/ModalAlert";
+import TablePosts from "../components/TablePosts";
 
 const Thread = () => {
   TabTitle("All Thread");
-  // console.log(new Date(1668790800000));
   const [posts, setPosts] = useState([]);
   const [modal, setModal] = useState({ visible: false, id: null });
-  const [del, setDel] = useState({ visible: false, id: null });
   useEffect(() => {
     ThreadAPI.getAllThread((result) => setPosts(result));
     console.log(posts);
   }, []);
-  const deleteModalHandler = (id) => {
-    setDel({ visible: true, id: id });
-  };
-  const modalHandler = (id) => {
-    setModal({ visible: true, id: id });
-  };
-  const clickHandler = (id) => {
-    let suspendPost = posts.map((post) => {
-      if (post.id === id) {
-        post.isActive = !post.isActive;
-      }
-      return post;
-    });
-    setPosts(suspendPost);
-    setModal({ visible: false });
-  };
-  const deleteHandler = (id) => {
-    let result = [...posts].filter((post) => post.id !== id);
-    setPosts(result);
-    setDel(!del.visible);
-  };
-  const columns = [
-    { field: "id", headerName: "Post ID", flex: 0.4 },
-    {
-      field: "title",
-      headerName: "Title",
-      flex: 2,
-      renderCell: (params) => {
-        return (
-          <Link to={`/threads/${params.row.id}`} style={{ fontWeight: "bold" }}>
-            {params.row.title}
-          </Link>
-        );
-      },
-      // maxWidth: 200,
-      // minWidth: 250,
-    },
-    {
-      field: "Topic",
-      headerName: "Topics",
-      flex: 1,
-      renderCell: (params) => {
-        return <div className="font-bold">{params.row.Topic.name}</div>;
-      },
-    },
-    {
-      field: "createdAt",
-      headerName: "Date Created",
-      flex: 0.5,
-      type: "date",
-      renderCell: (params) => {
-        let a = new Date(params.row.createdAt);
-        let bulans = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-        let tahun = a.getFullYear();
-        let bulan = bulans[a.getMonth()];
-        let tanggal = a.getDate();
-        const pickDate = `${tanggal}/${bulan}/${tahun}`;
 
-        return <span className="font-bold w-[100%]">{pickDate}</span>;
-      },
-    },
-    {
-      field: "isActive",
-      headerName: "Action",
-      type: "boolean",
-      editable: true,
-      flex: 0.8,
-      renderCell: (params) => {
-        if (params.row.isActive === true) {
-          return (
-            <div className="flex justify-between w-[100%]">
-              <div
-                onClick={() => modalHandler(params.row.id)}
-                className="bg-danger py-1 px-3 rounded flex justify-center items-center cursor-pointer"
-              >
-                <span className="text-[white] font-bold mr-2">
-                  Stop Activity
-                </span>
-                <img
-                  className="w-5 h-5 "
-                  src={require("../assets/png/do_not_disturb_on.png")}
-                  alt=""
-                />
-              </div>
-              <div
-                className="bg-danger p-1 rounded place-content-center cursor-pointer ml-1"
-                onClick={() => deleteModalHandler(params.row.id)}
-              >
-                <DeleteOutlinedIcon sx={{ color: "#fff" }} />
-              </div>
-            </div>
-          );
-        } else {
-          return (
-            <div className="flex justify-between w-[100%]">
-              <div
-                onClick={() => clickHandler(params.row.id)}
-                className="bg-red-300 p-1 rounded flex justify-center items-center place-content-center cursor-pointer"
-              >
-                <span className="text-[white] font-bold mr-2">Stoped</span>
-                <img
-                  className="w-5 h-5 "
-                  src={require("../assets/png/do_not_disturb_off.png")}
-                  alt=""
-                />
-              </div>
-              <div className="bg-danger p-1 rounded place-content-center cursor-pointer ml-1">
-                <DeleteOutlinedIcon />
-              </div>
-            </div>
-          );
-        }
-      },
-    },
-  ];
   return (
     <div className="container">
       <h1 className="pb-5">Manage Thread</h1>
       <div className="users">
         <div className="w-[80vw] h-[80vh] border rounded-lg relative">
-          <DataGrid
-            checkboxSelection
-            disableSelectionOnClick
-            rows={posts}
-            columns={columns}
-          />
-          <Modal open={modal.visible}>
+          <TablePosts datas={posts} />
+          <ModalAlert popup={modal} />
+          {/* <Modal open={modal.visible}>
             <div className="w-[400px] bg-white absolute top-[30%] left-[40%] outline-none flex items-center flex-col p-[38px] rounded-[20px]">
               <DoNotDisturbOnIcon sx={{ color: "red", fontSize: "50px" }} />
               <h1 className="font-bold mt-[10px]">Stop All Activity</h1>
@@ -166,18 +42,18 @@ const Thread = () => {
                 </div>
               </div>
             </div>
-          </Modal>
-          <Modal open={del.visible}>
+          </Modal> */}
+          {/* <Modal open={del.visible}>
             <div className="w-[400px] bg-white absolute top-[30%] left-[40%] outline-none flex items-center flex-col p-[38px] rounded-[20px]">
               <DeleteOutlineForeverIcon
                 sx={{ color: "red", fontSize: "50px" }}
-              />
-              {/* <img
+              /> */}
+          {/* <img
                 src={require("../assets/png/warning.png")}
                 alt=""
                 className="w-[50px]"
               /> */}
-              <h1 className="font-bold mt-[10px]">Delete Thread</h1>
+          {/* <h1 className="font-bold mt-[10px]">Delete Thread</h1>
               <p className="w-[300px] text-center mt-[10px] font-[16px]">
                 Are you sure want to delete this thread?
               </p>
@@ -196,7 +72,7 @@ const Thread = () => {
                 </div>
               </div>
             </div>
-          </Modal>
+          </Modal> */}
         </div>
         {/* <TablePosts datas={posts} /> */}
       </div>

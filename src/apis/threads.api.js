@@ -4,11 +4,8 @@ import axiosInstance from "../configs/axiosInstance";
 const ThreadAPI = {
   async getAllThread(cb) {
     try {
-      const respone = await axios({
-        method: "get",
-        url: "http://localhost:3001/data",
-      });
-      cb(respone.data);
+      const respone = await axiosInstance.get("posts/recents?page=1");
+      cb(respone.data.data);
     } catch (error) {
       console.log(error);
     }
@@ -25,8 +22,17 @@ const ThreadAPI = {
 
   async getOneThread(id, cb) {
     try {
-      const respone = await axiosInstance.get(`data/${id}`);
-      cb(respone.data);
+      const respone = await axiosInstance.get(`posts/${id}`);
+      cb(respone.data.data);
+    } catch (error) {
+      console.log(error);
+    }
+  },
+  // commnet thread
+  async getComment(id, cb) {
+    try {
+      const result = await axiosInstance.get(`posts/comments/${id}`);
+      cb(result.data.data);
     } catch (error) {
       console.log(error);
     }
@@ -43,8 +49,9 @@ const ThreadAPI = {
 
   async deleteThread(id) {
     try {
-      const response = await axiosInstance.delete(`${id}`);
-      return response;
+      await axiosInstance.delete(`posts/delete/${id}`);
+      console.log(id);
+      // this.getAllThread(cb);
     } catch (error) {
       console.log(error.message);
     }
