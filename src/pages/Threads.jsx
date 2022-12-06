@@ -1,25 +1,16 @@
-import React, { useEffect, useState } from "react";
-import ThreadAPI from "../apis/threads.api";
+import React from "react";
 import { TabTitle } from "../components/title";
-import ModalAlert from "../components/ModalAlert";
 import TablePosts from "../components/TablePosts";
 
 const Thread = () => {
   TabTitle("All Thread");
-  const [posts, setPosts] = useState([]);
-  const [modal, setModal] = useState({ visible: false, id: null });
-  useEffect(() => {
-    ThreadAPI.getAllThread((result) => setPosts(result));
-    console.log(posts);
-  }, []);
 
   return (
     <div className="container">
       <h1 className="pb-5">Manage Thread</h1>
       <div className="users">
         <div className="w-[80vw] h-[80vh] border rounded-lg relative">
-          <TablePosts datas={posts} />
-          <ModalAlert popup={modal} />
+          <TablePosts />
           {/* <Modal open={modal.visible}>
             <div className="w-[400px] bg-white absolute top-[30%] left-[40%] outline-none flex items-center flex-col p-[38px] rounded-[20px]">
               <DoNotDisturbOnIcon sx={{ color: "red", fontSize: "50px" }} />

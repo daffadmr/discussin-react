@@ -27,12 +27,11 @@ const DetailThreads = () => {
     });
     ThreadAPI.getComment(id, (result) => {
       setComment(result);
-      console.log(result);
     });
   }, []);
-  if (thread !== null) {
-    console.log(thread);
-  }
+  // if (thread !== null) {
+  //   console.log(thread);
+  // }
 
   // const getThread = async () => {
   //   try {
@@ -50,7 +49,7 @@ const DetailThreads = () => {
   return (
     <div className="container pb-14">
       <h1 className="pb-5">Manage Thread</h1>
-      <div className="w-full bg-[#B1B1B1] rounded-t-xl px-4 py-1.5 flex items-center justify-between">
+      <div className="w-[80vw] bg-[#B1B1B1] rounded-t-xl px-4 py-1.5 flex items-center justify-between">
         <Link to={"/threads"}>
           <button className="p-1.5 bg-[#CFCFCF] rounded-full">
             <RightArrow />
@@ -61,7 +60,7 @@ const DetailThreads = () => {
         </p>
         <div></div>
       </div>
-      <div className="w-full border shadow-xl shadow-gray-400 px-14 py-6 space-y-5 rounded-b-xl">
+      <div className="w-[80vw] h-[80vh] overflow-scroll overflow-x-hidden border shadow-xl shadow-gray-400 px-14 py-6 space-y-5 rounded-b-xl">
         <div className="header-content flex justify-between">
           <div className="flex items-center space-x-2">
             <img className="w-14 h-14" src={Author} alt="author" />

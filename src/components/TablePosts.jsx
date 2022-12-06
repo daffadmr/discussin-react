@@ -1,18 +1,42 @@
-import React from "react";
+import React, { useEffect } from "react";
+import ThreadAPI from "../apis/threads.api";
 import { DataGrid } from "@mui/x-data-grid";
 import { Link, useLinkClickHandler } from "react-router-dom";
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 import DeleteOutlineForeverIcon from "@mui/icons-material/DeleteForeverOutlined";
+import { useState } from "react";
+import { Modal } from "@mui/material";
+import DoNotDisturbOnIcon from "@mui/icons-material/DoNotDisturbOn";
+import Swal from "sweetalert2";
 
-const TablePosts = ({ datas }) => {
-  // row data
-  let posts = [...datas];
+const TablePosts = () => {
+  const [posts, setPosts] = useState([]);
+  // activity
+  const [modal, setModal] = useState({ visible: false, id: 0 });
+  const modalHandler = (id) => {
+    setModal({ visible: true, id: id });
+  };
+  const clickHandler = (id) => {
+    const result = posts.map((post) => {
+      if (post.ID === id) {
+        console.log(post);
+        post.isActive = !post.isActive;
+      }
+      return post;
+    });
+    setPosts(result);
+    setModal({ visible: false });
+  };
+  //end activity
+  useEffect(() => {
+    ThreadAPI.getAllThread((result) => setPosts(result));
+  }, []);
   const columns = [
     { field: "ID", headerName: "Post ID", flex: 0.4 },
     {
       field: "title",
       headerName: "Title",
-      flex: 2,
+      flex: 1.5,
       renderCell: (params) => {
         return (
           <Link to={`/threads/${params.row.ID}`} style={{ fontWeight: "bold" }}>
@@ -24,7 +48,7 @@ const TablePosts = ({ datas }) => {
     {
       field: "topic",
       headerName: "Topics",
-      flex: 1,
+      flex: 0.6,
       renderCell: (params) => {
         return <div className="font-bold">{params.row.topic.topic_name}</div>;
       },
@@ -56,7 +80,7 @@ const TablePosts = ({ datas }) => {
           return (
             <div className="flex justify-between w-[100%]">
               <div
-                // onClick={() => modalHandler(params.row.ID)}
+                onClick={() => modalHandler(params.row.ID)}
                 className="bg-danger py-1 px-3 rounded flex justify-center items-center cursor-pointer"
               >
                 <span className="text-[white] font-bold mr-2">
@@ -91,7 +115,7 @@ const TablePosts = ({ datas }) => {
                 />
               </div>
               <div className="bg-danger p-1 rounded place-content-center cursor-pointer ml-1">
-                <DeleteOutlinedIcon />
+                <DeleteOutlinedIcon sx={{ color: "#fff" }} />
               </div>
             </div>
           );
@@ -108,6 +132,29 @@ const TablePosts = ({ datas }) => {
         columns={columns}
         getRowId={(data) => data.ID}
       />
+      <Modal open={modal.visible}>
+        <div className="w-[400px] bg-white absolute top-[30%] left-[40%] outline-none flex items-center flex-col p-[38px] rounded-[20px]">
+          <DoNotDisturbOnIcon sx={{ color: "red", fontSize: "50px" }} />
+          <h1 className="font-bold mt-[10px]">Stop All Activity</h1>
+          <p className="w-[300px] text-center mt-[10px] font-[16px]">
+            Are you sure want to stop all activity this thread?
+          </p>
+          <div className="flex-row flex w-[230px] justify-between mt-[10px]">
+            <div
+              className="text-danger w-[103px] h-[30px] flex justify-center items-center outline-danger outline-1 outline font-bold rounded-[4px] cursor-pointer"
+              onClick={() => setModal({ visible: false })}
+            >
+              No
+            </div>
+            <div
+              className="text-white bg-danger w-[103px] h-[30px] flex justify-center items-center font-bold rounded-[4px] cursor-pointer"
+              onClick={() => clickHandler(modal.id)}
+            >
+              Yes
+            </div>
+          </div>
+        </div>
+      </Modal>
     </>
   );
 };
