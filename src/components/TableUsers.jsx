@@ -3,7 +3,6 @@ import { DataGrid } from "@mui/x-data-grid";
 
 const TableUsers = ({ data }) => {
   const rows = [...data];
-  console.log(rows);
   const columns = [
     { field: "id", headerName: "User ID", width: 150 },
     { field: "username", headerName: "Username", width: 150, renderCell: (params) => {

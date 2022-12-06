@@ -6,9 +6,9 @@ const token = Cookies.get("token")
 
 const config = {
   baseURL: CONST.BASE_URL,
-  headers:{
-    'Authorization': `Bearer ${token}`
-  }
+  // headers: {
+  //   'Authorization': `Bearer ${token}`
+  // }
 }
 
 const axiosInstance = axios.create(config)
