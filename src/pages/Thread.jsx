@@ -83,13 +83,7 @@ const DetailThreads = () => {
             src={thread ? thread.photo : Threads}
             alt="Threads"
           />
-          <p className="text-xs">
-            It all started back in 2008. I was in my second year of university,
-            and one night my friend Megan decided that she wanted to go to a
-            lecture about mountains as a ploy to meet hot guys, and she dragged
-            me alonoe. To see Everest, one must go to a lookout called Tiger
-            Hill, thirteen miles to the southeast.
-          </p>
+          <p className="text-xs">{thread?.body}</p>
         </div>
         <div className="footer-content flex space-x-5 text-xs text-[#556282]">
           <p>
@@ -102,7 +96,7 @@ const DetailThreads = () => {
             {thread ? thread.count.comment : 0} <b>Comment</b>
           </p>
         </div>
-        {comment.map((data) => {
+        {comment?.map((data) => {
           return (
             <>
               <div className="flex items-center">
