@@ -1,13 +1,13 @@
 import React, { useEffect } from "react";
 import ThreadAPI from "../apis/threads.api";
 import { DataGrid } from "@mui/x-data-grid";
-import { Link, useLinkClickHandler } from "react-router-dom";
+import { Link } from "react-router-dom";
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 import DeleteOutlineForeverIcon from "@mui/icons-material/DeleteForeverOutlined";
 import { useState } from "react";
 import { Modal } from "@mui/material";
 import DoNotDisturbOnIcon from "@mui/icons-material/DoNotDisturbOn";
-import Swal from "sweetalert2";
+// import Swal from "sweetalert2";
 
 const TablePosts = () => {
   const [posts, setPosts] = useState([]);
@@ -28,6 +28,17 @@ const TablePosts = () => {
     setModal({ visible: false });
   };
   //end activity
+  // delete thread
+  const [modalDel, setModalDel] = useState({ visible: false, id: 0 });
+  const deleteModalHandler = (id) => {
+    setModalDel({ visible: true, id: id });
+  };
+  const clickDeleteHandler = (id) => {
+    const result = [...posts].filter((post) => post.ID !== id);
+    setPosts(result);
+    setModalDel({ visible: false, id: 0 });
+  };
+  // end delete thread
   useEffect(() => {
     ThreadAPI.getAllThread((result) => setPosts(result));
   }, []);
@@ -94,7 +105,7 @@ const TablePosts = () => {
               </div>
               <div
                 className="bg-danger p-1 rounded place-content-center cursor-pointer ml-1"
-                // onClick={() => deleteModalHandler(params.row.ID)}
+                onClick={() => deleteModalHandler(params.row.ID)}
               >
                 <DeleteOutlinedIcon sx={{ color: "#fff" }} />
               </div>
@@ -114,7 +125,10 @@ const TablePosts = () => {
                   alt=""
                 />
               </div>
-              <div className="bg-danger p-1 rounded place-content-center cursor-pointer ml-1">
+              <div
+                className="bg-danger p-1 rounded place-content-center cursor-pointer ml-1"
+                onClick={() => deleteModalHandler(params.row.ID)}
+              >
                 <DeleteOutlinedIcon sx={{ color: "#fff" }} />
               </div>
             </div>
@@ -149,6 +163,29 @@ const TablePosts = () => {
             <div
               className="text-white bg-danger w-[103px] h-[30px] flex justify-center items-center font-bold rounded-[4px] cursor-pointer"
               onClick={() => clickHandler(modal.id)}
+            >
+              Yes
+            </div>
+          </div>
+        </div>
+      </Modal>
+      <Modal open={modalDel.visible}>
+        <div className="w-[400px] bg-white absolute top-[30%] left-[40%] outline-none flex items-center flex-col p-[38px] rounded-[20px]">
+          <DeleteOutlineForeverIcon sx={{ color: "red", fontSize: "50px" }} />
+          <h1 className="font-bold mt-[10px]">Delete Thread</h1>
+          <p className="w-[300px] text-center mt-[10px] font-[16px]">
+            Are you sure want to delete this thread?
+          </p>
+          <div className="flex-row flex w-[230px] justify-between mt-[10px]">
+            <div
+              className="text-danger w-[103px] h-[30px] flex justify-center items-center outline-danger outline-1 outline font-bold rounded-[4px] cursor-pointer"
+              onClick={() => setModalDel({ visible: false, id: 0 })}
+            >
+              No
+            </div>
+            <div
+              className="text-white bg-danger w-[103px] h-[30px] flex justify-center items-center font-bold rounded-[4px] cursor-pointer"
+              onClick={() => clickDeleteHandler(modalDel.id)}
             >
               Yes
             </div>
