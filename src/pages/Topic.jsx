@@ -1,27 +1,31 @@
+import { CircularProgress } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import TopicAPI from "../apis/topic.api";
+import { useDispatch, useSelector } from "react-redux";
 import TableTopic from "../components/TableTopic";
+import { fetchTopic } from "../store/features/topicSlice";
 
 const User = () => {
-  const [topic, setTopic] = useState([]);
+  const topic = useSelector((state) => state.topic.data);
+  const fetchStatus = useSelector((state) => state.topic.status);
+  const dispatch = useDispatch();
+
   console.log(topic);
-  const getTopic = async () => {
-    try {
-      const response = await TopicAPI.getAllTopic();
-      setTopic(response.data.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   useEffect(() => {
-    getTopic();
-    console.log(topic);
-  }, []);
+    dispatch(fetchTopic());
+  }, [dispatch]);
 
-  return (
+  if(fetchStatus === "loading") return (
+    <div className="flex justify-center item-center h-[80vh] w-[80vw]">
+      <div className="flex items-center justify-center">
+        <CircularProgress color="inherit"/>
+      </div>
+    </div>
+  )
+
+  return (  
     <div className="container">
-      <h1 className="pb-5">Manage Topic</h1>
+      <h1 className="text-3xl py-5">Manage Topic</h1>
       <div className="users">
         <TableTopic data={topic} />
       </div>
