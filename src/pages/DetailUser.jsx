@@ -46,7 +46,7 @@ function DetailUser() {
                   <div className="h-[25%] w-[100%] flex items-center">
                     <div className=" flex text-xs text-[#556282]">
                       <p className="ml-[10px]">
-                        0 <b>Likes</b>
+                        1 <b>Likes</b>
                       </p>
                       <p className="ml-[10px]">
                         0 <b>Dislikes</b>
