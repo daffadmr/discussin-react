@@ -1,21 +1,14 @@
 import React, { useEffect } from "react";
 import { TabTitle } from "../components/title";
 import TablePosts from "../components/TablePosts";
-import { useDispatch, useSelector } from "react-redux";
-import { getPosts, postSelector } from "../redux/slice/postSlice";
 
 const Thread = () => {
   TabTitle("All Thread");
-  // const dispatch = useDispatch();
-  // const posts = useSelector(postSelector.selectAll);
-  // useEffect(() => {
-  //   dispatch(getPosts());
-  // }, [dispatch]);
   return (
     <div className="container">
       <h1 className="pb-5">Manage Thread</h1>
       <div className="users">
-        <div className="w-[80vw] h-[90vh] border rounded-lg relative">
+        <div className="w-[80vw] h-[90vh] rounded-lg relative">
           {/* <div>
             {posts.map((post) => {
               return <h1>{post.title}</h1>;

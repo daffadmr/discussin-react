@@ -2,10 +2,10 @@ import axios from "axios";
 import axiosInstance from "../configs/axiosInstance";
 
 const ThreadAPI = {
-  async getAllThread(cb) {
+  async getAllThread() {
     try {
       const respone = await axiosInstance.get("posts/recents?page=1");
-      cb(respone.data.data);
+      return respone.data.data;
     } catch (error) {
       console.log(error);
     }
@@ -19,6 +19,23 @@ const ThreadAPI = {
     //   console.log(error.message);
     // }
   },
+  // async getAllThread(cb) {
+  //   try {
+  //     const respone = await axiosInstance.get("posts/recents?page=1");
+  //     cb(respone.data.data);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // try {
+  //   const response = await axios({
+  //     method: "get",
+  //     url: "http://localhost:3001/posts",
+  //   });
+  //   return cb(response.data);
+  // } catch (error) {
+  //   console.log(error.message);
+  // }
+  // },
 
   async getOneThread(id, cb) {
     try {

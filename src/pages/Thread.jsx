@@ -13,21 +13,29 @@ import RightArrow from "../assets/svg/RightArrow";
 import Eclipse from "../assets/svg/Eclipse";
 import { TabTitle } from "../components/title";
 import ThreadAPI from "../apis/threads.api";
+import { getPosts, postSelector } from "../store/features/postSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { CircularProgress } from "@mui/material";
+import { commentSelector, getComments } from "../store/features/commentSlice";
 
 const DetailThreads = () => {
   TabTitle("Detail Thread");
-  let userId = useParams();
-  let id = userId.id;
-  const [thread, setThread] = useState();
-  const [comment, setComment] = useState([]);
+  let params = useParams();
+  // let id = userId.id;
+  // console.log(id);
+  // const [thread, setThread] = useState();
+  // const [comment, setComment] = useState([]);
+
+  const comments = useSelector(commentSelector.selectAll);
+  const dispatch = useDispatch();
+  const thread = useSelector((state) =>
+    postSelector.selectById(state, params.id)
+  );
+  const loading = useSelector((state) => state.posts.loading);
   //detail thread and comment with id
   useEffect(() => {
-    ThreadAPI.getOneThread(id, (result) => {
-      setThread(result);
-    });
-    ThreadAPI.getComment(id, (result) => {
-      setComment(result);
-    });
+    dispatch(getPosts());
+    dispatch(getComments(params.id));
   }, []);
   // if (thread !== null) {
   //   console.log(thread);
@@ -45,71 +53,104 @@ const DetailThreads = () => {
   //     console.error(error);
   //   }
   // };
-
+  const photos = (props) => {
+    // console.log(props ? props.title : null);
+    if (props.photo === "") {
+      return null;
+    } else {
+      return <img className="w-full h-[400px]" src={props.photo} alt="photo" />;
+    }
+  };
   return (
     <div className="container pb-14">
-      <h1 className="pb-5">Manage Thread</h1>
-      <div className="w-[80vw] bg-[#B1B1B1] rounded-t-xl px-4 py-1.5 flex items-center justify-between">
-        <Link to={"/threads"}>
-          <button className="p-1.5 bg-[#CFCFCF] rounded-full">
-            <RightArrow />
-          </button>
-        </Link>
-        <p className="text-xs font-semibold tracking-wide">
-          You are now in the admin-only view
-        </p>
-        <div></div>
-      </div>
-      <div className="w-[80vw] h-[80vh] overflow-scroll overflow-x-hidden border shadow-xl shadow-gray-400 px-14 py-6 space-y-5 rounded-b-xl">
-        <div className="header-content flex justify-between">
-          <div className="flex items-center space-x-2">
-            <img className="w-14 h-14" src={Author} alt="author" />
-            <div className="author-name">
-              <h2 className="font-bold text-sm">
-                {thread ? thread.user.username : null}
-              </h2>
-              <p className="text-xs">Student College</p>
-            </div>
+      {loading ? (
+        <div className="flex justify-center item-center h-[80vh] w-[80vw]">
+          <div className="flex items-center justify-center">
+            <CircularProgress color="inherit" />
           </div>
-          <button className="flex items-center space-x-2">
-            <Eclipse />
-          </button>
         </div>
-        <div className="body-content space-y-3">
-          <p className="text-xs">{thread ? thread.title : null}</p>
-          <img
-            className="w-full h-[400px]"
-            src={thread ? thread.photo : Threads}
-            alt="Threads"
-          />
-          <p className="text-xs">{thread?.body}</p>
-        </div>
-        <div className="footer-content flex space-x-5 text-xs text-[#556282]">
-          <p>
-            {thread ? thread.count.like : 0} <b>Likes</b>
-          </p>
-          <p>
-            {thread ? thread.count.dislike : 0} <b>Dislikes</b>
-          </p>
-          <p className="cursor-pointer">
-            {thread ? thread.count.comment : 0} <b>Comment</b>
-          </p>
-        </div>
-        {comment?.map((data) => {
-          return (
-            <>
-              <div className="flex items-center">
-                <img src={Author} className="w-[35px]" alt="" />
-                <div className="pl-2 flex items-center">
-                  {data.user.username}
-                  <p className="text-[10px] pl-1">12-12</p>
+      ) : (
+        <>
+          <h1 className="pb-5">Manage Thread</h1>
+          <div className="w-[80vw] h-[80vh] overflow-hidden shadow-xl shadow-gray-400 px-[20px] border border-slate-200 py-6 space-y-5 rounded-xl relative">
+            <div className="h-[100%] w-[100%]">
+              <div className="w-[100%] h-[10%]  sticky top-1  rounded-t-xl flex items-center">
+                <Link to={"/dashboard/threads"}>
+                  <button className="p-2  bg-navy rounded-full">
+                    <RightArrow />
+                  </button>
+                </Link>
+                <div className="w-[100%] flex justify-center">
+                  <p className="text-[14px] text-center text-white font-semibold tracking-wide bg-navy px-4 py-3 rounded-md">
+                    You are now in the admin-only view
+                  </p>
                 </div>
               </div>
-              <div className="">{data.body}</div>
-            </>
-          );
-        })}
-      </div>
+              {/* <div className="w-[80vw] h-[80vh] overflow-scroll overflow-x-hidden border shadow-xl shadow-gray-400 px-14 py-6 space-y-5 rounded-b-xl"> */}
+              <div className="pt-[20px] w-[100%] h-[90%] overflow-y-scroll">
+                <div className="header-content flex justify-between">
+                  <div className="flex items-center space-x-2">
+                    <img className="w-14 h-14" src={Author} alt="author" />
+                    <div className="author-name flex flex-col justify-between h-13">
+                      <h2 className="font-bold text-[17px]">
+                        {thread ? thread.user.username : null}
+                      </h2>
+                      <p className="text-xs">Student College</p>
+                    </div>
+                  </div>
+                  <button className="flex items-center space-x-2">
+                    <Eclipse />
+                  </button>
+                </div>
+                <div className="body-content space-y-3 py-4">
+                  <p className="text-l font-bold">
+                    {thread ? thread.title : null}
+                  </p>
+                  {photos(thread)}
+                  {/* {thread ? (
+                    <img
+                      className="w-full h-[400px]"
+                      src={thread.photo}
+                      alt="Threads"
+                    />
+                  ) : null} */}
+
+                  <p className="text-l h-[200px]  truncate whitespace-pre-line w-[100%]">
+                    {thread?.body}
+                  </p>
+                </div>
+                <div className=" flex text-l items-center text-[#556282] h-[10%">
+                  <p>
+                    {thread ? thread.count.like : 0} <b>Likes</b>
+                  </p>
+                  <p className="ml-3">
+                    {thread ? thread.count.dislike : 0} <b>Dislikes</b>
+                  </p>
+                  <p className="cursor-pointer ml-3">
+                    {thread ? thread.count.comment : 0} <b>Comment</b>
+                  </p>
+                </div>
+                {comments?.map((data) => {
+                  return (
+                    <div key={data.ID} className="p-4">
+                      <div className="flex items-center">
+                        <img src={Author} className="w-[50px]" alt="" />
+                        <div className="pl-2">
+                          <div className="flex items-center">
+                            {data.user.username}
+                            <p className="text-[10px] pl-1">12-12</p>
+                          </div>
+                          <div className="">{data.body}</div>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
 };

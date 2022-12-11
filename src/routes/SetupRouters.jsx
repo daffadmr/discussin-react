@@ -4,7 +4,7 @@ import Dashboard from "../pages/Dashboard";
 import Threads from "../pages/Threads";
 import Thread from "../pages/Thread";
 import User from "../pages/User";
-import Layout from "../components/Layout"
+import Layout from "../components/Layout";
 import Topic from "../pages/Topic";
 import Login from "../pages/Login";
 import PrivateRouters from "./PrivateRouters";
@@ -22,7 +22,7 @@ const SetupRouters = () => {
           <Route path="users" element={<User />} />
           <Route path="users/:id" element={<DetailUser />} />
           <Route path="threads" element={<Threads />} />
-          <Route path="/threads/:id" element={<Thread />} />
+          <Route path="threads/:id" element={<Thread />} />
           <Route path="topics" element={<Topic />} />
         </Route>
         <Route element={<ProtectedRouters />}>
