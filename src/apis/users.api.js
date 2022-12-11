@@ -3,7 +3,7 @@ import axiosInstance from "../configs/axiosInstance";
 const UserAPI = {
   async getAllUser() {
     try {
-      const response = await axiosInstance.get("users/");
+      const response = await axiosInstance.get("users?page=1");
       return response;
     } catch (error) {
       console.log(error.message)

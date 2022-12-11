@@ -1,28 +1,26 @@
-import React, { useEffect, useState } from "react";
-import UserAPI from "../apis/users.api";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import TableUsers from "../components/TableUsers";
+import { fetchDataUser, userSelector } from "../store/features/userSlice";
 
 const User = () => {
-  const [user, setUser] = useState([]);
-  console.log(user)
-  const getUser = async () => {
-    try {
-      const response = await UserAPI.getAllUser();
-      setUser(response.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // const users = useSelector((state) => state.user.data)
+  const users = useSelector(userSelector.selectAll);
+  const dispatch = useDispatch();
+
+  const filteredUser = users.filter((user) => {
+    return !user.isAdmin;
+  });
 
   useEffect(() => {
-    getUser();
-  }, []);
+    dispatch(fetchDataUser());
+  }, [dispatch]);
 
   return (
     <div className="container">
       <h1 className="pb-5">Manage User</h1>
       <div className="users">
-        <TableUsers data={user}/>
+        <TableUsers data={filteredUser} />
       </div>
     </div>
   );

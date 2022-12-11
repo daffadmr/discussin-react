@@ -1,8 +1,9 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import topicSlice from "./features/topicSlice";
+import userSlice from "./features/userSlice";
 
 const rootReducer = combineReducers({
-	topic: topicSlice
+	user: userSlice,topic: topicSlice
 });
 
 export const store = configureStore({
