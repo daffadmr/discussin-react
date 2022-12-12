@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import TableUsers from "../components/TableUsers";
+import TableUsers from "../components/Dashboard/TableUsers";
 import { fetchDataUser, userSelector } from "../store/features/userSlice";
 
 const User = () => {
@@ -18,7 +18,7 @@ const User = () => {
 
   return (
     <div className="container">
-      <h1 className="pb-5">Manage User</h1>
+      <h1 className="text-3xl pb-5">Manage User</h1>
       <div className="users">
         <TableUsers data={filteredUser} />
       </div>
