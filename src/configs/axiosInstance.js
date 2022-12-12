@@ -11,3 +11,5 @@ const config = {
     Authorization: `Bearer ${token}`,
   },
 };
+const axiosInstance = axios.create(config);
+export default axiosInstance;
