@@ -5,16 +5,18 @@ import FeatureSection from "../components/LandingPage/FeatureSection";
 import Footer from "../components/LandingPage/Footer";
 import HeroSection from "../components/LandingPage/HeroSection";
 import Navbar from "../components/LandingPage/Navbar";
+import { TabTitle } from "../components/title";
 
 const LandingPage = () => {
+  TabTitle("Landing Page");
   return (
     <>
-      <Navbar/>
-      <HeroSection/>
-      <FeatureSection/>
-      <DownloadSection/>
-      <FaqSection/>
-      <Footer/>
+      <Navbar />
+      <HeroSection />
+      <FeatureSection />
+      <DownloadSection />
+      <FaqSection />
+      <Footer />
     </>
   );
 };
