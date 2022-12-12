@@ -19,7 +19,6 @@ import {
 // import Swal from "sweetalert2";
 
 const TablePosts = () => {
-  const [datas, setDatas] = useState([]);
   const dispatch = useDispatch();
   const posts = useSelector(postSelector.selectAll);
   const loading = useSelector((state) => state.posts.loading);
@@ -35,15 +34,6 @@ const TablePosts = () => {
   const clickHandler = (id) => {
     dispatch(suspendPost(id));
     setModal({ visible: false, id: 0 });
-    // const result = datas.map((post) => {
-    //   if (post.ID === id) {
-    //     console.log(post);
-    //     post.isActive = !post.isActive;
-    //   }
-    //   return post;
-    // });
-    // setDatas(result);
-    // setModal({ visible: false });
   };
   //end activity
   // delete thread
@@ -52,15 +42,9 @@ const TablePosts = () => {
     setModalDel({ visible: true, id: id });
   };
   const clickDeleteHandler = (id) => {
-    // const result = [...datas].filter((post) => post.ID !== id);
-    // setDatas(result);
     dispatch(deletePost(id));
     setModalDel({ visible: false, id: 0 });
   };
-  // end delete thread
-  useEffect(() => {
-    ThreadAPI.getAllThread((result) => setDatas(result));
-  }, []);
   const columns = [
     {
       field: "ID",
@@ -124,11 +108,6 @@ const TablePosts = () => {
                 <span className="text-danger font-bold mr-2">
                   Stop Activity
                 </span>
-                {/* <img
-                  className="w-5 h-5 "
-                  src={require("../assets/png/do_not_disturb_on.png")}
-                  alt=""
-                /> */}
                 <DoDisturbOnOutlinedIcon sx={{ color: "red" }} />
               </div>
               <div
@@ -147,11 +126,6 @@ const TablePosts = () => {
                 className="bg-red-300 p-1 rounded flex justify-center items-center place-content-center cursor-pointer"
               >
                 <span className="text-[white] font-bold mr-2">Stoped</span>
-                {/* <img
-                  className="w-5 h-5 "
-                  src={require("../assets/png/do_not_disturb_off.png")}
-                  alt=""
-                /> */}
                 <DoDisturbOffOutlinedIcon sx={{ color: "#fff" }} />
               </div>
               <div

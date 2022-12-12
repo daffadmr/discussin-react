@@ -10,7 +10,6 @@ import Login from "../pages/Login";
 import PrivateRouters from "./PrivateRouters";
 import ProtectedRouters from "./ProtectedRouters";
 import LandingPage from "../pages/LandingPage";
-import DetailUser from "../pages/DetailUser";
 
 const SetupRouters = () => {
   return (
@@ -20,7 +19,6 @@ const SetupRouters = () => {
         <Route path="/dashboard" element={<PrivateRouters />}>
           <Route index element={<Dashboard />} />
           <Route path="users" element={<User />} />
-          <Route path="users/:id" element={<DetailUser />} />
           <Route path="threads" element={<Threads />} />
           <Route path="threads/:id" element={<Thread />} />
           <Route path="topics" element={<Topic />} />

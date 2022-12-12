@@ -1,18 +1,15 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 // import { Link } from "@mui/material";
 
 // image
 import Author from "../assets/png/author.png";
-import Threads from "../assets/png/threads.png";
 
 // Icon
 import RightArrow from "../assets/svg/RightArrow";
 import Eclipse from "../assets/svg/Eclipse";
 import { TabTitle } from "../components/title";
-import ThreadAPI from "../apis/threads.api";
 import { getPosts, postSelector } from "../store/features/postSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { CircularProgress } from "@mui/material";
@@ -21,10 +18,6 @@ import { commentSelector, getComments } from "../store/features/commentSlice";
 const DetailThreads = () => {
   TabTitle("Detail Thread");
   let params = useParams();
-  // let id = userId.id;
-  // console.log(id);
-  // const [thread, setThread] = useState();
-  // const [comment, setComment] = useState([]);
 
   const comments = useSelector(commentSelector.selectAll);
   const dispatch = useDispatch();
@@ -37,22 +30,7 @@ const DetailThreads = () => {
     dispatch(getPosts());
     dispatch(getComments(params.id));
   }, []);
-  // if (thread !== null) {
-  //   console.log(thread);
-  // }
 
-  // const getThread = async () => {
-  //   try {
-  //     const response = await axios({
-  //       method: "get",
-  //       url: `http://localhost:3001/posts/${userId.id}`,
-  //     });
-  //     // console.log(response.data);
-  //     setThread(response.data);
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
   const photos = (props) => {
     // console.log(props ? props.title : null);
     if (props.photo === "") {
@@ -107,15 +85,7 @@ const DetailThreads = () => {
                     {thread ? thread.title : null}
                   </p>
                   {photos(thread)}
-                  {/* {thread ? (
-                    <img
-                      className="w-full h-[400px]"
-                      src={thread.photo}
-                      alt="Threads"
-                    />
-                  ) : null} */}
-
-                  <p className="text-l h-[200px]  truncate whitespace-pre-line w-[100%]">
+                  <p className="text-l   truncate whitespace-pre-line w-[100%]">
                     {thread?.body}
                   </p>
                 </div>
