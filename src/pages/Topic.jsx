@@ -1,11 +1,12 @@
 import { CircularProgress } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import TableTopic from "../components/TableTopic";
-import { fetchTopic } from "../store/features/topicSlice";
+import TableTopic from "../components/Dashboard/TableTopic";
+import { fetchTopic, topicSelector } from "../store/features/topicSlice";
 
 const User = () => {
-  const topic = useSelector((state) => state.topic.data);
+  // const topic = useSelector((state) => state.topic.data);
+  const topic = useSelector(topicSelector.selectAll);
   const fetchStatus = useSelector((state) => state.topic.status);
   const dispatch = useDispatch();
 
@@ -25,7 +26,7 @@ const User = () => {
 
   return (  
     <div className="container">
-      <h1 className="text-3xl py-5">Manage Topic</h1>
+      <h1 className="text-3xl pb-5">Manage Topic</h1>
       <div className="users">
         <TableTopic data={topic} />
       </div>
