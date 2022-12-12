@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./App.css";
+import "./tailwind.css"
 import SetupRouters from "./routes/SetupRouters";
 
 class App extends Component {
