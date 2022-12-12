@@ -1,11 +1,11 @@
 import { createAsyncThunk, createSlice, createEntityAdapter  } from "@reduxjs/toolkit";
 import UserAPI from "../../apis/users.api";
 
-// const initialState = {
-// 	data: [],
-// 	status: "idle",
-// 	error: null,
-// };
+const initialState = {
+	data: [],
+	status: "idle",
+	error: null,
+};
 
 export const fetchDataUser = createAsyncThunk("fetch/user", async () => {
   try {
@@ -14,6 +14,24 @@ export const fetchDataUser = createAsyncThunk("fetch/user", async () => {
   } catch (error) {
     console.log(error);
   }
+});
+
+export const updateUser = createAsyncThunk("update/user", async ({email, username}) => {
+  try{
+    const response = await UserAPI.updateUser({email, username});
+    return response.data.data
+  } catch (error) {
+    console.log(error);
+}
+});
+
+export const deleteUser = createAsyncThunk("delete/user", async ({id}) => {
+  try{
+    const response = await UserAPI.deleteUser({id});
+    return response.data.data
+  } catch (error) {
+    console.log(error);
+}
 });
 
 const userEntity = createEntityAdapter({
@@ -27,15 +45,12 @@ const userSlice = createSlice({
     [fetchDataUser.fulfilled]: (state, action) => {
       userEntity.setAll(state, action.payload);
     },
-    // [saveProduct.fulfilled]: (state, action) => {
-    //   userEntity.addOne(state, action.payload);
-    // },
-    // [deleteProduct.fulfilled]: (state, action) => {
-    //   userEntity.removeOne(state, action.payload);
-    // },
-    // [updateProduct.fulfilled]: (state, action) => {
-    //   userEntity.updateOne(state, { id: action.payload.id, updates: action.payload });
-    // }
+    [deleteUser.fulfilled]: (state, action) => {
+      userEntity.removeOne(state, action.payload);
+    },
+    [updateUser.fulfilled]: (state, action) => {
+      userEntity.updateOne(state, { id: action.payload.id, updates: action.payload });
+    }
   }
 	// initialState,
 	// extraReducers(builder) {
