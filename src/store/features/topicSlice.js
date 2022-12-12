@@ -29,8 +29,8 @@ export const createTopic = createAsyncThunk("create/topic", async ({name, descri
 
 export const deleteTopic = createAsyncThunk("delete/topic", async (id) => {
   try {
-    const res = await TopicApi.deleteTopic(id);
-    return res.data;
+    await TopicApi.deleteTopic(id);
+    return id
   } catch (err) {
     console.log(err.message);
   }
