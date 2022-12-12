@@ -1,12 +1,12 @@
 import axiosInstance from "../configs/axiosInstance";
 
 const UserAPI = {
-  async getAllUser() {
+  async getAllUser(cb) {
     try {
       const response = await axiosInstance.get("users?page=1");
       return response;
     } catch (error) {
-      console.log(error.message)
+      console.log(error.message);
     }
   },
 
@@ -21,10 +21,10 @@ const UserAPI = {
 
   async deleteUser(id) {
     try {
-      const response = await axiosInstance.delete(`${id}`)
-      return response
+      const response = await axiosInstance.delete(`${id}`);
+      return response;
     } catch (error) {
-      console.log(error.message)
+      console.log(error.message);
     }
   },
 };

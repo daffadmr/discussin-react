@@ -1,8 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [
-    "./src/**/*.{js,jsx,ts,tsx}",
-  ],
+  content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     screens: {
       '3xl': '1600px',
@@ -25,10 +23,7 @@ module.exports = {
         gray: '#D8D8D8',
         "navy": '#323C5C'
       },
-      borderRadius: {
-        default: '5px'
-      }
     },
   },
   plugins: [],
-}
+};

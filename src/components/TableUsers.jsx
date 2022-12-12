@@ -3,6 +3,7 @@ import { DataGrid, GridToolbarQuickFilter } from "@mui/x-data-grid";
 import { Box } from "@mui/system";
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
+import { Link } from "react-router-dom";
 
 const TableUsers = ({ data }) => {
   const rows = [...data];
@@ -17,7 +18,14 @@ const TableUsers = ({ data }) => {
       headerAlign: "center",
       align: "center",
     },
-    { field: "username", headerName: "Username", width: 300 },
+    {
+      field: "username",
+      headerName: "Username",
+      width: 300,
+      renderCell: (params) => {
+        return <Link to={`${params.row.id}`}>{params.row.username}</Link>;
+      },
+    },
     { field: "email", headerName: "Email", width: 400 },
     {
       field: "isAdmin",

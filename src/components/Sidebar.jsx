@@ -55,7 +55,10 @@ const Sidebar = () => {
                     : ""
                 }`}
               >
-                <Link to={`${item.route}`} className={`flex gap-2 items-center`}>
+                <Link
+                  to={`${item.route}`}
+                  className={`flex gap-2 items-center`}
+                >
                   <item.icon />
                   {item.name}
                 </Link>
