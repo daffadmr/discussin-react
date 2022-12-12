@@ -25,9 +25,6 @@ module.exports = {
         gray: '#D8D8D8',
         "navy": '#323C5C'
       },
-      borderRadius: {
-        default: '5px'
-      }
     },
   },
   plugins: [],
