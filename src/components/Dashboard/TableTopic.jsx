@@ -47,6 +47,7 @@ const TableTopic = ({ data }) => {
   const handleDelete = (id) => {
     dispatch(deleteTopic(id));
     alert("Berhasil hapus data");
+    handleCloseModalDelete();
   };
 
   const columns = [
