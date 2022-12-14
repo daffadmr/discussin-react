@@ -27,9 +27,9 @@ const TableUsers = ({ data }) => {
     },
     {
       headerName: "Action",
+      field: "headers",
       width: 200,
       renderCell: (params) => {
-        console.log(params);
         return (
           <div className="w-full flex gap-4">
             {params.row.banUntil === 0 ? (
@@ -74,11 +74,7 @@ const TableUsers = ({ data }) => {
           pb: 0,
         }}
       >
-        <GridToolbarQuickFilter
-          sx={{
-            
-          }}
-        />
+        <GridToolbarQuickFilter sx={{}} />
       </Box>
     );
   };

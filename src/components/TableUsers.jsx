@@ -37,7 +37,6 @@ const TableUsers = ({ data }) => {
       headerName: "Action",
       width: 200,
       renderCell: (params) => {
-        console.log(params);
         return (
           <div className="w-full flex gap-4">
             {params.row.banUntil === 0 ? (
@@ -108,7 +107,6 @@ const TableUsers = ({ data }) => {
           }}
         />
       </div>
-   
     </>
   );
 };
