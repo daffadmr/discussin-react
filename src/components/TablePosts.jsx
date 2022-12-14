@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import ThreadAPI from "../apis/threads.api";
 import { DataGrid } from "@mui/x-data-grid";
 import { Link } from "react-router-dom";
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
@@ -30,7 +29,6 @@ const TablePosts = () => {
   const modalHandler = (id) => {
     setModal({ visible: true, id: id });
   };
-  console.log(posts);
   const clickHandler = (id) => {
     dispatch(suspendPost(id));
     setModal({ visible: false, id: 0 });

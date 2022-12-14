@@ -6,8 +6,10 @@ import VisibilityOffOutlinedIcon from "@mui/icons-material/VisibilityOffOutlined
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import LoginSvg from "../assets/svg/LoginSvg";
 import Cookies from "js-cookie";
+import { TabTitle } from "../components/title";
 
 const Login = () => {
+  TabTitle("Login Page | Discuss.in");
   const navigate = useNavigate();
 
   const [showPassword, setShowPassword] = useState(false);

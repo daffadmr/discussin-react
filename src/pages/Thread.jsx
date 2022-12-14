@@ -31,14 +31,13 @@ const DetailThreads = () => {
     dispatch(getComments(params.id));
   }, []);
 
-  const photos = (props) => {
-    // console.log(props ? props.title : null);
-    if (props.photo === "") {
-      return null;
-    } else {
-      return <img className="w-full h-[400px]" src={props.photo} alt="photo" />;
-    }
-  };
+  // const photos = (props) => {
+  //   if (props.photo === "") {
+  //     return null;
+  //   } else {
+  //     return <img className="w-full h-[400px]" src={props.photo} alt="photo" />;
+  //   }
+  // };
   return (
     <div className="container pb-14">
       {loading ? (
@@ -65,7 +64,7 @@ const DetailThreads = () => {
                 </div>
               </div>
               {/* <div className="w-[80vw] h-[80vh] overflow-scroll overflow-x-hidden border shadow-xl shadow-gray-400 px-14 py-6 space-y-5 rounded-b-xl"> */}
-              <div className="pt-[20px] w-[100%] h-[90%] overflow-y-scroll">
+              <div className="pt-[20px] w-[100%] h-[90%] overflow-y-auto">
                 <div className="header-content flex justify-between">
                   <div className="flex items-center space-x-2">
                     <img className="w-14 h-14" src={Author} alt="author" />
@@ -84,7 +83,18 @@ const DetailThreads = () => {
                   <p className="text-l font-bold">
                     {thread ? thread.title : null}
                   </p>
-                  {photos(thread)}
+                  {/* {photos(thread)} */}
+                  {thread.photo === "" ? null : (
+                    <div className="flex justify-center">
+                      <div className="w-[800px]">
+                        <img
+                          className="w-[100%]"
+                          src={thread.photo}
+                          alt="photo"
+                        />
+                      </div>
+                    </div>
+                  )}
                   <p className="text-l   truncate whitespace-pre-line w-[100%]">
                     {thread?.body}
                   </p>
