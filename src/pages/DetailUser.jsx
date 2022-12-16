@@ -99,13 +99,22 @@ function DetailUser() {
               })}
             </div>
           ) : (
-            <div className="h-[62%]  w-[100%] bg-[#ccc] p-[20px] flex justify-center items-center">
-              <div className="w-[200px]">
-                <img
-                  className="w-[100%]"
-                  src={require("../assets/png/folder.png")}
-                  alt=""
-                />
+            <div className="h-[62%]  w-[100%] bg-[#ccc] p-[10px] ">
+              <div className="bg-white w-[100%] h-[100%] rounded-[20px] flex justify-center items-center flex-col">
+                <img src={require("../assets/png/defaultPost.png")} alt="" />
+                <p className="text-[20px]">
+                  {details?.user.username}
+                  <span className="font-bold">
+                    {" "}
+                    has never make a post before
+                  </span>
+                </p>
+                <Link
+                  to={"/dashboard/users"}
+                  className="pt-[10px] text-[blue] font-bold text-[18px]"
+                >
+                  Back
+                </Link>
               </div>
             </div>
           )}
