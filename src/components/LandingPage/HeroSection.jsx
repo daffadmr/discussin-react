@@ -9,13 +9,7 @@ import VerifiedUserOutlinedIcon from "@mui/icons-material/VerifiedUserOutlined";
 
 const HeroSection = () => {
   return (
-    <section id="hero" className="mb-24 relative">
-      <img
-        src={HeroWave}
-        alt=""
-        width="100%"
-        className="absolute -z-50 3xl:top-[-100px] 4xl:top-[-200px]"
-      />
+    <section id="hero" className="mb-24 relative bg-cover bg-no-repeat bg-hero-bg-mobile lg:bg-hero-bg" style={{backgroundImage: `url(${HeroWave})`}}>
       <div className="container">
         <div className="flex flex-col">
           <div className="flex justify-center h-full items-center flex-wrap pt-20">
