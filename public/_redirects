@@ -3,6 +3,6 @@
 /posts/* process.env.REACT_APP_BASE_URL:splat 200!
 
 from = "https://discussin.netlify.app/*"
-  to = "http://discussin.netlify.app/"
+  to = "http://discussin.netlify.app/:splat"
   status = 301
   force = true
