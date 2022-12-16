@@ -2,11 +2,11 @@ import { CircularProgress } from "@mui/material";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import TableTopic from "../components/Dashboard/TableTopic";
-import { fetchTopic, topicSelector } from "../store/features/topicSlice";
+import { fetchTopic } from "../store/features/topicSlice";
 
 const User = () => {
-  // const topic = useSelector((state) => state.topic.data);
-  const topic = useSelector(topicSelector.selectAll);
+  const topic = useSelector((state) => state.topic.data);
+  // const topic = useSelector(topicSelector.selectAll);
   const fetchStatus = useSelector((state) => state.topic.status);
   const dispatch = useDispatch();
 
