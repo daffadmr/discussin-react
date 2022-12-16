@@ -1,1 +1,3 @@
-/api/* process.env.REACT_APP_BASE_URL:splat 200!
+/users/* process.env.REACT_APP_BASE_URL:splat 200!
+/topic/* process.env.REACT_APP_BASE_URL:splat 200!
+/posts/* process.env.REACT_APP_BASE_URL:splat 200!
