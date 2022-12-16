@@ -11,6 +11,10 @@ module.exports = {
       'md': '767px',
       'sm': '639px',
     },
+    backgroundPosition: {
+      'hero-bg': 'center top -200px',
+      'hero-bg-mobile': 'center top -600px'
+    },
     extend: {
       container: {
         padding: "40px",
