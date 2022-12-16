@@ -9,7 +9,7 @@ import Cookies from "js-cookie";
 import { TabTitle } from "../components/title";
 
 const Login = () => {
-  TabTitle("Login Page | Discuss.in");
+  TabTitle("Login Admin");
   const navigate = useNavigate();
 
   const [showPassword, setShowPassword] = useState(false);

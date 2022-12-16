@@ -3,7 +3,7 @@ import { TabTitle } from "../components/title";
 import TablePosts from "../components/TablePosts";
 
 const Thread = () => {
-  TabTitle("All Thread");
+  TabTitle("Manage Thread");
   return (
     <div className="container">
       <h1 className="pb-5">Manage Thread</h1>

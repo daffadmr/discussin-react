@@ -4,8 +4,10 @@ import PeopleAltOutlinedIcon from "@mui/icons-material/PeopleAltOutlined";
 import TopicOutlinedIcon from "@mui/icons-material/TopicOutlined";
 import { fetchDataUser, userSelector } from "../store/features/userSlice";
 import { fetchTopic, topicSelector } from "../store/features/topicSlice";
+import { TabTitle } from "../components/title";
 
 const Dashboard = () => {
+  TabTitle("Dashboard | discuss.in");
   const users = useSelector(userSelector.selectAll);
   const topics = useSelector(topicSelector.selectTotal);
 
@@ -20,7 +22,6 @@ const Dashboard = () => {
     dispatch(fetchTopic());
   }, []);
 
-  console.log(users);
   return (
     <div className="px-12">
       <h1>Dashboard</h1>

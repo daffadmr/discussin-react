@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { getDetail } from "../apis/detailUser";
+import { TabTitle } from "../components/title";
 import { getThread, threadSelector } from "../store/features/threadSlice";
 
 function DetailUser() {
@@ -11,6 +12,7 @@ function DetailUser() {
   useEffect(() => {
     getDetail(params.id, (result) => setDetails(result));
   }, []);
+  TabTitle("Detail User");
   return (
     <div className="container">
       <h1 className="pb-5">Detail User</h1>
