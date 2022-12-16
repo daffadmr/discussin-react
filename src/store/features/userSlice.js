@@ -13,12 +13,8 @@ import axiosInstance from "../../configs/axiosInstance";
 // };
 
 export const fetchDataUser = createAsyncThunk("fetch/user", async () => {
-  try {
-    const response = await axiosInstance.get("users?page=1");
-    return response.data.data;
-  } catch (error) {
-    console.log(error);
-  }
+  const response = await axiosInstance.get("users?page=1");
+  return response.data.data;
 });
 
 // export const updateUser = createAsyncThunk(

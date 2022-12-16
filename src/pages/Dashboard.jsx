@@ -7,7 +7,7 @@ import { fetchTopic, topicSelector } from "../store/features/topicSlice";
 
 const Dashboard = () => {
   const users = useSelector(userSelector.selectAll);
-  const topics = useSelector(topicSelector.selectAll);
+  const topics = useSelector(topicSelector.selectTotal);
 
   const dispatch = useDispatch();
 
@@ -42,7 +42,7 @@ const Dashboard = () => {
         <div className="dashboard-card">
           <div className="flex flex-col gap-3 justify-center">
             <h3 className="text-3xl">Topics</h3>
-            <h3 className="text-3xl font-extrabold">{topics.length}</h3>
+            <h3 className="text-3xl font-extrabold">{topics}</h3>
           </div>
           <div className="flex items-center">
             <TopicOutlinedIcon

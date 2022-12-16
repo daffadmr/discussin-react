@@ -11,6 +11,7 @@ import {
   userSelector,
 } from "../../store/features/userSlice";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const TableUsers = () => {
   const dispatch = useDispatch();
@@ -22,6 +23,10 @@ const TableUsers = () => {
   const filteredUser = users.filter((user) => {
     return !user.isAdmin;
   });
+  // modal respone
+  // banned
+  // end banned
+  // end
 
   const columns = [
     {
@@ -33,7 +38,14 @@ const TableUsers = () => {
       headerAlign: "center",
       align: "center",
     },
-    { field: "username", headerName: "Username", width: 300 },
+    {
+      field: "username",
+      headerName: "Username",
+      width: 300,
+      renderCell: (params) => {
+        return <Link to={`${params.row.id}`}>{params.row.username}</Link>;
+      },
+    },
     { field: "email", headerName: "Email", width: 400 },
     {
       field: "isAdmin",
