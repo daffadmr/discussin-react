@@ -1,21 +1,22 @@
 import {
   createAsyncThunk,
   createSlice,
-  createEntityAdapter,
 } from "@reduxjs/toolkit";
 import UserAPI from "../../apis/users.api";
-import axiosInstance from "../../configs/axiosInstance";
 
-// const initialState = {
-//   data: [],
-//   status: "idle",
-//   error: null,
-// };
+const initialState = {
+  data: [],
+  currentPage: null,
+  totalPage: null,
+  status: "idle",
+  error: null,
+};
 
-export const fetchDataUser = createAsyncThunk("fetch/user", async () => {
+export const fetchDataUser = createAsyncThunk("fetch/user", async (page) => {
   try {
-    const response = await axiosInstance.get("users?page=1");
-    return response.data.data;
+    const response = await UserAPI.getAllUser(page);
+    console.log(response.data)
+    return response.data;
   } catch (error) {
     console.log(error);
   }
@@ -33,6 +34,17 @@ export const fetchDataUser = createAsyncThunk("fetch/user", async () => {
 //   }
 // );
 
+export const banUser = createAsyncThunk("ban/user", async (data) => {
+  try {
+    const response = await UserAPI.banUser(data);
+    console.log(response)
+    return response
+  } catch (error) {
+    console.log(error);
+  }
+}
+); 
+
 export const deleteUser = createAsyncThunk("delete/user", async (id) => {
   try {
     await UserAPI.deleteUser(id);
@@ -42,57 +54,40 @@ export const deleteUser = createAsyncThunk("delete/user", async (id) => {
   }
 });
 
-const userEntity = createEntityAdapter({
-  selectId: (user) => user.id,
-});
-
 const userSlice = createSlice({
   name: "user",
-  initialState: userEntity.getInitialState({ loading: false }),
+  initialState,
   extraReducers: (builder) => {
-    builder.addCase(fetchDataUser.pending, (state) => {
-      state.loading = true;
-    });
-    builder.addCase(deleteUser.pending, (state) => {
-      state.loading = true;
-    });
-    builder.addCase(fetchDataUser.fulfilled, (state, action) => {
-      state.loading = false;
-      userEntity.setAll(state, action.payload);
-    });
-    builder.addCase(deleteUser.fulfilled, (state, { payload: id }) => {
-      state.loading = false;
-      userEntity.removeOne(state, id);
-    });
-    // [fetchDataUser.fulfilled]: (state, action) => {
-    //   userEntity.setAll(state, action.payload);
-    // },
-    // [deleteUser.fulfilled]: (state, action) => {
-    //   userEntity.removeOne(state, action.payload);
-    // },
-    // [updateUser.fulfilled]: (state, action) => {
-    //   userEntity.updateOne(state, {
-    //     id: action.payload.id,
-    //     updates: action.payload,
-    //   });
-    // },
+    builder
+      .addCase(fetchDataUser.pending, (state, action) => {
+        state.status = "loading";
+      })
+      .addCase(fetchDataUser.fulfilled, (state, action) => {
+        state.status = "succeed";
+        state.data = action.payload.data;
+        state.currentPage = action.payload.page;
+        state.totalPage = action.payload.number_of_page;
+      })
+      .addCase(fetchDataUser.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message;
+      })
+      .addCase(deleteUser.fulfilled, (state, action) => {
+        state.status = "succeed";
+        console.log(action)
+        state.data = state.data.filter(val => val.ID !== action.meta.arg)
+      })
+      .addCase(banUser.fulfilled, (state, action) => {
+        state.status = "succeed";
+        console.log(state, action)
+        state.data = state.data.map(val => {
+          if (val.id === action.payload.data) {
+            return action.payload.data
+          }
+          return val
+        })
+      })
   },
-  // initialState,
-  // extraReducers(builder) {
-  // 	builder
-  // 		.addCase(fetchDataUser.pending, (state, action) => {
-  // 			state.status = "loading";
-  // 		})
-  // 		.addCase(fetchDataUser.fulfilled, (state, action) => {
-  // 			state.status = "succeeded";
-  // 			state.data = action.payload;
-  // 		})
-  // 		.addCase(fetchDataUser.rejected, (state, action) => {
-  // 			state.status = "failed";
-  // 			state.error = action.error.message;
-  // 		});
-  // },
 });
 
-export const userSelector = userEntity.getSelectors((state) => state.user);
 export default userSlice.reducer;

@@ -1,9 +1,9 @@
 import axiosInstance from "../configs/axiosInstance";
 
 const UserAPI = {
-  async getAllUser() {
+  async getAllUser(page) {
     try {
-      const response = await axiosInstance.get("users?page=1");
+      const response = await axiosInstance.get(`users?page=${page}`);
       return response;
     } catch (error) {
       console.log(error.message);
@@ -27,6 +27,18 @@ const UserAPI = {
       console.log(error.message);
     }
   },
+
+  async banUser(data) {
+    try {
+      const response = await axiosInstance.put(`users/${data.id}/ban`,
+        {banUntil: data.banUntil}
+      );
+      console.log(data)
+      return response.data.data;
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
 };
 
 export default UserAPI;
