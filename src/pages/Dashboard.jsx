@@ -9,8 +9,6 @@ import { useState } from "react";
 const Dashboard = () => {
   TabTitle("Dashboard | discuss.in");
 
-  const dispatch = useDispatch();
-
   const [dashboardData, setDashboardData] = useState({})
   console.log(dashboardData)
   const dashboardAPI = async () => {
