@@ -85,7 +85,6 @@ const TablePosts = () => {
         let bulan = bulans[a.getMonth()];
         let tanggal = a.getDate();
         const pickDate = `${tanggal}/${bulan}/${tahun}`;
-
         return <span className="font-bold w-[100%]">{pickDate}</span>;
       },
     },
@@ -120,7 +119,7 @@ const TablePosts = () => {
           return (
             <div className="flex justify-between w-[100%]">
               <div
-                // onClick={() => clickHandler(params.row.id)}
+                onClick={() => dispatch(suspendPost(params.row.ID))}
                 className="bg-red-300 p-1 rounded flex justify-center items-center place-content-center cursor-pointer"
               >
                 <span className="text-[white] font-bold mr-2">Stoped</span>
@@ -154,6 +153,17 @@ const TablePosts = () => {
             rows={posts}
             columns={columns}
             getRowId={(data) => data.ID}
+            sx={{
+              "& .MuiDataGrid-columnHeader .MuiDataGrid-columnSeparator": {
+                display: "none",
+              },
+              "& .MuiDataGrid-columnHeader:focus": {
+                outline: "none",
+              },
+              "& .MuiDataGrid-cell:focus": {
+                outline: "none",
+              },
+            }}
           />
           <Modal open={modal.visible}>
             <div className="w-[400px] bg-white absolute top-[30%] left-[40%] outline-none flex items-center flex-col p-[38px] rounded-[20px]">

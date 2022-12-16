@@ -2,10 +2,19 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import PeopleAltOutlinedIcon from "@mui/icons-material/PeopleAltOutlined";
 import TopicOutlinedIcon from "@mui/icons-material/TopicOutlined";
+import { fetchDataUser, userSelector } from "../store/features/userSlice";
+import { fetchTopic, topicSelector } from "../store/features/topicSlice";
+import { TabTitle } from "../components/title";
 import axiosInstance from "../configs/axiosInstance";
 import { useState } from "react";
 
 const Dashboard = () => {
+  TabTitle("Dashboard | discuss.in");
+  const users = useSelector(userSelector.selectAll);
+  const topics = useSelector(topicSelector.selectTotal);
+
+  const dispatch = useDispatch();
+
   const [dashboardData, setDashboardData] = useState({})
   console.log(dashboardData)
   const dashboardAPI = async () => {

@@ -11,6 +11,7 @@ import {
   fetchDataUser,
 } from "../../store/features/userSlice";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 import relativeTime from "dayjs/plugin/relativeTime";
@@ -67,6 +68,10 @@ const TableUsers = () => {
   useEffect(() => {
     currentPage && dispatch(fetchDataUser(currentPage));
   }, [currentPage]);
+  // modal respone
+  // banned
+  // end banned
+  // end
 
   const columns = [
     {
@@ -78,7 +83,14 @@ const TableUsers = () => {
       headerAlign: "center",
       align: "center",
     },
-    { field: "username", headerName: "Username", width: 300 },
+    {
+      field: "username",
+      headerName: "Username",
+      width: 300,
+      renderCell: (params) => {
+        return <Link to={`${params.row.id}`}>{params.row.username}</Link>;
+      },
+    },
     { field: "email", headerName: "Email", width: 400 },
     {
       headerName: "Action",

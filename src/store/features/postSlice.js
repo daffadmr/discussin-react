@@ -16,7 +16,7 @@ export const deletePost = createAsyncThunk("posts/deletePost", async (id) => {
 });
 export const suspendPost = createAsyncThunk("posts/suspendPost", async (id) => {
   await axiosInstance.put(`posts/${id}/suspend`);
-  return id;
+  return getPosts;
 });
 // export const deletePost = createAsyncThunk("posts/deletePost", async (id) => {
 //   await axiosInstance.delete(`/posts/delete/${id}`);
