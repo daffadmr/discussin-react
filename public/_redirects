@@ -1,3 +1,8 @@
 /users/* process.env.REACT_APP_BASE_URL:splat 200!
 /topic/* process.env.REACT_APP_BASE_URL:splat 200!
 /posts/* process.env.REACT_APP_BASE_URL:splat 200!
+
+from = "https://discussin.netlify.app/*"
+  to = "http://discussin.netlify.app/"
+  status = 301
+  force = true
