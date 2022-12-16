@@ -1,1 +1,2 @@
-/api/* process.env.REACT_APP_BASE_URL/api/:splat 200!
+/api/*   http://35.78.120.202/api/v1/:splat 200
+/*  /index.html 200
