@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { DataGrid, GridToolbarQuickFilter } from "@mui/x-data-grid";
-import { Box, Modal, TextField } from "@mui/material";
+import { Box, Modal, TextareaAutosize, TextField } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { createTopic, deleteTopic } from "../../store/features/topicSlice";
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
@@ -32,14 +32,26 @@ const TableTopic = ({ data }) => {
       </Box>
     );
   };
+  const baseData = {
+    name: "",
+    description: "",
+  };
 
+  const [formData, setFormData] = useState(baseData);
+
+  const handleChange = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+  console.log(formData.name);
   const handleCreate = (e) => {
     e.preventDefault();
-    const formData = new FormData(e.target);
-    const name = formData.get("judul");
-    const description = formData.get("deskripsi");
-    dispatch(createTopic({ name, description }));
-
+    dispatch(createTopic({ ...formData }));
+    console.log({...formData})
     alert("Berhasil menambahkan data");
     handleClose();
   };
@@ -108,7 +120,7 @@ const TableTopic = ({ data }) => {
             "& .MuiDataGrid-cell:focus": {
               outline: " none",
             },
-            borderRadius: 5
+            borderRadius: 5,
           }}
         />
       </div>
@@ -123,23 +135,46 @@ const TableTopic = ({ data }) => {
             <div className="flex flex-col gap-5 p-5">
               <div className="form-group flex items-center gap-12">
                 <label htmlFor="judul">Judul</label>
-                <TextField fullWidth size="small" name="judul" />
+                <TextField
+                  onChange={handleChange}
+                  value={formData.name}
+                  fullWidth
+                  size="small"
+                  name="name"
+                />
               </div>
               <div className="form-group flex items-center gap-5">
                 <label htmlFor="deskripsi">Deskripsi</label>
-                <TextField fullWidth size="small" name="deskripsi" />
+                <TextareaAutosize
+                className="border border-gray w-full resize-none p-3 rounded focus:border focus:border-b-sky-500"
+                  onChange={handleChange}
+                  value={formData.description}
+                  minRows={3}
+                  name="description"
+                />
               </div>
             </div>
           </form>
           <div className="flex justify-end items-center bg-gray px-5 gap-5 rounded-lg rounded-t-none">
             <button onClick={handleClose}>Cancel</button>
-            <button
-              type="submit"
-              form="createForm"
-              className="bg-navy text-white p-2 my-5 rounded"
-            >
-              Create
-            </button>
+            {formData.description.length <= 25 ? (
+              <button
+                type="submit"
+                form="createForm"
+                className="bg-navy opacity-50 text-white p-2 my-5 rounded"
+                disabled
+              >
+                Create
+              </button>
+            ) : (
+              <button
+                type="submit"
+                form="createForm"
+                className="bg-navy text-white p-2 my-5 rounded"
+              >
+                Create
+              </button>
+            )}
           </div>
         </Box>
       </Modal>
