@@ -31,6 +31,7 @@ const Login = () => {
         } else {
           alert("Berhasil Login");
           Cookies.set("auth", true);
+          Cookies.set("username", result.data.data.username);
           Cookies.set("token", result.data.data.token);
           navigate("/dashboard");
         }
