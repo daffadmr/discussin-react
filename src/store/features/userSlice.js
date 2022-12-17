@@ -75,14 +75,14 @@ const userSlice = createSlice({
       .addCase(deleteUser.fulfilled, (state, action) => {
         state.status = "succeed";
         console.log(action)
-        state.data = state.data.filter(val => val.ID !== action.meta.arg)
+        state.data = state.data.filter(val => val.id !== action.payload)
       })
       .addCase(banUser.fulfilled, (state, action) => {
         state.status = "succeed";
-        console.log(state, action)
+        console.log(state.data)
         state.data = state.data.map(val => {
-          if (val.id === action.payload.data) {
-            return action.payload.data
+          if (val.id === action.payload.id) {
+            return action.payload
           }
           return val
         })
