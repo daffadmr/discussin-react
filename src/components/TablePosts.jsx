@@ -158,11 +158,12 @@ const TablePosts = () => {
                 display: "none",
               },
               "& .MuiDataGrid-columnHeader:focus": {
-                outline: "none",
+                outline: " none",
               },
               "& .MuiDataGrid-cell:focus": {
-                outline: "none",
+                outline: " none",
               },
+              borderRadius: 5,
             }}
           />
           <Modal open={modal.visible}>
