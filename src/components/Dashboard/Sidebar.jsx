@@ -16,7 +16,7 @@ const Sidebar = () => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  console.log(window.location.pathname)
+
   const list = [
     {
       icon: GridViewOutlinedIcon,
@@ -43,7 +43,9 @@ const Sidebar = () => {
   return (
     <div className="h-screen w-[224px] shadow-2xl bg-navy pt-4">
       <div className="flex items-center justify-center p-[10px]">
-        <img src={logoWithName} alt="" />
+        <Link to={"/dashboard"}>
+          <img src={logoWithName} alt="" />
+        </Link>
       </div>
       <div className="flex flex-col justify-between items-center h-[85vh]">
         <ul>
@@ -56,12 +58,12 @@ const Sidebar = () => {
                   className={`flex gap-2 items-center my-5 p-2 text-[16px] rounded-[10px] text-white ${
                     window.location.pathname === item.route &&
                     "text-navy bg-white font-extrabold"
-                  // } ${
-                  //   activeList === null &&
-                  //   window.location.pathname === item.route
-                  //     ? "text-navy bg-white font-extrabold"
-                  //     : ""
-                  // }`}
+                    // } ${
+                    //   activeList === null &&
+                    //   window.location.pathname === item.route
+                    //     ? "text-navy bg-white font-extrabold"
+                    //     : ""
+                    // }`}
                   }`}
                 >
                   <item.icon />
