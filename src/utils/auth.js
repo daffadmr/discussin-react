@@ -1,9 +1,6 @@
 const auth = {
   isAuthorization() {
-    if (localStorage.getItem("token")) return true;
-  },
-  getUserId() {
-    // return Cookies.get("userId");
+    if (localStorage.getItem("token") && localStorage.getItem("username") && localStorage.getItem("auth")) return true;
   },
   signOut(navigate) {
     localStorage.removeItem("token");
