@@ -8,14 +8,15 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { useState } from "react";
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import { useEffect } from "react";
 
 const Navbar = () => {
   const [anchorEl, setAnchorEl] = useState(null)
   const open = Boolean(anchorEl);
+  
   const handleClick = (e) => {
     setAnchorEl(e.currentTarget);
   };
+
   const handleClose = () => {
     setAnchorEl(null);
   };
