@@ -6,6 +6,7 @@ import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined
 import TopicOutlinedIcon from "@mui/icons-material/TopicOutlined";
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
 import WarningAmberOutlinedIcon from "@mui/icons-material/WarningAmberOutlined";
+import ViewComfyOutlinedIcon from '@mui/icons-material/ViewComfyOutlined';
 import auth from "../../utils/auth";
 import { Box, Modal } from "@mui/material";
 
@@ -29,7 +30,7 @@ const Sidebar = () => {
       name: "Users",
     },
     {
-      icon: TopicOutlinedIcon,
+      icon: ViewComfyOutlinedIcon,
       route: "/dashboard/threads",
       name: "Threads",
     },
