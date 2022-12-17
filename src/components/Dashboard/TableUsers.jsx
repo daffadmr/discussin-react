@@ -27,14 +27,17 @@ const TableUsers = () => {
   const users = useSelector((state) => state.user.data);
   const page = useSelector((state) => state.user.currentPage);
   const totalPage = useSelector((state) => state.user.totalPage);
-  const loading = useSelector((state) => state.user.loading);
-  console.log(totalPage);
-  const [total, setTotal] = useState(totalPage);
+  const status = useSelector((state) => state.user.status);
+
   const [currentPage, setCurrentPage] = useState(page);
 
   const [modalBan, setModalBan] = useState({ open: false, id: null });
   const handleOpenModalBan = (id) => setModalBan({ open: true, id: id });
   const handleCloseModalBan = () => setModalBan({ open: false });
+
+  const [modalDelete, setModalDelete] = useState({ open: false, id: null });
+  const handleOpenModalDelete = (id) => setModalDelete({ open: true, id: id });
+  const handleCloseModalDelete = () => setModalDelete({ open: false });
 
   const [banUntil, setBanUntil] = useState("");
 
@@ -42,17 +45,21 @@ const TableUsers = () => {
     setBanUntil(e.target.value);
   };
 
-  const handleBan = async (id, data) => {
-    await dispatch(banUser(id, data));
+  const handleBan = (id, data) => {
+    dispatch(banUser(id, data));
+    handleCloseModalBan()
   };
 
-  console.log(page);
+  const handleDelete = (id) => {
+    dispatch(deleteUser(id))
+    handleCloseModalDelete()
+  }
+
   const [dashboardData, setDashboardData] = useState({})
-  console.log(dashboardData)
+
   const dashboardAPI = async () => {
     try {
       const response = await axiosInstance.get("dashboard");
-      console.log(response.data);
       setDashboardData(response.data)
       return response.data;
     } catch(error) {
@@ -67,7 +74,7 @@ const TableUsers = () => {
 
   useEffect(() => {
     currentPage && dispatch(fetchDataUser(currentPage));
-  }, [currentPage]);
+  }, [currentPage, dispatch]);
   // modal respone
   // banned
   // end banned
@@ -121,7 +128,7 @@ const TableUsers = () => {
             )}
             <button
               className="bg-danger p-2 rounded-lg text-white"
-              onClick={() => dispatch(deleteUser(params.row.id))}
+              onClick={() => handleOpenModalDelete(params.row.id)}
             >
               <DeleteOutlinedIcon />
             </button>
@@ -152,9 +159,10 @@ const TableUsers = () => {
       </Box>
     );
   };
+
   return (
     <>
-      {loading ? (
+      {status === "loading" ? (
         <div className="flex justify-center item-center h-[80vh] w-[80vw]">
           <div className="flex items-center justify-center">
             <CircularProgress color="inherit" />
@@ -245,6 +253,36 @@ const TableUsers = () => {
                 Yes
               </button>
             )}
+          </div>
+        </Box>
+      </Modal>
+      <Modal
+        open={modalDelete.open}
+        onClose={handleCloseModalDelete}
+        className="flex items-center justify-center"
+      >
+        <Box className="bg-white w-[30vw] flex flex-col gap-3 pt-5 rounded-lg text-center items-center">
+          <DeleteForeverOutlinedIcon
+            className="text-danger"
+            sx={{
+              fontSize: 50,
+            }}
+          />
+          <h1 className="px-5 font-extrabold">Delete User</h1>
+          <p>Are you sure want to delete this User?</p>
+          <div className="flex justify-center items-center px-5 gap-5 -mt-3">
+            <button
+              className="border border-danger text-danger py-1 px-8 my-5 rounded-lg font-bold"
+              onClick={handleCloseModalDelete}
+            >
+              No
+            </button>
+            <button
+              onClick={() => handleDelete(modalDelete.id)}
+              className="bg-danger text-white py-1 px-8 my-5 rounded-lg font-bold"
+            >
+              Yes
+            </button>
           </div>
         </Box>
       </Modal>
