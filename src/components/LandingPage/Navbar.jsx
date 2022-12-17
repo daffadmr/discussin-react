@@ -12,7 +12,7 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 const Navbar = () => {
   const [anchorEl, setAnchorEl] = useState(null)
   const open = Boolean(anchorEl);
-  
+
   const handleClick = (e) => {
     setAnchorEl(e.currentTarget);
   };
@@ -47,7 +47,7 @@ const Navbar = () => {
                 color="inherit"
                 endIcon={<KeyboardArrowDownIcon />}
               >
-                Halo, {Cookies.get("username")}
+                Halo, {localStorage.getItem("username")}
               </Button>
               <Menu
                 id="basic-menu"
