@@ -78,7 +78,6 @@ const topicSlice = createSlice({
       })
       .addCase(deleteTopic.fulfilled, (state, action) => {
         state.status = "succeed";
-        console.log(action)
         state.data = state.data.filter(val => val.ID !== action.meta.arg)
       });
   },

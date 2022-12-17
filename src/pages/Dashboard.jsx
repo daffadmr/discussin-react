@@ -8,7 +8,7 @@ import { useState } from "react";
 
 const Dashboard = () => {
   TabTitle("Dashboard | discuss.in");
-
+  console.log(process.env.REACT_APP_BASE_URL)
   const [dashboardData, setDashboardData] = useState({})
   console.log(dashboardData)
   const dashboardAPI = async () => {

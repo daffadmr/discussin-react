@@ -33,7 +33,6 @@ const UserAPI = {
       const response = await axiosInstance.put(`users/${data.id}/ban`,
         {banUntil: data.banUntil}
       );
-      console.log(data)
       return response.data.data;
     } catch (error) {
       console.log(error.message);
