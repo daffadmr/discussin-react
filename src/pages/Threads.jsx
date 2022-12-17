@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { TabTitle } from "../components/title";
 import TablePosts from "../components/TablePosts";
+import TableThreads from "../components/Dashboard/TableThreads";
 
 const Thread = () => {
   TabTitle("Manage Thread");
@@ -14,7 +15,8 @@ const Thread = () => {
               return <h1>{post.title}</h1>;
             })}
           </div> */}
-          <TablePosts />
+          {/* <TablePosts /> */}
+          <TableThreads />
           {/* <Modal open={modal.visible}>
             <div className="w-[400px] bg-white absolute top-[30%] left-[40%] outline-none flex items-center flex-col p-[38px] rounded-[20px]">
               <DoNotDisturbOnIcon sx={{ color: "red", fontSize: "50px" }} />
