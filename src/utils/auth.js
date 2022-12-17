@@ -1,17 +1,15 @@
-import Cookies from "js-cookie";
-
 const auth = {
   isAuthorization() {
-    if (Cookies.get("token")) return true
+    if (localStorage.getItem("token")) return true;
   },
   getUserId() {
     // return Cookies.get("userId");
   },
   signOut(navigate) {
-    Cookies.remove("auth");
-    Cookies.remove("token");
-    Cookies.remove("username");
-    alert("Berhasil log out")
+    localStorage.removeItem("token");
+    localStorage.removeItem("username");
+    localStorage.removeItem("auth");
+    alert("Berhasil log out");
     navigate("/login");
   },
 };

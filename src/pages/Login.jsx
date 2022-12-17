@@ -5,7 +5,6 @@ import logo from "../assets/png/logo.svg";
 import VisibilityOffOutlinedIcon from "@mui/icons-material/VisibilityOffOutlined";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import LoginSvg from "../assets/svg/LoginSvg";
-import Cookies from "js-cookie";
 import { TabTitle } from "../components/title";
 
 const Login = () => {
@@ -30,9 +29,9 @@ const Login = () => {
           alert("Anda bukan admin!");
         } else {
           alert("Berhasil Login");
-          Cookies.set("auth", true);
-          Cookies.set("username", result.data.data.username);
-          Cookies.set("token", result.data.data.token);
+          localStorage.setItem("auth", true);
+          localStorage.setItem("token", result.data.data.token);
+          localStorage.setItem("username", result.data.data.username);
           navigate("/dashboard");
         }
       })
