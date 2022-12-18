@@ -13,7 +13,7 @@ const HeroSection = () => {
       <div className="container">
         <div className="flex flex-col">
           <div className="flex justify-center h-full items-center flex-wrap pt-20">
-            <div className="flex flex-col gap-8 pb-20 xl:pb-48 max-w-xl text-[#fff]">
+            <div className="flex flex-col gap-8 pb-20 xl:pb-48 max-w-xl text-[#fff] text-center sm:text-left">
               <h1 className="text-4xl">
                 Find information, knowledge, and communities.
               </h1>
@@ -32,7 +32,7 @@ const HeroSection = () => {
             <img src={heroImage} alt=""/>
           </div>
           <div className="flex justify-center gap-[10px] flex-wrap">
-            <div className="card w-[247px] h-[172px] text-center rounded-[16px] bg-[#f9f9f9] p-8">
+            <div className="card min-w-xs max-w-xs text-center rounded-[16px] bg-[#FAEA5A] p-8">
               <div className="flex flex-col items-center">
                 <TagFacesOutlinedIcon
                   sx={{ fontSize: 40, paddingBottom: "5px" }}
@@ -44,7 +44,7 @@ const HeroSection = () => {
                 </p>
               </div>
             </div>
-            <div className="card w-[247px] h-[172px] text-center rounded-[16px] bg-[#f9f9f9] p-8">
+            <div className="card min-w-xs max-w-xs text-center rounded-[16px] bg-[#FAEA5A] p-8">
               <div className="flex flex-col items-center">
                 <SystemSecurityUpdateGoodOutlinedIcon
                   sx={{ fontSize: 40, paddingBottom: "5px" }}
@@ -55,7 +55,7 @@ const HeroSection = () => {
                 </p>
               </div>
             </div>
-            <div className="card w-[247px] h-[172px] text-center rounded-[16px] bg-[#f9f9f9] p-8">
+            <div className="card min-w-xs max-w-xs text-center rounded-[16px] bg-[#FAEA5A] p-8">
               <div className="flex flex-col items-center">
                 <ChatOutlinedIcon sx={{ fontSize: 40, paddingBottom: "5px" }} />
                 <h2>Free to Discuss</h2>
@@ -65,7 +65,7 @@ const HeroSection = () => {
                 </p>
               </div>
             </div>
-            <div className="card w-[280px] h-[172px] text-center rounded-[16px] bg-[#f9f9f9] p-8">
+            <div className="card min-w-xs max-w-xs text-center rounded-[16px] bg-[#FAEA5A] p-8">
               <div className="flex flex-col items-center">
                 <VerifiedUserOutlinedIcon
                   sx={{ fontSize: 40, paddingBottom: "5px" }}

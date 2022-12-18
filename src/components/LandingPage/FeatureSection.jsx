@@ -7,7 +7,7 @@ import PersonAddOutlinedIcon from '@mui/icons-material/PersonAddOutlined';
 
 const FeatureSection = () => {
   return (
-    <section id="feature" className="mt-12 bg-[#f9f9f9]">
+    <section id="feature" className="mt-12 bg-[#B6A3DC]">
       <div className="container flex items-center justify-center">
         <div className="flex flex-col justify-center items-center py-20">
           <h1>Discuss.In Features</h1>
@@ -22,7 +22,7 @@ const FeatureSection = () => {
                     use.
                   </p>
                 </div>
-                <span className="bg-gray p-2"><MobileFriendlyOutlinedIcon/></span>
+                <span className="p-2"><MobileFriendlyOutlinedIcon/></span>
               </div>
               <div className="flex flex-row-reverse items-center xl:flex-row xl:justify-end max-w-xs gap-4">
                 <div className="flex flex-col xl:text-right">
@@ -34,13 +34,13 @@ const FeatureSection = () => {
                     easily.
                   </p>
                 </div>
-                <span className="bg-gray p-2"><FeedOutlinedIcon/></span>
+                <span className="p-2"><FeedOutlinedIcon/></span>
               </div>
             </div>
             <img src={featureImage} alt="" className="hidden lg:block"/>
             <div className="flex flex-col gap-8 justify-center">
               <div className="flex gap-4 items-center max-w-xs">
-                <span className="bg-gray p-2"><ForumOutlinedIcon/></span>
+                <span className="p-2"><ForumOutlinedIcon/></span>
                 <div className="flex flex-col">
                   <h3 className="font-bold">
                     Users are free to argue in posts
@@ -52,7 +52,7 @@ const FeatureSection = () => {
                 </div>
               </div>
               <div className="flex gap-4 items-center max-w-xs">
-                <span className="bg-gray p-2"><PersonAddOutlinedIcon/></span>
+                <span className="p-2"><PersonAddOutlinedIcon/></span>
                 <div className="flex flex-col">
                   <h3 className="font-bold">Following each other users</h3>
                   <p>

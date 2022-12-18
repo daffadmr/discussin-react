@@ -1,12 +1,12 @@
 import React from "react";
-import LogoLP from "../../assets/svg/LogoLP.svg";
+import LogoWithName from "../../assets/svg/LogoWithName";
 
 const Footer = () => {
   return (
-    <footer className="bg-[#FAEA5A]">
+    <footer className="bg-[#301C8A] text-white">
       <div className="container">
         <div className="py-12 flex flex-col xl:flex-row justify-between flex-wrap gap-16">
-        <img className="w-[150px] mt-0 xl:-mt-16" src={LogoLP} alt="" />
+        <LogoWithName/>
           <div className="flex gap-16 xl:gap-52 flex-col xl:flex-row flex-wrap">
             <div className="flex flex-col">
               <h3 className="font-bold text-lg">About</h3>
@@ -32,7 +32,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <div className="flex justify-center items-center py-4 bg-black text-white">
+      <div className="flex justify-center items-center py-4 bg-[#373F41] text-white">
           <p>© Diskusi.In. All rights reserved.</p>
         </div>
     </footer>

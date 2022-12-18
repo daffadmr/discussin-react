@@ -4,7 +4,7 @@ import quote from "../../assets/png/quote.png"
 const FaqSection = () => {
   return (
     <section id="faq">
-      <div className="bg-[#d1d1d1]">
+      <div className="">
         <div className="container">
           <div className="flex flex-col items-center py-16">
             <h1>What People Say About Discuss.In</h1>
@@ -13,7 +13,7 @@ const FaqSection = () => {
               Discuss.In application
             </p>
             <div className="faq-cards pt-20 flex justify-center items-center max-w-7xl gap-10 flex-wrap">
-              <div className="card relative w-[455px] h-[176px] bg-[#ebebeb] p-8">
+              <div className="card relative max-w-md bg-[#FAEA5A] p-8">
                 <div className="flex gap-5">
                   <div className="bg-[#d1d1d1] rounded-full w-[45px] h-[45px]">
                     <img src="" alt="" width={45} />
@@ -29,7 +29,7 @@ const FaqSection = () => {
                   </div>
                 </div>
               </div>
-              <div className="card relative w-[455px] h-[176px] bg-[#ebebeb] p-8">
+              <div className="card relative max-w-md bg-[#FAEA5A] p-8">
                 <div className="flex gap-5">
                   <div className="bg-[#d1d1d1] rounded-full w-[45px] h-[45px]">
                     <img src="" alt="" width={45} />
@@ -45,7 +45,7 @@ const FaqSection = () => {
                   </div>
                 </div>
               </div>
-              <div className="card relative w-[455px] h-[176px] bg-[#ebebeb] p-8">
+              <div className="card relative max-w-md bg-[#FAEA5A] p-8">
                 <div className="flex gap-5">
                   <div className="bg-[#d1d1d1] rounded-full w-[45px] h-[45px]">
                     <img src="" alt="" width={45} />
@@ -61,7 +61,7 @@ const FaqSection = () => {
                   </div>
                 </div>
               </div>
-              <div className="card relative w-[455px] h-[176px] bg-[#ebebeb] p-8">
+              <div className="card relative max-w-md bg-[#FAEA5A] p-8">
                 <div className="flex gap-5">
                   <div className="bg-[#d1d1d1] rounded-full w-[45px] h-[45px]">
                     <img src="" alt="" width={45} />
