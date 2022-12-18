@@ -1,4 +1,3 @@
-import Cookies from "js-cookie";
 import React from "react";
 import { Link } from "react-router-dom";
 import LogoLP from "../../assets/svg/LogoLP.svg";
@@ -26,7 +25,6 @@ const Navbar = () => {
       <div className="container lg:px-[110px]">
         <div className="flex justify-between items-center flex-wrap">
           <img className="w-[150px]" src={LogoLP} alt="" />
-          {/* <LogoWithName /> */}
           <nav>
             <ul className="flex gap-5">
               <li>Home</li>

@@ -4,24 +4,28 @@ import DownloadSvg from "../../assets/svg/DownloadSvg.svg";
 
 const DownloadSection = () => {
   return (
-    <section id="download">
+    <section id="download" className="relative mt-20 pt-8">
       <div className="container">
-        <div className="flex justify-center flex-wrap relative h-[70vh] lg:h-[80vh] flex-col-reverse">
+        <div className="flex justify-center flex-col-reverse 2xl:flex-row flex-wrap items-center">
           <img
-            className="absolute z-10 top-[120px] lg:left-[100px] 2xl:left-[200px] 4xl:left-[300px]"
+            className=""
             src={DownloadSvg}
             alt=""
           />
-          <div className="flex flex-col mt-72 absolute top-0 lg:right-[50px] 2xl:right-[100px] 4xl:right-[200px]">
+          <div className="flex flex-col gap-5 2xl:-mt-80">
             <h1>Don't have the Discuss.In app yet? Let's download now!</h1>
             <p>
               Discuss freely discussing the latest news, updated topics, and
               extensive knowledge
             </p>
+            <div className="flex">
+              <button>Google Play</button>
+              <button>App store</button>
+            </div>
           </div>
         </div>
       </div>
-      <img src={LandingPageWave} width="100%" alt="" />
+      <img src={LandingPageWave} width="100%" alt="" className="absolute bottom-0 -z-10" />
     </section>
   );
 };

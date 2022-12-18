@@ -9,11 +9,11 @@ import VerifiedUserOutlinedIcon from "@mui/icons-material/VerifiedUserOutlined";
 
 const HeroSection = () => {
   return (
-    <section id="hero" className="mb-24 relative bg-cover bg-no-repeat bg-hero-bg-mobile lg:bg-hero-bg" style={{backgroundImage: `url(${HeroWave})`}}>
+    <section id="hero" className="mb-24 relative bg-cover bg-no-repeat bg-hero-bg-mobile sm:bg-hero-bg" style={{backgroundImage: `url(${HeroWave})`}}>
       <div className="container">
         <div className="flex flex-col">
           <div className="flex justify-center h-full items-center flex-wrap pt-20">
-            <div className="flex flex-col gap-8 pb-48 max-w-xl text-[#fff]">
+            <div className="flex flex-col gap-8 pb-20 xl:pb-48 max-w-xl text-[#fff]">
               <h1 className="text-4xl">
                 Find information, knowledge, and communities.
               </h1>
@@ -29,7 +29,7 @@ const HeroSection = () => {
                 <Link>On Play Store</Link>
               </div>
             </div>
-            <img src={heroImage} alt="" />
+            <img src={heroImage} alt=""/>
           </div>
           <div className="flex justify-center gap-[10px] flex-wrap">
             <div className="card w-[247px] h-[172px] text-center rounded-[16px] bg-[#f9f9f9] p-8">

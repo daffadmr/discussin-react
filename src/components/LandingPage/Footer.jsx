@@ -1,12 +1,12 @@
 import React from "react";
-import LogoWithName from "../../assets/svg/LogoWithName";
+import LogoLP from "../../assets/svg/LogoLP.svg";
 
 const Footer = () => {
   return (
-    <footer>
+    <footer className="bg-[#FAEA5A]">
       <div className="container">
         <div className="py-12 flex flex-col xl:flex-row justify-between flex-wrap gap-16">
-          <LogoWithName />
+        <img className="w-[150px] mt-0 xl:-mt-16" src={LogoLP} alt="" />
           <div className="flex gap-16 xl:gap-52 flex-col xl:flex-row flex-wrap">
             <div className="flex flex-col">
               <h3 className="font-bold text-lg">About</h3>
