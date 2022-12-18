@@ -7,6 +7,7 @@ import { useState } from "react";
 import BarChart from "../components/BarChart";
 import { UserData } from "../components/BarData";
 import TrendingUpOutlinedIcon from "@mui/icons-material/TrendingUpOutlined";
+import { Link } from "react-router-dom";
 
 const Dashboard = () => {
   TabTitle("Dashboard | discuss.in");
@@ -112,20 +113,23 @@ const Dashboard = () => {
               <h1>Top Thread</h1>
               <TrendingUpOutlinedIcon sx={{ fontSize: 35 }} />
             </div>
-            {tops.map((data) => (
-              <div className="w-[100%] h-[100px] mb-[10px] bg-white shadow-lg border border-[#ccc] rounded-xl flex overflow-hidden p-[5px]">
+            {tops?.map((data) => (
+              <Link
+                to={`threads/${data.ID}`}
+                className="w-[100%] h-[100px] mb-[10px] bg-white shadow-lg border border-[#ccc] rounded-xl flex overflow-hidden p-[5px]"
+              >
                 <div className=" w-[60%] h-[100%] py-[13px] flex flex-col justify-between">
-                  <h3 className="w-[100%] truncate font-bold">{data.title}</h3>
+                  <h3 className="w-[100%] truncate font-bold">{data?.title}</h3>
                   <h5 className="w-[100%] truncate text-[#969696]">
-                    {data.body}
+                    {data?.body}
                   </h5>
                 </div>
                 <div className="flex justify-center overflow-hidden items-center w-[40%] h-[100%]">
                   <div className="w-[200px]">
-                    <img className="w-[100%]" src={data.photo} alt="error" />
+                    <img className="w-[100%]" src={data?.photo} alt="error" />
                   </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
