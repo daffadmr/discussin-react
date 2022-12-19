@@ -294,7 +294,7 @@ const TableTopic = ({ data, status }) => {
           </form>
           <div className="flex justify-end items-center bg-gray px-5 gap-5 rounded-lg rounded-t-none">
             <button onClick={handleCloseModalEdit}>Cancel</button>
-            {modalEdit.description.length <= 25 ? (
+            {modalEdit.open && modalEdit.description.length <= 25 ? (
               <button
                 type="submit"
                 form="createForm"
