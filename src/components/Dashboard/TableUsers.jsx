@@ -26,7 +26,6 @@ const TableUsers = () => {
   // const users = useSelector(userSelector.selectAll);
   const users = useSelector((state) => state.user.data);
   const page = useSelector((state) => state.user.currentPage);
-  const totalPage = useSelector((state) => state.user.totalPage);
   const status = useSelector((state) => state.user.status);
 
   const [currentPage, setCurrentPage] = useState(page);
@@ -52,6 +51,7 @@ const TableUsers = () => {
 
   const handleDelete = (id) => {
     dispatch(deleteUser(id))
+    dashboardAPI();
     handleCloseModalDelete()
   }
 
@@ -75,6 +75,7 @@ const TableUsers = () => {
   useEffect(() => {
     currentPage && dispatch(fetchDataUser(currentPage));
   }, [currentPage, dispatch]);
+
   // modal respone
   // banned
   // end banned
@@ -83,7 +84,7 @@ const TableUsers = () => {
   const columns = [
     {
       field: "id",
-      headerName: "No.",
+      headerName: "#",
       width: 200,
       renderCell: (index) => index.api.getRowIndex(index.row.id) + 1,
       headerClassName: "",
@@ -163,14 +164,14 @@ const TableUsers = () => {
   return (
     <>
       {status === "loading" ? (
-        <div className="flex justify-center item-center h-[80vh] w-[80vw]">
+        <div className="flex justify-center item-center h-[80vh] w-[85vw]">
           <div className="flex items-center justify-center">
             <CircularProgress color="inherit" />
           </div>
         </div>
       ) : (
         <>
-          <div className="w-[80vw] h-[90vh]">
+          <div className="w-[85vw] h-[90vh]">
             <DataGrid
               checkboxSelection={false}
               rows={users}

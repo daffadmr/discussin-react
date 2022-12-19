@@ -48,9 +48,12 @@ const TableThreads = () => {
   const columns = [
     {
       field: "ID",
-      headerName: "No.",
-      flex: 0.4,
+      headerName: "#",
+      width: 200,
       renderCell: (index) => index.api.getRowIndex(index.row.ID) + 1,
+      headerClassName: "",
+      headerAlign: "center",
+      align: "center",
     },
     {
       field: "title",
@@ -142,11 +145,12 @@ const TableThreads = () => {
   return (
     <>
       <DataGrid
-        checkboxSelection
+        checkboxSelection={false}
         disableSelectionOnClick
         rows={datas}
         columns={columns}
         getRowId={(data) => data.ID}
+        className="shadow-xl"
         sx={{
           "& .MuiDataGrid-columnHeader .MuiDataGrid-columnSeparator": {
             display: "none",
@@ -157,6 +161,7 @@ const TableThreads = () => {
           "& .MuiDataGrid-cell:focus": {
             outline: "none",
           },
+          borderRadius: 5
         }}
       />
       <Modal open={modal.visible}>

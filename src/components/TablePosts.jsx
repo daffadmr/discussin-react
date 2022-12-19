@@ -46,7 +46,7 @@ const TablePosts = () => {
   const columns = [
     {
       field: "ID",
-      headerName: "No.",
+      headerName: "#",
       flex: 0.4,
       renderCell: (index) => index.api.getRowIndex(index.row.ID) + 1,
     },
