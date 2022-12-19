@@ -1,23 +1,27 @@
 import React, { useEffect } from "react";
-import { TabTitle } from "../components/title";
-import TablePosts from "../components/TablePosts";
 import TableThreads from "../components/Dashboard/TableThreads";
+import { Helmet } from "react-helmet-async";
 
 const Thread = () => {
-  TabTitle("Manage Thread");
   return (
-    <div className="container">
-      <h1 className="pb-5">Manage Thread</h1>
-      <div className="users">
-        <div className="w-[80vw] h-[90vh] rounded-lg relative">
-          {/* <div>
+    <>
+      <Helmet>
+        <title>Manage Post</title>
+        <meta name="description" content="Manage Post" />
+      </Helmet>
+
+      <div className="container">
+        <h1 className="text-3xl pb-5">Manage Post</h1>
+        <div className="users">
+          <div className="w-[85vw] h-[90vh] rounded-lg relative">
+            {/* <div>
             {posts.map((post) => {
               return <h1>{post.title}</h1>;
             })}
           </div> */}
-          {/* <TablePosts /> */}
-          <TableThreads />
-          {/* <Modal open={modal.visible}>
+            {/* <TablePosts /> */}
+            <TableThreads />
+            {/* <Modal open={modal.visible}>
             <div className="w-[400px] bg-white absolute top-[30%] left-[40%] outline-none flex items-center flex-col p-[38px] rounded-[20px]">
               <DoNotDisturbOnIcon sx={{ color: "red", fontSize: "50px" }} />
               <h1 className="font-bold mt-[10px]">Stop All Activity</h1>
@@ -40,17 +44,17 @@ const Thread = () => {
               </div>
             </div>
           </Modal> */}
-          {/* <Modal open={del.visible}>
+            {/* <Modal open={del.visible}>
             <div className="w-[400px] bg-white absolute top-[30%] left-[40%] outline-none flex items-center flex-col p-[38px] rounded-[20px]">
               <DeleteOutlineForeverIcon
                 sx={{ color: "red", fontSize: "50px" }}
               /> */}
-          {/* <img
+            {/* <img
                 src={require("../assets/png/warning.png")}
                 alt=""
                 className="w-[50px]"
               /> */}
-          {/* <h1 className="font-bold mt-[10px]">Delete Thread</h1>
+            {/* <h1 className="font-bold mt-[10px]">Delete Thread</h1>
               <p className="w-[300px] text-center mt-[10px] font-[16px]">
                 Are you sure want to delete this thread?
               </p>
@@ -70,10 +74,11 @@ const Thread = () => {
               </div>
             </div>
           </Modal> */}
+          </div>
+          {/* <TablePosts datas={posts} /> */}
         </div>
-        {/* <TablePosts datas={posts} /> */}
       </div>
-    </div>
+    </>
   );
 };
 
