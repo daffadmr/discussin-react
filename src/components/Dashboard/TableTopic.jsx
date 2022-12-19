@@ -1,12 +1,23 @@
 import React, { useState } from "react";
 import { DataGrid, GridToolbarQuickFilter } from "@mui/x-data-grid";
-import { Box, Modal, TextareaAutosize, TextField } from "@mui/material";
+import {
+  Box,
+  CircularProgress,
+  Modal,
+  TextareaAutosize,
+  TextField,
+} from "@mui/material";
 import { useDispatch } from "react-redux";
-import { createTopic, deleteTopic } from "../../store/features/topicSlice";
+import {
+  createTopic,
+  deleteTopic,
+  updateTopic,
+} from "../../store/features/topicSlice";
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 import DeleteForeverOutlinedIcon from "@mui/icons-material/DeleteForeverOutlined";
+import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 
-const TableTopic = ({ data }) => {
+const TableTopic = ({ data, status }) => {
   const rows = [...data];
 
   const [open, setOpen] = useState(false);
@@ -16,6 +27,16 @@ const TableTopic = ({ data }) => {
   const [modalDelete, setModalDelete] = useState({ open: false, id: null });
   const handleOpenModalDelete = (id) => setModalDelete({ open: true, id: id });
   const handleCloseModalDelete = () => setModalDelete({ open: false });
+
+  const [modalEdit, setModalEdit] = useState({
+    open: false,
+    id: null,
+    name: "",
+    description: "",
+  });
+  const handleOpenModalEdit = (id, name, description) =>
+    setModalEdit({ open: true, id: id, name: name, description: description });
+  const handleCloseModalEdit = () => setModalEdit({ open: false });
 
   const dispatch = useDispatch();
 
@@ -39,7 +60,7 @@ const TableTopic = ({ data }) => {
 
   const [formData, setFormData] = useState(baseData);
 
-  const handleChange = (e) => {
+  const handleChangeCreate = (e) => {
     const name = e.target.name;
     const value = e.target.value;
     setFormData({
@@ -47,11 +68,18 @@ const TableTopic = ({ data }) => {
       [name]: value,
     });
   };
-  console.log(formData.name);
+  const handleChangeEdit = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+    setModalEdit({
+      ...modalEdit,
+      [name]: value,
+    });
+  };
+
   const handleCreate = (e) => {
     e.preventDefault();
     dispatch(createTopic({ ...formData }));
-    console.log({...formData})
     alert("Berhasil menambahkan data");
     handleClose();
   };
@@ -62,13 +90,21 @@ const TableTopic = ({ data }) => {
     handleCloseModalDelete();
   };
 
+  const handleUpdate = (data) => {
+    dispatch(updateTopic(data));
+    alert("Berhasil edit data");
+    handleCloseModalEdit();
+  };
+
   const columns = [
     {
       field: "ID",
-      headerName: "No.",
-      width: 100,
-      sortable: false,
+      headerName: "#",
+      width: 200,
       renderCell: (index) => index.api.getRowIndex(index.row.ID) + 1,
+      headerClassName: "",
+      headerAlign: "center",
+      align: "center",
     },
     { field: "name", headerName: "Name", width: 300 },
     {
@@ -81,14 +117,26 @@ const TableTopic = ({ data }) => {
       width: 200,
       renderCell: (params) => {
         return (
-          <>
+          <div className="flex gap-2">
             <button
               className="bg-danger p-2 rounded-lg text-white"
               onClick={() => handleOpenModalDelete(params.row.ID)}
             >
               <DeleteOutlinedIcon />
             </button>
-          </>
+            <button
+              className="bg-navy p-2 rounded-lg text-white"
+              onClick={() =>
+                handleOpenModalEdit(
+                  params.row.ID,
+                  params.row.name,
+                  params.row.description
+                )
+              }
+            >
+              <EditOutlinedIcon />
+            </button>
+          </div>
         );
       },
     },
@@ -102,27 +150,38 @@ const TableTopic = ({ data }) => {
       >
         +
       </button>
-      <div className="w-[80vw] h-[90vh]">
-        <DataGrid
-          getRowId={(data) => data.ID}
-          checkboxSelection
-          rows={rows}
-          columns={columns}
-          components={{ Toolbar: QuickSearchToolbar }}
-          className="shadow-xl"
-          sx={{
-            "& .MuiDataGrid-columnHeader .MuiDataGrid-columnSeparator": {
-              display: "none",
-            },
-            "& .MuiDataGrid-columnHeader:focus": {
-              outline: " none",
-            },
-            "& .MuiDataGrid-cell:focus": {
-              outline: " none",
-            },
-            borderRadius: 5,
-          }}
-        />
+      <div className="w-[85vw] h-[90vh]">
+        <>
+          {status === "loading" ? (
+            <div className="flex justify-center item-center h-[80vh] w-[85vw]">
+              <div className="flex items-center justify-center">
+                <CircularProgress color="inherit" />
+              </div>
+            </div>
+          ) : (
+            <DataGrid
+              getRowId={(data) => data.ID}
+              rows={rows}
+              columns={columns}
+              components={{ Toolbar: QuickSearchToolbar }}
+              disableSelectionOnClick
+              checkboxSelection={false}
+              className="shadow-xl"
+              sx={{
+                "& .MuiDataGrid-columnHeader .MuiDataGrid-columnSeparator": {
+                  display: "none",
+                },
+                "& .MuiDataGrid-columnHeader:focus": {
+                  outline: " none",
+                },
+                "& .MuiDataGrid-cell:focus": {
+                  outline: " none",
+                },
+                borderRadius: 5,
+              }}
+            />
+          )}
+        </>
       </div>
       <Modal
         open={open}
@@ -136,7 +195,7 @@ const TableTopic = ({ data }) => {
               <div className="form-group flex items-center gap-12">
                 <label htmlFor="judul">Judul</label>
                 <TextField
-                  onChange={handleChange}
+                  onChange={handleChangeCreate}
                   value={formData.name}
                   fullWidth
                   size="small"
@@ -146,8 +205,8 @@ const TableTopic = ({ data }) => {
               <div className="form-group flex items-center gap-5">
                 <label htmlFor="deskripsi">Deskripsi</label>
                 <TextareaAutosize
-                className="border border-gray w-full resize-none p-3 rounded focus:border focus:border-b-sky-500"
-                  onChange={handleChange}
+                  className="border border-gray w-full resize-none p-3 rounded focus:border focus:border-b-sky-500"
+                  onChange={handleChangeCreate}
                   value={formData.description}
                   minRows={3}
                   name="description"
@@ -205,6 +264,60 @@ const TableTopic = ({ data }) => {
             >
               Yes
             </button>
+          </div>
+        </Box>
+      </Modal>
+      <Modal
+        open={modalEdit.open}
+        onClose={handleCloseModalEdit}
+        className="flex items-center justify-center"
+      >
+        <Box className="bg-white w-[30vw] flex flex-col gap-3 pt-5 rounded-lg">
+          <h1 className="px-5">Edit Topic Description</h1>
+          <form id="createForm">
+            <div className="flex flex-col gap-5 p-5">
+              <div className="form-group flex items-center gap-12">
+                <label htmlFor="judul">Judul</label>
+                <p className="ml-5">{modalEdit.name}</p>
+              </div>
+              <div className="form-group flex items-center gap-5">
+                <label htmlFor="deskripsi">Description</label>
+                <TextareaAutosize
+                  className="border border-gray w-full resize-none p-3 rounded focus:border focus:border-b-sky-500"
+                  onChange={handleChangeEdit}
+                  value={modalEdit.description}
+                  minRows={3}
+                  name="description"
+                />
+              </div>
+            </div>
+          </form>
+          <div className="flex justify-end items-center bg-gray px-5 gap-5 rounded-lg rounded-t-none">
+            <button onClick={handleCloseModalEdit}>Cancel</button>
+            {modalEdit.description.length <= 25 ? (
+              <button
+                type="submit"
+                form="createForm"
+                className="bg-navy opacity-50 text-white p-2 my-5 rounded"
+                disabled
+              >
+                Edit
+              </button>
+            ) : (
+              <button
+                type="submit"
+                onClick={() => {
+                  handleUpdate({
+                    id: modalEdit.id,
+                    description: modalEdit.description,
+                  });
+                }}
+                form="createForm"
+                className="bg-navy text-white p-2 my-5 rounded"
+              >
+                Edit
+              </button>
+            )}
           </div>
         </Box>
       </Modal>

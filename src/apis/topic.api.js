@@ -35,6 +35,14 @@ const TopicAPI = {
     }
   },
 
+  async updateTopic(data) {
+    try {
+      const response = await axiosInstance.put(`topics/edit_description/${data.id}`, {description: data.description})
+      return response
+    } catch (error) {
+      console.log(error.message)
+    }
+  },
 };
 
 export default TopicAPI;
