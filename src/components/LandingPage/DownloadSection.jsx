@@ -6,19 +6,19 @@ const DownloadSection = () => {
   return (
     <section id="download" className="relative mt-20 pt-8">
       <div className="container">
-        <div className="flex justify-center flex-col-reverse 2xl:flex-row flex-wrap items-center">
+        <div className="flex justify-center flex-col-reverse 2xl:flex-row flex-wrap items-center gap-16">
           <img
             className=""
             src={DownloadSvg}
             alt=""
           />
-          <div className="flex flex-col gap-5 2xl:-mt-80">
+          <div className="flex flex-col gap-5 2xl:-mt-80 items-center 2xl:items-start text-center">
             <h1>Don't have the Discuss.In app yet? Let's download now!</h1>
             <p>
               Discuss freely discussing the latest news, updated topics, and
               extensive knowledge
             </p>
-            <div className="flex">
+            <div className="flex gap-5">
               <button>Google Play</button>
               <button>App store</button>
             </div>

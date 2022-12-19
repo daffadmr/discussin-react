@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import logoWithName from "../../assets/png/logoWithName.png";
+import LogoOnly from "../../assets/svg/LogoOnly.svg";
 import GridViewOutlinedIcon from "@mui/icons-material/GridViewOutlined";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import TopicOutlinedIcon from "@mui/icons-material/TopicOutlined";
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
 import WarningAmberOutlinedIcon from "@mui/icons-material/WarningAmberOutlined";
-import ViewComfyOutlinedIcon from '@mui/icons-material/ViewComfyOutlined';
+import ViewComfyOutlinedIcon from "@mui/icons-material/ViewComfyOutlined";
 import auth from "../../utils/auth";
 import { Box, Modal } from "@mui/material";
 
@@ -32,7 +33,7 @@ const Sidebar = () => {
     {
       icon: ViewComfyOutlinedIcon,
       route: "/dashboard/threads",
-      name: "Threads",
+      name: "Post",
     },
     {
       icon: TopicOutlinedIcon,
@@ -42,10 +43,11 @@ const Sidebar = () => {
   ];
 
   return (
-    <div className="h-screen w-[224px] shadow-2xl bg-navy pt-4">
+    <div className="h-screen text-none w-[15vw] shadow-2xl bg-navy pt-4">
       <div className="flex items-center justify-center p-[10px]">
         <Link to={"/dashboard"}>
-          <img src={logoWithName} alt="" />
+          <img src={logoWithName} alt="" className="hidden 2xl:inline" />
+          <img src={LogoOnly} alt="" className="2xl:hidden" />
         </Link>
       </div>
       <div className="flex flex-col justify-between items-center h-[85vh]">
@@ -59,16 +61,10 @@ const Sidebar = () => {
                   className={`flex gap-2 items-center my-5 p-2 text-[16px] rounded-[10px] text-white ${
                     window.location.pathname === item.route &&
                     "text-navy bg-white font-extrabold"
-                    // } ${
-                    //   activeList === null &&
-                    //   window.location.pathname === item.route
-                    //     ? "text-navy bg-white font-extrabold"
-                    //     : ""
-                    // }`}
                   }`}
                 >
                   <item.icon />
-                  {item.name}
+                  <span className="hidden 2xl:inline">{item.name}</span>
                 </Link>
               </li>
             );
@@ -76,11 +72,11 @@ const Sidebar = () => {
         </ul>
         <div className="bg-danger rounded-[10px]">
           <button
-            className="flex gap-2 text-[16px] text-white py-2 px-4 mr-4"
+            className="flex gap-2 text-[16px] text-white py-2 px-4 xl:mr-4"
             onClick={() => handleOpen()}
           >
             <LogoutOutlinedIcon />
-            Log out
+            <span className="hidden 2xl:inline">Log out</span>
           </button>
         </div>
         <Modal
@@ -95,7 +91,7 @@ const Sidebar = () => {
                 fontSize: 50,
               }}
             />
-            <h1 className="px-5 font-extrabold">Log Out</h1>
+            <p className="px-5 font-extrabold">Log Out</p>
             <p>Are you sure want to log out?</p>
             <div className="flex justify-center items-center px-5 gap-5 -mt-3">
               <button
