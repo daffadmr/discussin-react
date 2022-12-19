@@ -1,3 +1,18 @@
 .dashboard-card{
   @apply rounded-xl flex justify-between bg-navy w-[374px] h-[144px] py-5 px-12
 }
+
+.hamburger-line {
+  @apply w-[30px] h-[2px] bg-black block;
+}
+
+.click > span:nth-child(1) {
+  @apply rotate-45;
+}
+
+.click > span:nth-child(2) {
+  @apply scale-0;
+}
+.click > span:nth-child(3) {
+  @apply -rotate-45;
+}
