@@ -79,7 +79,6 @@ const userSlice = createSlice({
       })
       .addCase(banUser.fulfilled, (state, action) => {
         state.status = "succeed";
-        console.log(state.data)
         state.data = state.data.map(val => {
           if (val.id === action.payload.id) {
             return action.payload
