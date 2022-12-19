@@ -1,4 +1,3 @@
-import axios from "axios";
 import axiosInstance from "../configs/axiosInstance";
 
 const ThreadAPI = {
