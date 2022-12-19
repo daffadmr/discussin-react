@@ -6,6 +6,7 @@ import TagFacesOutlinedIcon from "@mui/icons-material/TagFacesOutlined";
 import SystemSecurityUpdateGoodOutlinedIcon from "@mui/icons-material/SystemSecurityUpdateGoodOutlined";
 import ChatOutlinedIcon from "@mui/icons-material/ChatOutlined";
 import VerifiedUserOutlinedIcon from "@mui/icons-material/VerifiedUserOutlined";
+import EastIcon from '@mui/icons-material/East';
 
 const HeroSection = () => {
   return (
@@ -23,7 +24,7 @@ const HeroSection = () => {
               </p>
               <div className="flex gap-5 items-center">
                 <button className="bg-yellow-400 text-[#000] font-bold p-2 rounded-lg">
-                  Download the App -{">"}
+                  Download the App <span className="font-extrabold"><EastIcon/></span>
                 </button>
                 <p>⭐ 4.8</p>
                 <Link>On Play Store</Link>
