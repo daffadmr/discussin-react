@@ -5,7 +5,6 @@ import logo from "../assets/png/logo.svg";
 import VisibilityOffOutlinedIcon from "@mui/icons-material/VisibilityOffOutlined";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import LoginSvg from "../assets/svg/LoginSvg";
-import { TabTitle } from "../components/title";
 import { Helmet } from "react-helmet-async";
 
 const Login = () => {

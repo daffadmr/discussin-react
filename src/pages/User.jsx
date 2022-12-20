@@ -1,10 +1,8 @@
 import React from "react";
 import { Helmet } from "react-helmet-async";
 import TableUsers from "../components/Dashboard/TableUsers";
-import { TabTitle } from "../components/title";
 
 const User = () => {
-  TabTitle("Manage User");
   return (
     <>
       <Helmet>

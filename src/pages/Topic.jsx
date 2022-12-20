@@ -1,9 +1,7 @@
-import { CircularProgress } from "@mui/material";
 import React, { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import { useDispatch, useSelector } from "react-redux";
 import TableTopic from "../components/Dashboard/TableTopic";
-import { TabTitle } from "../components/title";
 import { fetchTopic } from "../store/features/topicSlice";
 
 const User = () => {
