@@ -22,18 +22,6 @@ export const fetchDataUser = createAsyncThunk("fetch/user", async (page) => {
   }
 });
 
-// export const updateUser = createAsyncThunk(
-//   "update/user",
-//   async ({ email, username }) => {
-//     try {
-//       const response = await UserAPI.updateUser({ email, username });
-//       return response.data.data;
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   }
-// );
-
 export const banUser = createAsyncThunk("ban/user", async (data) => {
   try {
     const response = await UserAPI.banUser(data);
