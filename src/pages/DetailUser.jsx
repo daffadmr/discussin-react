@@ -77,7 +77,6 @@ function DetailUser() {
                         {/* title and text */}
                         <div className="pl-[10px] border-l-[3px] border-[#ccc]">
                           <h3 className="font-bold">{post.title}</h3>
-                          {console.log(post)}
                           <p className="mt-[10px] h-[100px] overflow-hidden">
                             {post.body}
                           </p>
