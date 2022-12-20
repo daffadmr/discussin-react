@@ -116,44 +116,46 @@ const Dashboard = () => {
                 <h1>Top Thread</h1>
                 <TrendingUpOutlinedIcon sx={{ fontSize: 35 }} />
               </div>
-              {tops?.map((data) => (
-                <Link
-                  to={`threads/${data.ID}`}
-                  className="w-[100%] h-[100px] mb-[10px] bg-white shadow-lg border border-[#ccc] rounded-xl flex overflow-hidden p-[12px]"
-                >
-                  {data.photo ? (
-                    <>
-                      <div className=" w-[60%] h-[100%] py-[13px] flex flex-col justify-between">
-                        <h3 className="w-[100%] truncate font-bold">
-                          {data?.title}
-                        </h3>
-                        <h5 className="w-[100%] truncate text-[#969696]">
-                          {data?.body}
-                        </h5>
-                      </div>
-                      <div className="flex justify-center overflow-hidden items-center w-[40%] h-[100%] rounded-xl">
-                        <div className="w-[200px]">
-                          <img
-                            className="w-[100%]"
-                            src={data?.photo}
-                            alt="error"
-                          />
-                        </div>
-                      </div>
-                    </>
-                  ) : (
-                    <>
-                      <div className=" w-[100%] h-[100%] py-[13px] flex flex-col justify-between">
-                        <h3 className="w-[100%] truncate font-bold">
-                          {data?.title}
-                        </h3>
-                        <h5 className="w-[100%] truncate text-[#969696]">
-                          {data?.body}
-                        </h5>
-                      </div>
-                    </>
-                  )}
-                  {/* <div className=" w-[60%] h-[100%] py-[13px] flex flex-col justify-between">
+              {tops?.map(
+                (data, index) =>
+                  index < 3 && (
+                    <Link
+                      to={`threads/${data.ID}`}
+                      className="w-[100%] h-[100px] mb-[10px] bg-white shadow-lg border border-[#ccc] rounded-xl flex overflow-hidden p-[12px]"
+                    >
+                      {data.photo ? (
+                        <>
+                          <div className=" w-[60%] h-[100%] py-[13px] flex flex-col justify-between">
+                            <h3 className="w-[100%] truncate font-bold">
+                              {data?.title}
+                            </h3>
+                            <h5 className="w-[100%] truncate text-[#969696]">
+                              {data?.body}
+                            </h5>
+                          </div>
+                          <div className="flex justify-center overflow-hidden items-center w-[40%] h-[100%] rounded-xl">
+                            <div className="w-[200px]">
+                              <img
+                                className="w-[100%]"
+                                src={data?.photo}
+                                alt="error"
+                              />
+                            </div>
+                          </div>
+                        </>
+                      ) : (
+                        <>
+                          <div className=" w-[100%] h-[100%] py-[13px] flex flex-col justify-between">
+                            <h3 className="w-[100%] truncate font-bold">
+                              {data?.title}
+                            </h3>
+                            <h5 className="w-[100%] truncate text-[#969696]">
+                              {data?.body}
+                            </h5>
+                          </div>
+                        </>
+                      )}
+                      {/* <div className=" w-[60%] h-[100%] py-[13px] flex flex-col justify-between">
                     <h3 className="w-[100%] truncate font-bold">
                       {data?.title}
                     </h3>
@@ -170,8 +172,9 @@ const Dashboard = () => {
                           alt="error"
                         />
                       </div> */}
-                </Link>
-              ))}
+                    </Link>
+                  )
+              )}
             </div>
           </div>
         </div>
