@@ -48,7 +48,7 @@ function DetailUser() {
                       </div>
                     </div>
                     <div className="w-[100%] h-[50px] absolute bottom-0 flex">
-                      <div className="w-[50%] h-[100%] p-3 border-b-[3px] bg-white border-navy flex justify-center items-center">
+                      <div className="w-[50%] h-[100%] p-3 border-b-[3px] border-navy flex justify-center items-center">
                         <h2 className="font-bold text-navy ">Threads</h2>
                       </div>
                       {/* <div className="w-[50%] h-[100%] p-3 bg-white flex justify-center items-center">
