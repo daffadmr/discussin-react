@@ -35,7 +35,6 @@ const Dashboard = () => {
   const dashboardAPI = async () => {
     try {
       const response = await axiosInstance.get("dashboard");
-      console.log(response.data);
       setDashboardData(response.data);
       return response.data;
     } catch (error) {
@@ -58,7 +57,7 @@ const Dashboard = () => {
         <h1 className="pb-5">Dashboard</h1>
         <div className="w-[85vw] h-[90vh] rounded-lg flex">
           <div className="w-[80%]">
-            <div className="flex flex-wrap text-white mt-5 gap-1">
+            <div className="flex flex-wrap justify-center gap-2 4xl:justify-start text-white mt-5">
               <div className="dashboard-card">
                 <div className="flex flex-col gap-3 justify-center">
                   <h3 className="text-3xl">Users</h3>
@@ -114,7 +113,7 @@ const Dashboard = () => {
           </div>
           <div className="w-[30%] h-[100%] pl-[10px] border-gray border-l-2 border-y-0 border-r-0">
             <div className="w-[100%] h-[100%] ">
-              <div className="flex justify-between items-center pb-[10px]">
+              <div className="flex justify-between  items-center pb-[10px]">
                 <h1>Top Thread</h1>
                 <TrendingUpOutlinedIcon sx={{ fontSize: 35 }} />
               </div>
