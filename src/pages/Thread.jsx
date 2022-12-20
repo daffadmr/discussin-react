@@ -1,7 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
-// import { Link } from "@mui/material";
+import dayjs from "dayjs";
+import localizedFormat from "dayjs/plugin/localizedFormat";
+import relativeTime from "dayjs/plugin/relativeTime";
 
 // image
 import Author from "../assets/png/author.png";
@@ -12,6 +14,9 @@ import Eclipse from "../assets/svg/Eclipse";
 import ThreadAPI from "../apis/threads.api";
 import { useState } from "react";
 import { Helmet } from "react-helmet-async";
+
+dayjs.extend(localizedFormat);
+dayjs.extend(relativeTime);
 
 const DetailThreads = () => {
   const [thread, setThread] = useState();
@@ -28,10 +33,10 @@ const DetailThreads = () => {
         <title>Detail Post</title>
         <meta name="description" content="Discuss.In detail post" />
       </Helmet>
-      <div className="container pb-14">
+      <div className="container pb-14 overflow-y-auto">
         <div>
           <h1 className="pb-5">Manage Post</h1>
-          <div className="w-[83.95vw] h-[90vh] overflow-hidden shadow-xl shadow-gray-400 px-[20px] border border-slate-200 py-6 space-y-5 rounded-xl relative">
+          <div className="w-[83.95vw] h-[86vh] overflow-hidden shadow-xl shadow-gray-400 px-[20px] border border-slate-200 py-6 space-y-5 rounded-xl relative">
             <div className="h-[100%] w-[100%]">
               <div className="w-[100%] h-[10%]  sticky top-1  rounded-t-xl flex items-center">
                 <Link to={"/dashboard/threads"}>
@@ -101,14 +106,17 @@ const DetailThreads = () => {
                   </p>
                 </div>
                 {comments?.map((data) => {
+                  console.log(data);
                   return (
-                    <div key={data.ID} className="p-4">
+                    <div key={data.ID} className="p-4 bg-[#E5E5E5] my-2 max-w-fit rounded-lg">
                       <div className="flex items-center">
                         <img src={Author} className="w-[50px]" alt="" />
                         <div className="pl-2">
                           <div className="flex items-center">
-                            {data.user.username}
-                            <p className="text-[10px] pl-1">12-12</p>
+                            <span>{data.user.username}</span>
+                            <span className="text-[10px] pl-1">
+                              {dayjs(data.CreatedAt).fromNow()}
+                            </span>
                           </div>
                           <div className="">{data.body}</div>
                         </div>
