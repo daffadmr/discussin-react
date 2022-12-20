@@ -1,7 +1,7 @@
 import React from "react";
 import { Helmet } from "react-helmet-async";
 import DownloadSection from "../components/LandingPage/DownloadSection";
-import FaqSection from "../components/LandingPage/FaqSection";
+import TestimonialSection from "../components/LandingPage/TestimonialSection";
 import FeatureSection from "../components/LandingPage/FeatureSection";
 import Footer from "../components/LandingPage/Footer";
 import HeroSection from "../components/LandingPage/HeroSection";
@@ -18,7 +18,7 @@ const LandingPage = () => {
       <HeroSection />
       <FeatureSection />
       <DownloadSection />
-      <FaqSection />
+      <TestimonialSection />
       <Footer />
     </>
   );
