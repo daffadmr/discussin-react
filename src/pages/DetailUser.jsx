@@ -1,11 +1,8 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
-import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { getDetail } from "../apis/detailUser";
-import { TabTitle } from "../components/title";
-import { getThread, threadSelector } from "../store/features/threadSlice";
 
 function DetailUser() {
   const params = useParams();
