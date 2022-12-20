@@ -14,7 +14,7 @@ const Footer = () => {
               <div className="flex flex-col">
                 <Link to={"/dashboard"}>Go to Dashboard</Link>
                 <span
-                  className="p-0 m-0"
+                  className="p-0 m-0 cursor-pointer"
                   onClick={() => {
                     auth.signOut();
                   }}
