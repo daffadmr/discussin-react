@@ -1,6 +1,8 @@
 import React from "react";
 import LandingPageWave from "../../assets/svg/DownloadSec.svg";
 import DownloadSvg from "../../assets/svg/DownloadSvg.svg";
+import play from "../../assets/svg/play.svg"
+import apple from "../../assets/svg/apple.svg"
 
 const DownloadSection = () => {
   return (
@@ -19,8 +21,8 @@ const DownloadSection = () => {
               extensive knowledge
             </p>
             <div className="flex gap-5">
-              <button>Google Play</button>
-              <button>App store</button>
+              <button><img src={play} alt="" /></button>
+              <button><img src={apple} alt="" /></button>
             </div>
           </div>
         </div>
