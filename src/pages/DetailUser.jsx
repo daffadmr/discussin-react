@@ -21,7 +21,7 @@ function DetailUser() {
       <div className="container">
         <h1 className="pb-5">Detail User</h1>
         <div className="users">
-          <div className="h-[80vh] w-[80vw] rounded-[20px] overflow-hidden bg-white shadow-xl">
+          <div className="h-[80vh] w-[85vw] rounded-[20px] overflow-hidden bg-white shadow-xl">
             {/* header */}
             <div className="h-[38%] w-[100%]">
               <div className="h-[80px] w-[100%] bg-navy" />
