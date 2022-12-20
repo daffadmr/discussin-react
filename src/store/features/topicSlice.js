@@ -71,7 +71,6 @@ const topicSlice = createSlice({
       })
       .addCase(updateTopic.fulfilled, (state, action) => {
         state.status = "succeed";
-        console.log(action)
         state.data = state.data.map(val => {
           if (val.ID === action.payload.ID) {
             return action.payload

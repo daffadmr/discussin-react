@@ -15,7 +15,6 @@ const initialState = {
 export const fetchDataUser = createAsyncThunk("fetch/user", async (page) => {
   try {
     const response = await UserAPI.getAllUser(page);
-    console.log(response.data)
     return response.data;
   } catch (error) {
     console.log(error);
@@ -25,7 +24,6 @@ export const fetchDataUser = createAsyncThunk("fetch/user", async (page) => {
 export const banUser = createAsyncThunk("ban/user", async (data) => {
   try {
     const response = await UserAPI.banUser(data);
-    console.log(response)
     return response
   } catch (error) {
     console.log(error);
@@ -62,7 +60,6 @@ const userSlice = createSlice({
       })
       .addCase(deleteUser.fulfilled, (state, action) => {
         state.status = "succeed";
-        console.log(action)
         state.data = state.data.filter(val => val.id !== action.payload)
       })
       .addCase(banUser.fulfilled, (state, action) => {

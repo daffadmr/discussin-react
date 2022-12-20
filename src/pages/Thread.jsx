@@ -106,7 +106,6 @@ const DetailThreads = () => {
                   </p>
                 </div>
                 {comments?.map((data) => {
-                  console.log(data);
                   return (
                     <div key={data.ID} className="p-4 bg-[#E5E5E5] my-2 max-w-fit rounded-lg">
                       <div className="flex items-center">
