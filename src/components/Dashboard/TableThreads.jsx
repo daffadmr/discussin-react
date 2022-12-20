@@ -149,9 +149,14 @@ const TableThreads = () => {
         disableSelectionOnClick
         rows={datas}
         columns={columns}
+        pageSize={20}
         getRowId={(data) => data.ID}
+        rowsPerPageOptions={[]}
         className="shadow-xl"
         sx={{
+          '.MuiTablePagination-displayedRows': {
+            display: 'none',
+          },
           "& .MuiDataGrid-columnHeader .MuiDataGrid-columnSeparator": {
             display: "none",
           },

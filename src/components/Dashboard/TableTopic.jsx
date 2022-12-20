@@ -166,8 +166,14 @@ const TableTopic = ({ data, status }) => {
               components={{ Toolbar: QuickSearchToolbar }}
               disableSelectionOnClick
               checkboxSelection={false}
+              pageSize={20}
+              rowsPerPageOptions={[]}
+              hideFooterSelectedRowCount
               className="shadow-xl"
               sx={{
+                '.MuiTablePagination-displayedRows': {
+                  display: 'none',
+                },
                 "& .MuiDataGrid-columnHeader .MuiDataGrid-columnSeparator": {
                   display: "none",
                 },

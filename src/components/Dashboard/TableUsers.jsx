@@ -26,6 +26,7 @@ const TableUsers = () => {
   // const users = useSelector(userSelector.selectAll);
   const users = useSelector((state) => state.user.data);
   const page = useSelector((state) => state.user.currentPage);
+  const totalPage = useSelector((state) => state.user.totalPage);
   const status = useSelector((state) => state.user.status);
 
   const [currentPage, setCurrentPage] = useState(page);
@@ -51,7 +52,6 @@ const TableUsers = () => {
 
   const handleDelete = (id) => {
     dispatch(deleteUser(id))
-    dashboardAPI();
     handleCloseModalDelete()
   }
 
@@ -175,19 +175,22 @@ const TableUsers = () => {
             <DataGrid
               checkboxSelection={false}
               rows={users}
+              rowCount={dashboardData.user_total}
               columns={columns}
+              page={currentPage-1}
               hideFooterSelectedRowCount
-              pageSize={users.length}
+              pageSize={20}
               onPageChange={(newPage) => {
                 setCurrentPage(newPage+1);
               }}
-              rowCount={dashboardData.user_total}
               paginationMode="server"
-              // rowCount={ukuran}
               disableSelectionOnClick
               components={{ Toolbar: QuickSearchToolbar }}
               className="shadow-xl"
               sx={{
+                '.MuiTablePagination-displayedRows': {
+                  display: 'none',
+                },
                 "& .MuiDataGrid-columnHeader .MuiDataGrid-columnSeparator": {
                   display: "none",
                 },
@@ -197,9 +200,6 @@ const TableUsers = () => {
                 "& .MuiDataGrid-cell:focus": {
                   outline: "none",
                 },
-                // "& .MuiFormControl-root:active .MuiSvgIcon-root": {
-                //   display: "none",
-                // },
                 borderRadius: 5,
               }}
             />

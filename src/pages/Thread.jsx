@@ -32,7 +32,7 @@ const DetailThreads = () => {
       <div className="container pb-14">
         <div>
           <h1 className="pb-5">Manage Post</h1>
-          <div className="w-[85vw] h-[80vh] overflow-hidden shadow-xl shadow-gray-400 px-[20px] border border-slate-200 py-6 space-y-5 rounded-xl relative">
+          <div className="w-[85vw] h-[90vh] overflow-hidden shadow-xl shadow-gray-400 px-[20px] border border-slate-200 py-6 space-y-5 rounded-xl relative">
             <div className="h-[100%] w-[100%]">
               <div className="w-[100%] h-[10%]  sticky top-1  rounded-t-xl flex items-center">
                 <Link to={"/dashboard/threads"}>
