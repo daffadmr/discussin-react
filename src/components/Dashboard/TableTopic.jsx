@@ -125,7 +125,7 @@ const TableTopic = ({ data, status }) => {
               <DeleteOutlinedIcon />
             </button>
             <button
-              className="bg-navy p-2 rounded-lg text-white"
+              className="bg-secondary p-2 rounded-lg text-white"
               onClick={() =>
                 handleOpenModalEdit(
                   params.row.ID,
@@ -229,7 +229,7 @@ const TableTopic = ({ data, status }) => {
               <button
                 type="submit"
                 form="createForm"
-                className="bg-navy opacity-50 text-white p-2 my-5 rounded"
+                className="bg-secondary opacity-50 text-white p-2 my-5 rounded"
                 disabled
               >
                 Create
@@ -238,7 +238,7 @@ const TableTopic = ({ data, status }) => {
               <button
                 type="submit"
                 form="createForm"
-                className="bg-navy text-white p-2 my-5 rounded"
+                className="bg-secondary text-white p-2 my-5 rounded"
               >
                 Create
               </button>
@@ -307,7 +307,7 @@ const TableTopic = ({ data, status }) => {
               <button
                 type="submit"
                 form="createForm"
-                className="bg-navy opacity-50 text-white p-2 my-5 rounded"
+                className="bg-secondary opacity-50 text-white p-2 my-5 rounded"
                 disabled
               >
                 Edit
@@ -322,7 +322,7 @@ const TableTopic = ({ data, status }) => {
                   });
                 }}
                 form="createForm"
-                className="bg-navy text-white p-2 my-5 rounded"
+                className="bg-secondary text-white p-2 my-5 rounded"
               >
                 Edit
               </button>
