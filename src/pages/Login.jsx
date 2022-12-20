@@ -10,7 +10,24 @@ import { Helmet } from "react-helmet-async";
 const Login = () => {
   const navigate = useNavigate();
 
+  const [email, setEmail] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const validateInput = (e) => {
+    setEmail(e.target.value);
+    const regexpSqli =
+      /\b(ALTER|CREATE|DELETE|DROP|EXEC(UTE){0,1}|INSERT( +INTO){0,1}|MERGE|SELECT|UPDATE|UNION( +ALL){0,1})\b/g;
+    const regexpHtml = /<(\/*?)(?!(em|p|br\s*\/|strong))\w+?.+?>/gim;
+
+    if (regexpHtml.test(email)) {
+      setEmail("");
+      return { fieldName: email, errorMsg: "Memasukkan tag HTML dilarang!" };
+    }
+    if (regexpSqli.test(email)) {
+      console.log("Memasukkan SQLi query dilarang!");
+      return { fieldName: email, errorMsg: "Memasukkan SQLi query dilarang!" };
+    }
+    return { fieldName: email, errorMsg: "" };
+  };
 
   const visiblePassword = (e) => {
     e.preventDefault();
@@ -25,6 +42,7 @@ const Login = () => {
     await AuthAPI.signin({ email, password })
       .then((result) => {
         if (!result.data.data.isAdmin) {
+          console.log(result.data.data.password);
           alert("Anda bukan admin!");
         } else {
           alert("Berhasil Login");
@@ -44,7 +62,10 @@ const Login = () => {
     <>
       <Helmet>
         <title>Login Page</title>
-        <meta name="description" content="Discuss.In login for Dashboard admin" />
+        <meta
+          name="description"
+          content="Discuss.In login for Dashboard admin"
+        />
       </Helmet>
       <div className="container h-screen flex items-center justify-center">
         <div className="flex justify-center py-4 items-center flex-wrap-reverse">
@@ -63,6 +84,8 @@ const Login = () => {
                 <label htmlFor="email">Email</label>
                 <input
                   className="border border-gray active:border-navy rounded-default p-2"
+                  onChange={validateInput}
+                  value={email}
                   type="email"
                   name="email"
                   id="email"
