@@ -18,10 +18,10 @@ export const fetchTopic = createAsyncThunk("fetch/topic", async () => {
 
 export const createTopic = createAsyncThunk("create/topic", async ({name, description}) => {
   try {
-    const res = await TopicApi.createTopic({
+    const response = await TopicApi.createTopic({
       name, description
     });
-    return res.data;
+    return response.data;
   } catch (err) {
     console.log(err.message);
   }
@@ -38,9 +38,8 @@ export const deleteTopic = createAsyncThunk("delete/topic", async (id) => {
 
 export const updateTopic = createAsyncThunk("update/topic", async (data) => {
   try {
-    const res = await TopicApi.updateTopic(data);
-    console.log(res)
-    return res
+    const response = await TopicApi.updateTopic(data);
+    return response.data.data
   } catch (err) {
     console.log(err.message);
   }
@@ -74,7 +73,7 @@ const topicSlice = createSlice({
         state.status = "succeed";
         console.log(action)
         state.data = state.data.map(val => {
-          if (val.id === action.payload.id) {
+          if (val.ID === action.payload.ID) {
             return action.payload
           }
           return val
@@ -83,5 +82,4 @@ const topicSlice = createSlice({
   },
 });
 
-// export const topicSelector = topicEntity.getSelectors(state => state.topic)
 export default topicSlice.reducer;
