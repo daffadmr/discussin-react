@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import PeopleAltOutlinedIcon from "@mui/icons-material/PeopleAltOutlined";
 import TopicOutlinedIcon from "@mui/icons-material/TopicOutlined";
-import { TabTitle } from "../components/title";
 import axiosInstance from "../configs/axiosInstance";
 import { useState } from "react";
 import BarChart from "../components/BarChart";
