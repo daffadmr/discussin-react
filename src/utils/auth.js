@@ -1,11 +1,10 @@
 const auth = {
   isAuthorization() {
-    if (localStorage.getItem("token") && localStorage.getItem("username") && localStorage.getItem("auth")) return true;
+    if (localStorage.getItem("token") && localStorage.getItem("username")) return true;
   },
   signOut(navigate) {
     localStorage.removeItem("token");
     localStorage.removeItem("username");
-    localStorage.removeItem("auth");
     alert("Berhasil log out");
     navigate("/login");
   },

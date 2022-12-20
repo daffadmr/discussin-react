@@ -28,7 +28,6 @@ const Login = () => {
           alert("Anda bukan admin!");
         } else {
           alert("Berhasil Login");
-          localStorage.setItem("auth", true);
           localStorage.setItem("token", result.data.data.token);
           localStorage.setItem("username", result.data.data.username);
           navigate("/dashboard");
