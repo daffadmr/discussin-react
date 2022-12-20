@@ -110,7 +110,7 @@ const Dashboard = () => {
               <BarChart chartData={userData} />
             </div>
           </div>
-          <div className="w-[30%] h-[100%] pl-[10px] border-gray border-l-2 border-y-0 border-r-0">
+          <div className="w-[29%] h-[100%] pl-[10px] border-gray border-l-2 border-y-0 border-r-0">
             <div className="w-[100%] h-[100%] ">
               <div className="flex justify-between  items-center pb-[10px]">
                 <h1>Top Thread</h1>
