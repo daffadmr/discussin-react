@@ -133,12 +133,6 @@ const TableUsers = () => {
             >
               <DeleteOutlinedIcon />
             </button>
-            {/* <button
-              className="bg-blue-600 p-2 rounded-lg text-white"
-              onClick={() => {}}
-            >
-              <EditOutlinedIcon />
-            </button> */}
             {day1.diff(day2, "x") >= 0 && (
               <p>{dayjs(params.row.banUntil).fromNow(true)} until unban</p>
             )}
@@ -188,6 +182,9 @@ const TableUsers = () => {
               components={{ Toolbar: QuickSearchToolbar }}
               className="shadow-xl"
               sx={{
+                '*': {
+                  fontWeight: 800
+                },
                 '.MuiTablePagination-displayedRows': {
                   display: 'none',
                 },

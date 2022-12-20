@@ -154,6 +154,9 @@ const TableThreads = () => {
         rowsPerPageOptions={[]}
         className="shadow-xl"
         sx={{
+          '*': {
+            fontWeight: 800
+          },
           '.MuiTablePagination-displayedRows': {
             display: 'none',
           },

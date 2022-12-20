@@ -171,6 +171,9 @@ const TableTopic = ({ data, status }) => {
               hideFooterSelectedRowCount
               className="shadow-xl"
               sx={{
+                '*': {
+                  fontWeight: 800
+                },
                 '.MuiTablePagination-displayedRows': {
                   display: 'none',
                 },
