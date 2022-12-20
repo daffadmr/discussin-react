@@ -1,11 +1,13 @@
+import Cookies from "js-cookie";
+
 const auth = {
   isAuthorization() {
-    if (localStorage.getItem("token") && localStorage.getItem("username")) return true
+    if (Cookies.get("token") && Cookies.get("username")) return true
     return false
   },
   signOut(navigate) {
-    localStorage.removeItem("token");
-    localStorage.removeItem("username");
+    Cookies.remove("token");
+    Cookies.remove("username");
     alert("Berhasil log out");
     navigate("/login");
   },

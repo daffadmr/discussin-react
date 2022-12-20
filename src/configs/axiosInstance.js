@@ -1,17 +1,14 @@
 import axios from "axios";
+import Cookies from "js-cookie";
 import CONST from "../utils/constants";
 
-// const token = localStorage.getItem("token");
 const config = {
   baseURL: CONST.BASE_URL,
-  // headers: {
-  //   Authorization: `Bearer ${token !== null ? token : "gagal"}`,
-  // },
 };
 const axiosInstance = axios.create(config);
 
 axiosInstance.interceptors.request.use((config) => {
-  config.headers.Authorization = `Bearer ${localStorage.getItem("token")}`;
+  config.headers.Authorization = `Bearer ${Cookies.get("token")}`;
   return config;
 });
 

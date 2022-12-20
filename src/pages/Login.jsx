@@ -6,6 +6,7 @@ import VisibilityOffOutlinedIcon from "@mui/icons-material/VisibilityOffOutlined
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import LoginSvg from "../assets/svg/LoginSvg";
 import { Helmet } from "react-helmet-async";
+import Cookies from "js-cookie";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -46,8 +47,8 @@ const Login = () => {
           alert("Anda bukan admin!");
         } else {
           alert("Berhasil Login");
-          localStorage.setItem("token", result.data.data.token);
-          localStorage.setItem("username", result.data.data.username);
+          Cookies.set("token", result.data.data.token);
+          Cookies.set("username", result.data.data.username);
           navigate("/dashboard");
         }
       })
