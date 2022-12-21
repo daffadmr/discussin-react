@@ -1,9 +1,22 @@
-import React from 'react'
+import React from "react";
+import { Helmet } from "react-helmet-async";
+import TableUsers from "../components/Dashboard/TableUsers";
 
 const User = () => {
   return (
-    <div>User</div>
-  )
-}
+    <>
+      <Helmet>
+        <title>Dashboard - Manage User</title>
+        <meta name="description" content="Discuss.In admin dashboard" />
+      </Helmet>
+      <div className="container">
+        <h1 className="text-3xl pb-5">Manage User</h1>
+        <div className="users">
+          <TableUsers />
+        </div>
+      </div>
+    </>
+  );
+};
 
-export default User
+export default User;
