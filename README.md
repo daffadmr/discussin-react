@@ -1,4 +1,4 @@
-# Disscus.in as Front End
+# Discuss.in Front End Version
 
 `Disscus.in` are web based application. built using react as front-end framework and mui as material ui. This app purpose are to manage Form Group Disccusion system as admin.
 
