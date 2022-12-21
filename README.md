@@ -24,8 +24,8 @@ npm start
 - ![#FFFFFF](https://placehold.co/15x15/FFFFFF/FFFFFF.png) Neutrals
 - ![#69F607](https://placehold.co/15x15/69F607/69F607.png) Success
 - ![#476cff](https://placehold.co/15x15/476cff/476cff.png) Info
-- ![#ffd000](https://placehold.co/15x15/ffd000/ffd000.png) warning
-- ![#FF151C](https://placehold.co/15x15/FF151C/FF151C.png) Semantic(Danger)
+- ![#ffd000](https://placehold.co/15x15/ffd000/ffd000.png) Warning
+- ![#FF151C](https://placehold.co/15x15/FF151C/FF151C.png) Semantic (Danger)
 
 ### Using Tailwind as Styling
 
