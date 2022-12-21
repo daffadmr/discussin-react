@@ -1,70 +1,85 @@
-# Getting Started with Create React App
+# Disscus.in as Front End
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+`Disscus.in` are web based application. built using react as front-end framework and mui as material ui. This app purpose are to manage Form Group Disccusion system as admin.
 
-## Available Scripts
+including
 
-In the project directory, you can run:
+- Manage Users
+- Manage Threads/Posts
+- Manage Topics
 
-### `npm start`
+## Getting Started
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Using NPM
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+```bash
+git clone https://github.com/daffadmr/discussin-react
+npm install
+npm start
+```
 
-### `npm test`
+### Color palette list
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- ![#323C5C](https://placehold.co/15x15/323C5C/323C5C.png) Primary
+- ![#FFFFFF](https://placehold.co/15x15/FFFFFF/FFFFFF.png) Neutrals
+- ![#69F607](https://placehold.co/15x15/69F607/69F607.png) Success
+- ![#476cff](https://placehold.co/15x15/476cff/476cff.png) Info
+- ![#ffd000](https://placehold.co/15x15/ffd000/ffd000.png) warning
+- ![#FF151C](https://placehold.co/15x15/FF151C/FF151C.png) Semantic(Danger)
 
-### `npm run build`
+### Using Tailwind as Styling
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```js
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: ["./src/**/*.{js,jsx,ts,tsx}"],
+  theme: {
+    screens: {
+      "4xl": "1900px",
+      "3xl": "1600px",
+      "2xl": "1535px",
+      xl: "1279px",
+      lg: "1023px",
+      md: "767px",
+      sm: "639px",
+    },
+    backgroundPosition: {
+      "hero-bg": "center top -200px",
+      "hero-bg-mobile": "center top -600px",
+    },
+    extend: {
+      container: {
+        padding: "40px",
+        center: true,
+      },
+      colors: {
+        primary: "#FBEB23",
+        secondary: "#285FE7",
+        danger: "#FF151C",
+        gray: "#D8D8D8",
+        navy: "#323C5C",
+      },
+    },
+  },
+  plugins: [],
+};
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Styling Implement
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```jsx
+<button
+  className="bg-navy rounded-default text-white w-full py-2"
+  type="submit"
+  data-testid="button-submit"
+>
+  Sign In
+</button>
+```
 
-### `npm run eject`
+---
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### License
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Copyright © 2022 [Kelompok 13 Capstone Project SIB Alterra Academy Batch 3](https://github.com/daffadmr/discussin-react).<br />
+This project is [MIT]() licensed.
